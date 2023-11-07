@@ -1,5 +1,10 @@
-const { User } = require('../models');
+const { User, Review } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+
+const resolvers = {
+    Query: {
+        
+    }
 
 Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -24,6 +29,7 @@ Mutation: {
 
             return { token, user };
         },
+    },
 };
 
 module.exports = resolvers;
