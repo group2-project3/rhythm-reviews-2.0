@@ -4,6 +4,16 @@ type User {
     username: String
     email: String
     password: String
+    savedReviews: [Review]!
+}
+
+type Review {
+    _id: ID
+    title: String
+    content: String
+    user: User
+    album_id: Int
+    date: String
 }
 
 type Auth {
