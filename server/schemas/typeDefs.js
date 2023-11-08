@@ -27,6 +27,7 @@ type Query {
 type Mutation {
   addUser(username: String!, email: String!, password: String!): Auth
   login(email: String!, password: String!): Auth
+  updatePassword(oldPassword: String!, newPassword: String!, confirmPassword: String!): User
   addReview(content: String!): Review
   updateReview(input: ReviewInput!): Review
   removeReview(reviewId: ID!): Review
