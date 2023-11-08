@@ -6,7 +6,7 @@ import App from './App';
 import Homepage from './pages/Homepage';
 import CreateAcct from './pages/CreateAccount';
 import Login from './pages/Login';
-import Profile from './pages/profile';
+import Profile from './pages/Profile';
 import Results from './pages/Results';
 import Review from './pages/Review';
 
