@@ -15,16 +15,16 @@ const Login = () => {
   
     const [loginUserMutation] = useMutation(LOGIN_USER);
   
-    const handleInputChange = (event) => {
+    const handleInputChange = async (event) => {
       const { name, value } = event.target;
       setUserFormData({ ...userFormData, [name]: value });
     };
   
-  const loginFormHandler = (event) => {
+  const loginFormHandler = async (event) => {
     event.preventDefault();
     event.preventDefault();
 
-    
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();

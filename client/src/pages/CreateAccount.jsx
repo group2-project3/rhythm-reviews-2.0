@@ -1,6 +1,8 @@
 import React from 'react';
 
 const CreateAccount = () => {
+
+    
     return (
         <>
             <h1 className="mb-10 ml-12 text-2xl text-white mt-60">Create Account</h1>
