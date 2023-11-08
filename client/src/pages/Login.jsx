@@ -1,13 +1,62 @@
 import React, { useState } from "react";
 
+
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations';
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+    const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+    const [validated] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+  
+    const [loginUserMutation] = useMutation(LOGIN_USER);
+  
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setUserFormData({ ...userFormData, [name]: value });
+    };
   
   const loginFormHandler = (event) => {
     event.preventDefault();
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    try {
+      // Execute the LOGIN_USER mutation
+      const { data } = await loginUserMutation({
+        variables: { ...userFormData }
+      });
+
+
+      // Check if the mutation was successful
+      if (data && data.login) {
+        const { token } = data.login;
+        
+        Auth.login(token);
+      } else {
+        throw new Error('Something went wrong!');
+      }
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
+
+    setUserFormData({
+      username: '',
+      email: '',
+      password: '',
+    });
   };
+    
 
   return (
     <div className="login-container mt-60">
