@@ -32,21 +32,36 @@ Mutation: {
     },
         login: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
-
             if (!user) {
                 throw AuthenticationError;
             }
-
             const correctPw = await user.isCorrectPassword(password);
-
             if (!correctPw) {
                 throw AuthenticationError;
             }
-
             const token = signToken(user);
-
             return { token, user };
         },
+        updatePassword: async (parent, { oldPassword, newPassword, confirmPassword }, context) => {
+            if (!context.user) {
+              throw new AuthenticationError('You need to be logged in to update your password.');
+            }
+            const user = await User.findById(context.user.id);
+            if (!user) {
+              throw new AuthenticationError('User not found.');
+            }
+            const correctPw = await user.isCorrectPassword(oldPassword);
+            if (!correctPw) {
+              throw new AuthenticationError('Incorrect old password.');
+            }
+            if (newPassword !== confirmPassword) {
+              throw new AuthenticationError('New password and confirmation do not match.');
+            }
+            user.password = newPassword;
+            await user.save();
+            const token = signToken(user);
+            return { token, user };
+          },
     },
     addReview: async (parent, { content }, context) => {
         if (context.user) {
