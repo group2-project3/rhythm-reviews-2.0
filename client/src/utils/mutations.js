@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 
 // user registration mutation
 export const REGISTER_USER = gql`
-mutation RegisterUser($username: String!, $email: String!, $password: String!) {
+mutation registerUser($username: String!, $email: String!, $password: String!) {
     registerUser(username: $username, email: $email, password: $password) {
         id
         username
@@ -13,7 +13,7 @@ mutation RegisterUser($username: String!, $email: String!, $password: String!) {
 
 //user login mutation
 export const LOGIN_USER = gql`
-mutation RegisterUser($username: String!, $email: String!, $password: String!) {
+mutation loginUser($username: String!, $email: String!, $password: String!) {
     registerUser(username: $username, email: $email, password: $password) {
         id
         username
@@ -24,7 +24,7 @@ mutation RegisterUser($username: String!, $email: String!, $password: String!) {
 
 //create review mutation
 export const CREATE_REVIEW = gql`
-mutation CreateReview($title: String!, $content: String!, $album_id: ID!) {
+mutation createReview($title: String!, $content: String!, $album_id: ID!) {
     createReview(title: $title, content: $content, album_id: $album_id) {
         id
         title
@@ -39,7 +39,7 @@ mutation CreateReview($title: String!, $content: String!, $album_id: ID!) {
 
 //update review mutation
 export const UPDATE_REVIEW = gql`
-mutation UpdateReview($id: ID!, $title: String!, $content: String!) {
+mutation updateReview($id: ID!, $title: String!, $content: String!) {
     updateReview(id: $id, title: $title, content: $content) {
         id
         title
