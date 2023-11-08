@@ -24,7 +24,15 @@ type Auth {
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
+    updateReview(input: ReviewInput!): Review
   }
+
+input ReviewInput {
+  id: Int!
+  title: String
+  content: String
+}
+
 `;
 
 module.exports = typeDefs;
