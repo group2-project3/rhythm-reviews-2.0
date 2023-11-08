@@ -65,6 +65,27 @@ Mutation: {
         throw AuthenticationError;
         ('You need to be logged in!');
     },
+    updateReview: async (parent, { input }, context) => {
+        if (!context.user) {
+          throw new Error('You need to be logged in to update a review');
+        }
+          try {
+          const existingReview = await Review.findByPk(input.id);
+          if (!existingReview) {
+            throw new Error('Review not found');
+          }
+          if (input.title) {
+            existingReview.title = input.title;
+          }
+          if (input.content) {
+            existingReview.content = input.content;
+          }
+          await existingReview.save();
+            return existingReview;
+        } catch (error) {
+          throw new Error('Error updating the review: ' + error.message);
+        }
+      },
     removeReview: async (parent, { reviewId }, context) => {
         if (context.user) {
             const review = await Review.findOneAndDelete({
