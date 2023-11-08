@@ -24,6 +24,7 @@ const Login = () => {
     event.preventDefault();
     event.preventDefault();
 
+    
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
