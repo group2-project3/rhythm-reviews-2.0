@@ -1,21 +1,20 @@
-import decode from 'jwt-decode';
+import * as jwtDecode from 'jwt-decode';
 
 class AuthService {
   getProfile() {
-    return decode(this.getToken());
+    return jwtDecode(this.getToken());
   }
 
   loggedIn() {
     const token = this.getToken();
-    return !!token && this.isTokenExpired(token) ? true : false;
+    return !!token && !this.isTokenExpired(token);
   }
 
   isTokenExpired(token) {
     try {
-      const decoded = decode(token);
-      if (decoded.exp < Date.now() / 1000) {
-        return true;
-      } else return false;
+      const decoded = jwtDecode(token);
+      const currentTime = Date.now() / 1000;
+      return decoded.exp < currentTime;
     } catch (err) {
       return false;
     }
