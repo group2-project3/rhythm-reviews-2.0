@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
@@ -8,6 +8,8 @@ const Login = () => {
   const [showAlert, setShowAlert] = useState(false);
   
   const [loginUserMutation] = useMutation(LOGIN_USER);
+
+  
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -30,9 +32,11 @@ const Login = () => {
       });
 
       // Check if the mutation was successful
-      if (data && data.login) {
-        const { token } = data.login;
+      if (data && data.loginUser) {
+        const { token } = data.loginUser;
+        console.log('b4');
         Auth.login(token);
+        console.log('after');
       } else {
         throw new Error('Something went wrong!');
       }

@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useQuery } from '@apollo/client';
 import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
 import Results from "../components/Results";
+import Auth from '../utils/auth';
 
 const Homepage = () => {
   const [artistName, setArtistName] = useState("");
   const [message, setMessage] = useState("");
-  const [logged_in, setLoggedIn] = useState(false);
+  const [logged_in, setLoggedIn] = useState(Auth.loggedIn());
 
   const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
     variables: { artistName: artistName },
