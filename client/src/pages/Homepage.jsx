@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from '@apollo/client';
 import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
+import Results from "../components/Results";
 
 const Homepage = () => {
   const [artistName, setArtistName] = useState("");
@@ -51,7 +52,10 @@ const Homepage = () => {
           Search
         </button>
       </form>
-      {data && data.getAlbumsByArtist && (
+
+      <Results data={data} message={message} />
+
+      {/* {data && data.getAlbumsByArtist && (
   <div className="search-container">
     {data.getAlbumsByArtist.map((album) => (
       <div key={album.idAlbum}>
@@ -65,7 +69,7 @@ const Homepage = () => {
             <p className="text-red-600">{message}</p>
           )}
             </div>
-        )}
+        )} */}
 
         <div className="search-container"></div>
         <div className="flex items-center justify-center mt-4">
