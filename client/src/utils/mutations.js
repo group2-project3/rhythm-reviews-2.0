@@ -58,6 +58,40 @@ mutation UpdatePassword($currentPassword: String!, $newPassword: String!, $confi
   }
 `;
 
+// add review mutation
+export const ADD_REVIEW = gql`
+  mutation AddReview($input: ReviewInput!) {
+    createReview(input: $input) {
+      _id
+      title
+      content
+      user {
+        _id
+        username
+        email
+      }
+      album_id
+      date
+    }
+  }
+`;
 
+// delete review mutation
+export const DELETE_REVIEW = gql`
+  mutation DeleteReview($id: ID!) {
+    removeReview(reviewId: $id) {
+      _id
+      title
+      content
+      user {
+        _id
+        username
+        email
+      }
+      album_id
+      date
+    }
+  }
+`;
 
 

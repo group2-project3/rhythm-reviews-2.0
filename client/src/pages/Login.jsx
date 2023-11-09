@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
@@ -8,10 +6,9 @@ import { LOGIN_USER } from '../utils/mutations';
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-    const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-    const [validated] = useState(false);
-    const [showAlert, setShowAlert] = useState(false);
+  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   
     const [loginUserMutation] = useMutation(LOGIN_USER);
   
@@ -37,11 +34,9 @@ const Login = () => {
         variables: { ...userFormData }
       });
 
-
       // Check if the mutation was successful
       if (data && data.login) {
         const { token } = data.login;
-        
         Auth.login(token);
       } else {
         throw new Error('Something went wrong!');
@@ -57,7 +52,6 @@ const Login = () => {
       password: '',
     });
   };
-    
 
   return (
     <div className="login-container mt-60">

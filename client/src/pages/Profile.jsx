@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from '@apollo/client';
-import Auth from '/auth';
+import Auth from '../utils/auth';
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');

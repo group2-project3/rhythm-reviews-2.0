@@ -142,18 +142,10 @@ const Review = () => {
 
             {/* React alternative to {{#each albums}} */}
             {/* ERROR with dataValues */}
-            {reviews.map((reviews) => (
-                <div>
-                    <p className="mt-5 text-white">Your review has been posted:</p>
-                    <div className="px-5 py-5 mt-5 bg-white border-2 border-blue-600 rounded-md">
-                        <p className="mb-2 ml-5">Username: {{ dataValues.user.dataValues.username }}</p>
-                        <p className="mb-2 ml-5">Date: {{ format_date dataValues.date }}</p>
-                        <p className="mb-2 ml-5">Title: {{ dataValues.title }}</p>
-                        <p className="mb-2 ml-5">Review: {{ dataValues.content }}</p>
-                    </div>
-                </div>
-            ))}
-
+            <p className="mb-2 ml-5">Username: {dataValues.user.dataValues.username}</p>
+            <p className="mb-2 ml-5">Date: {dataValues.user.dataValues.date}</p>
+            <p className="mb-2 ml-5">Title: {dataValues.album.dataValues.title}</p>
+            <p className="mb-2 ml-5">Review: {dataValues.review.dataValues.review}</p>
             <div class="pb-40"></div>
 
         </div>
