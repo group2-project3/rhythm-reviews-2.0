@@ -1,5 +1,5 @@
 body.homepage-background {
-    background-image: url("../assets/rr-homepage-2.jpg");
+    background-image: url("./assets/rr-homepage-2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
