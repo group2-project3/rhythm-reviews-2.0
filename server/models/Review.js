@@ -20,7 +20,7 @@ const reviewSchema = new Schema({
         trim: true
     },
     album_id: {
-        type: Integer,
+        type: Number,
         trim: true
     },
     date: {
