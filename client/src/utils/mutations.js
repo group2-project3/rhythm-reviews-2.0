@@ -28,6 +28,12 @@ mutation loginUser($email: String!, $password: String!) {
 }
 `;
 
+export const LOGOUT_USER = gql`
+mutation {
+  logoutUser
+}
+`;
+
 //create review mutation
 export const CREATE_REVIEW = gql`
 mutation createReview($title: String!, $content: String!, $album_id: ID!) {

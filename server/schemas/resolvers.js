@@ -85,6 +85,21 @@ Mutation: {
             const token = signToken(user);
             return { token, user };
         },
+          logoutUser: async (parent, args, context) => {
+            console.log('ctx',context.req?.user);
+            if (context.req.user) {
+              // Clear the JWT token on the client side
+              context.res.clearCookie('token'); // If using cookies
+      
+              // Optionally, clear the user data from the context to indicate logout
+              context.req.user = null;
+      
+              return true;
+            } else {
+              // If the user is not authenticated, return false (or handle as needed)
+              return false;
+            }
+          },
         updatePassword: async (parent, { oldPassword, newPassword, confirmPassword }, context) => {
             if (!context.user) {
               throw new AuthenticationError('You need to be logged in to update your password.');
