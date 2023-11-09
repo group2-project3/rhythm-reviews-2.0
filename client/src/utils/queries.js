@@ -59,7 +59,20 @@ export const searchAlbumsQuery = gql`
   }
   `;
 
-
-
-
-
+// query to get all reviews
+export const QUERY_REVIEWS = gql`
+  query GetReviews($username: String) {
+    reviews(username: $username) {
+      _id
+      title
+      content
+      user {
+        _id
+        username
+        email
+      }
+      album_id
+      date
+    }
+  }
+`;
