@@ -13,25 +13,29 @@ module.exports = {
       code: 'UNAUTHENTICATED',
     },
   }),
-  authMiddleware: function ({ req }) {
+  authMiddleware: function ({ req, res }) {
     let token = req.body.token || req.query.token || req.headers.authorization;
 
     if (req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
-
+  
     if (!token) {
-      return req;
+      // Set req.user to null or some other value indicating unauthenticated state
+      req.user = null;
+      return { req, res };
     }
-
+  
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
     } catch {
       console.log('Invalid token');
+      // Set req.user to null or some other value indicating unauthenticated state
+      req.user = null;
     }
-
-    return req;
+  
+    return { req, res };
   },
   signToken: function ({ email, username, _id }) {
     const payload = { email, username, _id };

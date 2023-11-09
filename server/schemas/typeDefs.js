@@ -37,6 +37,7 @@ type Album {
 type Mutation {
   registerUser(username: String!, email: String!, password: String!): Auth
   loginUser(email: String!, password: String!): Auth
+  logoutUser: Boolean
   updatePassword(oldPassword: String!, newPassword: String!, confirmPassword: String!): User
   createReview(content: String!): Review
   updateReview(input: ReviewInput!): Review
