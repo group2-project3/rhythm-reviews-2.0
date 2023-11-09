@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Outlet } from 'react-router-dom';
 
+
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 const httpLink = createHttpLink({
   uri: '/graphql',
