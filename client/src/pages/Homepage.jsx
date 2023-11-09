@@ -50,7 +50,7 @@ const Homepage = () => {
               <p className="text-blue-600"></p>
               <p className="text-white break-words mr-1.5">or</p>
               <p className="text-white underline hover-text-blue-700 underline-offset-1">
-                <a href="/register">Create Account</a>
+                <a href="/createacct">Create Account</a>
               </p>
             </>
           )}

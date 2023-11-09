@@ -90,7 +90,7 @@ const Review = () => {
             <p className="float-left inline break-words mr-1.5 text-white text-center">or</p>
             <p
                 className="float-left inline break-words mr-1.5 text-white hover:text-blue-700 text-center underline underline-offset-1 mr-40">
-                <button href="/register">Create Account</button>
+                <button href="/createacct">Create Account</button>
             </p>
             );
 
