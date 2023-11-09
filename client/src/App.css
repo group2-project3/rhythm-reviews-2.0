@@ -1,9 +1,10 @@
-body.homepage-background {
-    background-image: url("../assets/rr-homepage-2.jpg");
+body {
+    background-image: url('./assets/rr-homepage-2.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
+    margin: 0; 
+  }
 
 .search-container,
 .add-flex-center {
