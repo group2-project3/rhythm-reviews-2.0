@@ -1,5 +1,10 @@
-body {
-    background-image: url('./assets/rr-homepage-2.jpg');
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body{
+    background-image: url("./assets/rr-homepage-2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
