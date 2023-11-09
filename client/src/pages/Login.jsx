@@ -1,31 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   
-    const [loginUserMutation] = useMutation(LOGIN_USER);
+  const [loginUserMutation] = useMutation(LOGIN_USER);
+
   
-    const handleInputChange = async (event) => {
-      const { name, value } = event.target;
-      setUserFormData({ ...userFormData, [name]: value });
-    };
-  
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
   const loginFormHandler = async (event) => {
     event.preventDefault();
-    event.preventDefault();
-
 
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
-      event.preventDefault();
       event.stopPropagation();
+      return;
     }
 
     try {
@@ -35,9 +32,11 @@ const Login = () => {
       });
 
       // Check if the mutation was successful
-      if (data && data.login) {
-        const { token } = data.login;
+      if (data && data.loginUser) {
+        const { token } = data.loginUser;
+        console.log('b4');
         Auth.login(token);
+        console.log('after');
       } else {
         throw new Error('Something went wrong!');
       }
@@ -46,11 +45,8 @@ const Login = () => {
       setShowAlert(true);
     }
 
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
+    // Clear form data after login attempt
+    setUserFormData({ email: '', password: '' });
   };
 
   return (
@@ -68,8 +64,8 @@ const Login = () => {
               type="email"
               id="email"
               name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={userFormData.email}
+              onChange={handleInputChange}
               className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
               required
             />
@@ -82,8 +78,8 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={userFormData.password}
+              onChange={handleInputChange}
               className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
               required
             />
