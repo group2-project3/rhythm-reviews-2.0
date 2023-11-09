@@ -51,10 +51,11 @@ export const QUERY_ALBUMS = gql`
 export const QUERY_ALBUMS_BY_ARTIST = gql`
   query SearchAlbums($artistName: String!) {
     getAlbumsByArtist(artistName: $artistName) {
-      id
-      name
-      artist
-      year
+      idAlbum
+    strArtist
+    strAlbum
+    intYearReleased
+    strAlbumThumb
     }
   }
   `;

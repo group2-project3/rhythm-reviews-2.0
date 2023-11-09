@@ -51,13 +51,15 @@ const Homepage = () => {
           Search
         </button>
       </form>
-      {data && data.searchAlbums && (
-        <div className="search-container">
-          {data.searchAlbums.map((album) => (
-            <div key={album.id}>
-              <h3>{album.name}</h3>
-              <p>{album.artist.name}</p>
-            </div>
+      {data && data.getAlbumsByArtist && (
+  <div className="search-container">
+    {data.getAlbumsByArtist.map((album) => (
+      <div key={album.idAlbum}>
+        <h3>{album.strArtist}</h3>
+        <div>{album.strAlbum}</div>
+        <div>{album.intYearReleased}</div>
+        <img src={album.strAlbumThumb} alt={`${album.strArtist} - ${album.strAlbum}`} />
+      </div>
           ))}
           {message && (
             <p className="text-red-600">{message}</p>

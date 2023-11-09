@@ -27,11 +27,11 @@ type Query {
 }
 
 type Album {
-  id: ID!
-  name: String
-  artist: String
-  year: String
-  album_cover: String
+  idAlbum: ID!
+  strAlbum: String
+  strArtist: String
+  intYearReleased: String
+  strAlbumThumb: String
 }
 
 type Mutation {
