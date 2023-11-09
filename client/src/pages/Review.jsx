@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_REVIEWS } from '../utils/queries';
 import { ADD_REVIEW } from '../utils/mutations';
+import { UPDATE_REVIEW } from "../utils/mutations";
 import { DELETE_REVIEW } from '../utils/mutations';
 import Auth from '../utils/auth';
 
@@ -9,6 +10,8 @@ const Review = () => {
     const { loading, data } = useQuery(QUERY_REVIEWS);
     const reviews = data?.reviews || [];
     const [addReview] = useMutation(ADD_REVIEW);
+    const [updateReview] = useMutation(UPDATE_REVIEW);
+    const [deleteReview] = useMutation(DELETE_REVIEW);
     const logged_in = Auth.loggedIn();
     const [reviewAlbum, setReviewAlbum] = useState('');
 
@@ -23,6 +26,22 @@ const Review = () => {
         try {
             const { data } = await addReview({
                 variables: { reviewAlbum }
+            });
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const handleUpdateReview = async (reviewId) => {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+            return false;
+        }
+
+        try {
+            const { data } = await updateReview({
+                variables: { reviewId }
             });
         } catch (e) {
             console.error(e);
@@ -55,7 +74,8 @@ const Review = () => {
             <form id="search-form" className="text-center" action="/api/reviews/artist-search" method="GET">
                 {/* input closing tag missing from original code */}
                 <input id="search-input" className="p-2.5 w-[300px]" type="text" name="artistName" placeholder="Search..."></input>
-                {/* will need to add onClick to button but need function to pass in, maybe line 3? */}
+                {/* will need to add onClick to button but need function to pass in, maybe line 3?
+                create another query - for search */}
                 <button className="text-white py-2.5 px-2.5 rounded border-2 border-white hover:bg-blue-700">Search</button>
             </form>
             <div className="login-create-account-link add-flex-center"></div>
@@ -90,14 +110,14 @@ const Review = () => {
             <p className="float-left inline break-words mr-1.5 text-white text-center">or</p>
             <p
                 className="float-left inline break-words mr-1.5 text-white hover:text-blue-700 text-center underline underline-offset-1 mr-40">
-                <button href="/createacct">Create Account</button>
+                <button href="/register">Create Account</button>
             </p>
             );
 
             {/* React alternative to {{#each albums}} */}
             {/* converted the a tag to button */}
             {/* may need to wrap this bottom portion into a div */}
-            {reviews.map((album) => (
+            {reviews.map((data) => (
                 <div className="add-flex-center">
                     <div className="inline-block w-full h-auto max-w-xs p-4 m-10 text-white rounded bg-white/30 selected-album">
                         <h5>{{ strAlbum }}</h5>
