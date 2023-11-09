@@ -22,6 +22,16 @@ type Query {
   reviews(username: String): [Review]
   review(reviewId: ID!): Review
   me: User
+  getAlbumsByArtist(artistName: String!): [Album]
+  getAlbumById(id: ID!): Album
+}
+
+type Album {
+  idAlbum: ID!
+  strAlbum: String
+  strArtist: String
+  intYearReleased: String
+  strAlbumThumb: String
 }
 
 type Mutation {

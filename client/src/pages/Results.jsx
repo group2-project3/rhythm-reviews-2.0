@@ -61,7 +61,7 @@ const Results = () => {
                 <p className="float-left inline break-words mr-1.5 text-white text-center">or</p>
                 <p
                     className="float-left inline break-words mr-1.5 text-white hover:text-blue-700 text-center underline underline-offset-1 mr-40">
-                    <a href="/register">Create Account</a></p>
+                    <a href="/createacct">Create Account</a></p>
                 );
             </div>
             <h1 className="mb-5 ml-12 text-2xl text-white">Albums</h1>
