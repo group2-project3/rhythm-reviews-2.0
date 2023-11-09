@@ -7,7 +7,7 @@ import Homepage from './pages/Homepage';
 import CreateAcct from './pages/CreateAccount';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
-import Results from './pages/Results';
+// import Results from './pages/Results';
 import Review from './pages/Review';
 
 const router = createBrowserRouter([
@@ -31,10 +31,10 @@ const router = createBrowserRouter([
         path: '/profile',
         element: <Profile />,
       },
-      {
-        path: '/results',
-        element: <Results />,
-      },
+      // {
+      //   path: '/results',
+      //   element: <Results />,
+      // },
       {
         path: '/review',
         element: <Review />,
