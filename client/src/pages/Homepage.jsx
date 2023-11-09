@@ -1,11 +1,29 @@
-import React from "react";
-import { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useQuery } from '@apollo/client';
+import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
 
 const Homepage = () => {
+  const [artistName, setArtistName] = useState("");
+  const [message, setMessage] = useState("");
+  const [logged_in, setLoggedIn] = useState(false);
 
-    const [message, setMessage] = useState("");
-    const [logged_in, setLoggedIn] = useState(false);
+  const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
+    variables: { artistName: artistName },
+  });
+
+  useEffect(() => {
+    if (error) {
+      setMessage("Error fetching data.");
+    }
+  }, [error]);
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+
+    console.log('searching ', artistName)
+    refetch();
+  };
+
 
   return (
     <>
@@ -17,16 +35,34 @@ const Homepage = () => {
           by sharing reviews and engaging in meaningful discussions about their favorite albums.
         </h2>
 
-        <form id="search-form" className="content-center text-center" action="/api/reviews/artist-search" method="GET">
-          <input id="search-input" className="p-2.5 w-[300px]" type="text" name="artistName" placeholder="Search your favorite artist..." />
-          <button className="text-white py-2.5 px-2.5 rounded border-2 border-white hover:bg-blue-700" type="submit">
-            Search
-          </button>
-        </form>
-
-        
-        {message && (
-          <p className="text-red-600">{message}</p>
+        <form id="search-form" onSubmit={handleSearch} className="content-center text-center" action="/api/reviews/artist-search" method="GET">
+        <input
+          id="search-input"
+          className="p-2.5 w-[300px]"
+          type="text"
+          name="artistName"
+          value={artistName}
+          onChange={(e) => {
+            setArtistName(e.target.value)
+          }}
+          placeholder="Search your favorite artist..."
+        />
+        <button className="text-white py-2.5 px-2.5 rounded border-2 border-white hover:bg-blue-700" type="submit">
+          Search
+        </button>
+      </form>
+      {data && data.searchAlbums && (
+        <div className="search-container">
+          {data.searchAlbums.map((album) => (
+            <div key={album.id}>
+              <h3>{album.name}</h3>
+              <p>{album.artist.name}</p>
+            </div>
+          ))}
+          {message && (
+            <p className="text-red-600">{message}</p>
+          )}
+            </div>
         )}
 
         <div className="search-container"></div>

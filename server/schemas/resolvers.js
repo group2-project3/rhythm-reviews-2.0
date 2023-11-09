@@ -1,5 +1,17 @@
 const { User, Review } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
+const fetch = require ('node-fetch');
+require('dotenv').config()
+const audioDbRootUrl = 'https://theaudiodb.p.rapidapi.com';
+
+const audioDbOptions = {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-RapidAPI-Key': process.env.AUDIODB_APIKEY,
+    'X-RapidAPI-Host': 'theaudiodb.p.rapidapi.com',
+  },
+};
 
 const resolvers = {
     Query: {
@@ -21,6 +33,35 @@ const resolvers = {
                 return User.findOne({ _id: context.user.id }).populate('reviews');
             }
             throw AuthenticationError;
+        },
+        getAlbumsByArtist: async (parent, {artistName}, context) => {
+          try {
+            console.log('apikey',process.env.AUDIODB_APIKEY);
+
+            console.log(`${audioDbRootUrl}/searchalbum.php?s=${artistName}`)
+
+            const searchResult = await fetch(`${audioDbRootUrl}/searchalbum.php?s=${artistName}`, audioDbOptions);
+            const albums = await searchResult.json();
+
+            console.log('albums',albums);
+
+            return albums.album;
+          } catch (error) {
+            console.error('Error fetching albums:', error);
+            throw error;
+          }
+          
+        },
+    
+        getAlbumById: async (parent, id, context) => {
+           try {
+        const response = await fetch(`${audioDbRootUrl}/album.php?m=${id}`, audioDbOptions);
+        const album = await response.json();
+        return album;
+      } catch (error) {
+        console.error('Error fetching album by ID:', error);
+        throw error;
+      }
         },
     },
   
@@ -116,6 +157,7 @@ Mutation: {
         }
         throw AuthenticationError;
     },
+   
   },
 };
 
