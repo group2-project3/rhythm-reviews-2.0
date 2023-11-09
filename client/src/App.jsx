@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Main from './components/main';
 import { Outlet } from 'react-router-dom';
 
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
