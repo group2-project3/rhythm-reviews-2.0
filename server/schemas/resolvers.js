@@ -62,7 +62,7 @@ Mutation: {
             const token = signToken(user);
             return { token, user };
           },
-    },
+    
     createReview: async (parent, { content }, context) => {
         if (context.user) {
             const review = await Review.create({
@@ -116,6 +116,7 @@ Mutation: {
         }
         throw AuthenticationError;
     },
+  },
 };
 
 module.exports = resolvers;
