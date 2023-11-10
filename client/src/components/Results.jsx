@@ -45,7 +45,11 @@ const AlbumDetails = ({ album, onGoBack }) => {
       <h2>{album.strAlbum}</h2>
       <div>{album.intYearReleased}</div>
       <img src={album.strAlbumThumb} alt={`${album.strArtist} - ${album.strAlbum}`} />
+      <div>
+        <button onClick={handleBuyClick}>Add Album to Cart</button>
+      </div>
     </div>
+    
   );
 };
 

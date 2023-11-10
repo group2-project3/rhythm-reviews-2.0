@@ -18,8 +18,12 @@ const resolvers = {
         users: async () => {
             return User.find().populate('reviews');
         },
-        user: async (parent, { username }) => {
-            return User.findOne({ username }).populate('reviews');
+        getUserProfile: async (parent, {}, context) => {
+            const user = await User.findOne({ email: context.req.user.email });
+            if (!user) {
+                throw AuthenticationError;
+            }
+            return user.populate('savedReviews');
         },
         reviews: async (parent, { username }) => {
             const params = username ? { username } : {};
@@ -63,7 +67,7 @@ const resolvers = {
 Mutation: {
     registerUser: async (parent, { username, email, password }) => {
 
-      console.log('registerUser',username, email, password)
+      
         const user = await User.create({ username, email, password });
         const token = signToken(user);
         return { token, user };
@@ -81,7 +85,7 @@ Mutation: {
             return { token, user };
         },
           logoutUser: async (parent, args, context) => {
-            console.log('ctx',context.req?.user);
+            
             if (context.req.user) {
               // Clear the JWT token on the client side
               context.res.clearCookie('token'); // If using cookies
@@ -95,12 +99,11 @@ Mutation: {
               return false;
             }
           },
-        updatePassword: async (parent, { currentPassword, newPassword, confirmPassword, email }) => {
+        updatePassword: async (parent, { currentPassword, newPassword, confirmPassword }, context) => {
           // console.log(context)
-            const user = await User.findOne({email});
+            const user = await User.findOne({ email: context.req.user.email });
             if (!user) {
-              throw AuthenticationError; {
-            }
+              throw AuthenticationError; 
             }
             const correctPw = await user.isCorrectPassword(currentPassword);
             if (!correctPw) {

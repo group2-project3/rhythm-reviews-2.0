@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { UPDATE_PASSWORD, DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
 import { userProfileQuery } from '../utils/queries';
+import Logout from "../components/Logout";
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -28,9 +29,11 @@ const Profile = () => {
       const { data } = await updatePassword({
         variables: { currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword, },
       });
+      alert('Password updated successfully!');
 
     } catch (err) {
       console.error(err);
+      alert('Something went wrong. Please try again!');
     }
   };
 
@@ -159,7 +162,7 @@ const Profile = () => {
 
           <div className="mt-5">
             <button className="mt-5 text-white py-2.5 px-2.5 mr-2 rounded border-2 border-white bg-blue-600 hover:bg-blue-700" id="logout">
-              <a href="/logout">Logout</a>
+            <Logout />
             </button>
           </div>
           <p className="mt-5 text-center text-white underline [text-shadow:_2px_2px_4px_rgb(0_0_0_/_100%)] go-back-link hover:text-blue-700 underline-offset-1">
