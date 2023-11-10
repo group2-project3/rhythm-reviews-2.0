@@ -63,7 +63,7 @@ const resolvers = {
 Mutation: {
     registerUser: async (parent, { username, email, password }) => {
 
-      console.log('registerUser',username, email, password)
+      
         const user = await User.create({ username, email, password });
         const token = signToken(user);
         return { token, user };
@@ -81,7 +81,7 @@ Mutation: {
             return { token, user };
         },
           logoutUser: async (parent, args, context) => {
-            console.log('ctx',context.req?.user);
+            
             if (context.req.user) {
               // Clear the JWT token on the client side
               context.res.clearCookie('token'); // If using cookies
