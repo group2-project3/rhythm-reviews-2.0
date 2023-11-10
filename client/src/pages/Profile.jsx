@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import { UPDATE_PASSWORD, DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
+import { userProfileQuery } from '../utils/queries';
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { loading, error, data } = useQuery(GET_USER_PROFILE);
+  const { loading, error, data } = useQuery(userProfileQuery);
+  const user = data?.getUserProfile;
+  const reviews = user?.reviews || [];
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
   const [deleteReview] = useMutation(DELETE_REVIEW);
   const [updateReview] = useMutation(UPDATE_REVIEW);
@@ -21,7 +26,7 @@ const Profile = () => {
 
     try {
       const { data } = await updatePassword({
-        variables: { currentPassword, newPassword },
+        variables: { currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword, },
       });
 
     } catch (err) {
@@ -71,26 +76,41 @@ const Profile = () => {
         <div className="text-black">
           <h1 className="mb-5 text-center text-white">User Profile </h1>
           <div className="mb-10">
-            <h2 className="text-2xl text-white">Welcome, {{ username }}!</h2>
-            <p className="text-white">Email: {{ email }}</p>
+            <h2 className="text-2xl text-white">Welcome, { user?.username }!</h2>
+            <p className="text-white">Email: { user?.email }</p>
           </div>
           <form onSubmit={handlePasswordChange}>
             <h2 className="mb-3 text-white">Change Password</h2>
             <div className="mb-3 text-left form-group">
-              <label for="currentPassword" className="mb-1 text-white">Current Password:</label>
-              <input type="password" id="currentPassword" name="currentPassword"
+              <label htmlFor="currentPassword" className="mb-1 text-white">Current Password:</label>
+              <input 
+                type="password" 
+                id="currentPassword" 
+                name="currentPassword"
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
                 className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
                 required />
             </div>
             <div className="mb-3 text-left">
-              <label for="newPassword" className="mb-1 text-white">New Password:</label>
-              <input type="password" id="newPassword" name="newPassword"
+              <label htmlFor="newPassword" className="mb-1 text-white">New Password:</label>
+              <input 
+                type="password" 
+                id="newPassword" 
+                name="newPassword"
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
                 className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
                 required />
             </div>
             <div className="mb-3 text-left">
-              <label for="confirmPassword" className="mb-1 text-white">Confirm New Password:</label>
-              <input type="password" id="confirmPassword" name="confirmPassword"
+              <label htmlFor="confirmPassword" className="mb-1 text-white">Confirm New Password:</label>
+              <input 
+                type="password"
+                id="confirmPassword" 
+                name="confirmPassword"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
                 required />
             </div>

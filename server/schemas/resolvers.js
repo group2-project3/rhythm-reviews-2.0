@@ -95,20 +95,19 @@ Mutation: {
               return false;
             }
           },
-        updatePassword: async (parent, { oldPassword, newPassword, confirmPassword }, context) => {
-            if (!context.user) {
-              throw new AuthenticationError('You need to be logged in to update your password.');
-            }
-            const user = await User.findById(context.user.id);
+        updatePassword: async (parent, { currentPassword, newPassword, confirmPassword, email }) => {
+          // console.log(context)
+            const user = await User.findOne({email});
             if (!user) {
-              throw new AuthenticationError('User not found.');
+              throw AuthenticationError; {
             }
-            const correctPw = await user.isCorrectPassword(oldPassword);
+            }
+            const correctPw = await user.isCorrectPassword(currentPassword);
             if (!correctPw) {
-              throw new AuthenticationError('Incorrect old password.');
+              throw AuthenticationError;
             }
             if (newPassword !== confirmPassword) {
-              throw new AuthenticationError('New password and confirmation do not match.');
+              throw AuthenticationError;
             }
             user.password = newPassword;
             await user.save();

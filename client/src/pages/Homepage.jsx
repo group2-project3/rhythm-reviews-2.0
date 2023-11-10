@@ -17,8 +17,8 @@ const Homepage = () => {
     try {
       const { data } = await logoutUser();
       if (data.logoutUser) {
-       
-        Auth.logout(); 
+        // Clear the token from localStorage or perform other client-side cleanup
+        localStorage.removeItem('token');
       }
     } catch (error) {
       console.error('Logout failed', error);
@@ -45,7 +45,7 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center mt-64">
+      <div className="mt-60 flex flex-col items-center justify-center mt-64">
         <h1 className="text-2xl text-center text-white text-shadow">
           Our platform is for music enthusiasts to explore their favorite artists and albums,
         </h1>
@@ -65,14 +65,10 @@ const Homepage = () => {
           }}
           placeholder="Search your favorite artist..."
         />
-        <button className="text-white py-2.5 px-2.5 rounded border-2 border-white hover:bg-blue-700" type="submit">
+        <button className="ml-1 text-white py-2.5 px-2.5 rounded border-2 border-white hover:bg-blue-700" type="submit">
           Search
         </button>
       </form>
-
-      <Results data={data} message={message} />
-
-
 
         <div className="search-container"></div>
         <div className="flex items-center justify-center mt-4">
@@ -100,10 +96,11 @@ const Homepage = () => {
             </>
           )}
         </div>
-      </div>
+        <Results data={data} message={message} />
+        </div>
       <div className="flex flex-col items-center justify-between min-h-screen mt-64">
         <footer className="fixed bottom-0 items-center w-full py-4 text-center text-white bg-gray-800">
-          © 2023 Rhythm Reviews Site, developed by Jen Stemkowski, Ashley Zemina, Gilberto Rosario, Jason Torrealba
+          © 2023 Rhythm Reviews Site, developed by Jen Stemkowski, Ashley Zemina, Gilberto Rosario, Jason Torrealba, Florian Kreuk
         </footer>
       </div>
     </>
