@@ -17,8 +17,8 @@ const Homepage = () => {
     try {
       const { data } = await logoutUser();
       if (data.logoutUser) {
-        // Clear the token from localStorage or perform other client-side cleanup
-        localStorage.removeItem('token');
+       
+        Auth.logout(); 
       }
     } catch (error) {
       console.error('Logout failed', error);
