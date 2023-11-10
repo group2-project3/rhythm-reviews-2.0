@@ -34,9 +34,9 @@ const Login = () => {
       // Check if the mutation was successful
       if (data && data.loginUser) {
         const { token } = data.loginUser;
-        console.log('b4');
+        
         Auth.login(token);
-        console.log('after');
+        
       } else {
         throw new Error('Something went wrong!');
       }
