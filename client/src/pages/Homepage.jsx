@@ -3,28 +3,16 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
 import Results from "../components/Results";
 import Auth from '../utils/auth';
-import { useMutation } from '@apollo/client';
-import { LOGOUT_USER } from '../utils/mutations';
+import Logout from "../components/Logout";
 
 const Homepage = () => {
   const [artistName, setArtistName] = useState("");
   const [message, setMessage] = useState("");
   const [logged_in, setLoggedIn] = useState(Auth.loggedIn());
 
-  const [logoutUser] = useMutation(LOGOUT_USER);
+  
 
-  const handleLogout = async () => {
-    try {
-      const { data } = await logoutUser();
-      if (data.logoutUser) {
-        // Clear the token from localStorage or perform other client-side cleanup
-        Auth.logout();
-      }
-    } catch (error) {
-      console.error('Logout failed', error);
-    }
-  };
-
+  
   const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
     variables: { artistName: artistName },
   });
@@ -80,7 +68,8 @@ const Homepage = () => {
               <p className="text-blue-600"></p>
               <p className="text-white break-words mr-1.5">or</p>
               <p className="text-white underline hover-text-blue-700 underline-offset-1">
-                <a onClick={handleLogout}>Logout</a>
+                {/* <a onClick={handleLogout}>Logout</a> */}
+                <Logout />
               </p>
             </>
           ) : (
