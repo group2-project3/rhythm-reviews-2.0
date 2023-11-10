@@ -36,14 +36,9 @@ const resolvers = {
         },
         getAlbumsByArtist: async (parent, {artistName}, context) => {
           try {
-            console.log('apikey',process.env.AUDIODB_APIKEY);
-
-            console.log(`${audioDbRootUrl}/searchalbum.php?s=${artistName}`)
 
             const searchResult = await fetch(`${audioDbRootUrl}/searchalbum.php?s=${artistName}`, audioDbOptions);
             const albums = await searchResult.json();
-
-            console.log('albums',albums);
 
             return albums.album;
           } catch (error) {

@@ -15,14 +15,10 @@ const CreateAccount = () => {
   
       if (username && email && password) {
         try {
-            console.log(username, email, password)
           const { data } = await registerUser({
             variables: { username, email, password },
           });
 
-          console.log('data',data)
-  
-          // Assuming your GraphQL mutation returns a user object upon successful registration
           if (data.registerUser) {
             auth.login(data.registerUser.token);
             document.location.replace('/');
