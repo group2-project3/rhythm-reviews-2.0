@@ -18,8 +18,12 @@ const resolvers = {
         users: async () => {
             return User.find().populate('reviews');
         },
-        user: async (parent, { username }) => {
-            return User.findOne({ username }).populate('reviews');
+        getUserProfile: async (parent, {}, context) => {
+            const user = await User.findOne({ email: context.req.user.email });
+            if (!user) {
+                throw AuthenticationError;
+            }
+            return user.populate('savedReviews');
         },
         reviews: async (parent, { username }) => {
             const params = username ? { username } : {};

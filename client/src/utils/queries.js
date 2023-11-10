@@ -4,17 +4,15 @@ import { gql } from '@apollo/client';
 export const userProfileQuery = gql`
 query GetUserProfile {
     getUserProfile {
-      id
+      _id
       username
       email
-      reviews {
-        id
+      savedReviews {
+        _id
         title
         content
-        album {
-          id
-          name
-        }
+        album_id
+        date
       }
     }
   }

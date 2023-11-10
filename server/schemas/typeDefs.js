@@ -18,7 +18,7 @@ type Review {
 
 type Query {
   users: [User]
-  user(username: String!): User
+  getUserProfile: User
   reviews(username: String): [Review]
   review(reviewId: ID!): Review
   me: User
