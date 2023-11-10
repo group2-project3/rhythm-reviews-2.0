@@ -22,20 +22,22 @@ module.exports = {
   
     if (!token) {
       // Set req.user to null or some other value indicating unauthenticated state
-      req.user = null;
-      return { req, res };
+      // req.user = null;
+      return req;
     }
   
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      console.log(data)
       req.user = data;
+      console.log(req.user)
     } catch {
       console.log('Invalid token');
       // Set req.user to null or some other value indicating unauthenticated state
-      req.user = null;
+      // req.user = null;
     }
   
-    return { req, res };
+    return req;
   },
   signToken: function ({ email, username, _id }) {
     const payload = { email, username, _id };
