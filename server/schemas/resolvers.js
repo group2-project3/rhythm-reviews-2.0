@@ -95,12 +95,11 @@ Mutation: {
               return false;
             }
           },
-        updatePassword: async (parent, { currentPassword, newPassword, confirmPassword, email }) => {
+        updatePassword: async (parent, { currentPassword, newPassword, confirmPassword }, context) => {
           // console.log(context)
-            const user = await User.findOne({email});
+            const user = await User.findOne({ email: context.req.user.email });
             if (!user) {
-              throw AuthenticationError; {
-            }
+              throw AuthenticationError; 
             }
             const correctPw = await user.isCorrectPassword(currentPassword);
             if (!correctPw) {

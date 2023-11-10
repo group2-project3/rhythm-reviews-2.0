@@ -38,7 +38,7 @@ type Mutation {
   registerUser(username: String!, email: String!, password: String!): Auth
   loginUser(email: String!, password: String!): Auth
   logoutUser: Boolean
-  updatePassword(currentPassword: String!, newPassword: String!, confirmPassword: String! email: String!): User
+  updatePassword(currentPassword: String!, newPassword: String!, confirmPassword: String!): Auth
   createReview(content: String!): Review
   updateReview(input: ReviewInput!): Review
   removeReview(reviewId: ID!): Review

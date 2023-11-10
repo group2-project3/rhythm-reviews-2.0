@@ -23,7 +23,7 @@ module.exports = {
     if (!token) {
       // Set req.user to null or some other value indicating unauthenticated state
       // req.user = null;
-      return req;
+      return {req, res};
     }
   
     try {
@@ -37,7 +37,7 @@ module.exports = {
       // req.user = null;
     }
   
-    return req;
+    return {req, res};
   },
   signToken: function ({ email, username, _id }) {
     const payload = { email, username, _id };

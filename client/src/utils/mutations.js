@@ -62,10 +62,14 @@ mutation updateReview($id: ID!, $title: String!, $content: String!) {
 
 //update password mutation
 export const UPDATE_PASSWORD = gql`
-mutation updatePassword($currentPassword: String!, $newPassword: String!, $confirmPassword: String!, $email: String!) {
-    updatePassword(currentPassword: $currentPassword, newPassword: $newPassword, confirmPassword: $confirmPassword, email: $email) {
-      success
-      message
+mutation updatePassword($currentPassword: String!, $newPassword: String!, $confirmPassword: String!) {
+    updatePassword(currentPassword: $currentPassword, newPassword: $newPassword, confirmPassword: $confirmPassword) {
+      token
+        user {
+          _id
+          username
+          email
+        }
     }
   }
 `;

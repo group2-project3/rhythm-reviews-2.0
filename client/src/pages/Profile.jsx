@@ -28,9 +28,11 @@ const Profile = () => {
       const { data } = await updatePassword({
         variables: { currentPassword: currentPassword, newPassword: newPassword, confirmPassword: confirmPassword, },
       });
+      alert('Password updated successfully!');
 
     } catch (err) {
       console.error(err);
+      alert('Something went wrong. Please try again!');
     }
   };
 
