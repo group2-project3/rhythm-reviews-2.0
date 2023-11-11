@@ -34,6 +34,11 @@ type Album {
   strAlbumThumb: String
 }
 
+type DeleteAccountResponse {
+  success: Boolean
+  message: String
+}
+
 type Mutation {
   registerUser(username: String!, email: String!, password: String!): Auth
   loginUser(email: String!, password: String!): Auth
@@ -42,6 +47,7 @@ type Mutation {
   createReview(title: String!, content: String!, idAlbum: ID!): Review
   updateReview(id: ID!, title: String!, content: String!): Review
   deleteReview(reviewId: ID!): Review
+  deleteAccount(password: String!): DeleteAccountResponse
 }
 
 type Auth {

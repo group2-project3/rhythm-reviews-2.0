@@ -93,11 +93,11 @@ export const DELETE_REVIEW = gql`
 
 // delete account mutation
 export const DELETE_ACCOUNT = gql`
-mutation deleteAccount {
-  deleteAccount {
-    success
-    message
+  mutation deleteAccount($password: String!) {
+    deleteAccount(password: $password) {
+      success
+      message
+    }
   }
-}
 `;
 
