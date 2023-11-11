@@ -4,6 +4,7 @@ import Auth from '../utils/auth';
 import Helpers from '../utils/helpers';
 import { UPDATE_REVIEW, DELETE_REVIEW } from '../utils/mutations';
 
+
 const EditReview = (props) => {
 
     const [updateReview] = useMutation(UPDATE_REVIEW);
@@ -20,6 +21,8 @@ const EditReview = (props) => {
         }
     
         try {
+          setUpdatedReviewTitle(props.review.title);
+          setUpdatedReviewContent(props.review.content);
           setEditing(true);
           // Handle any logic after updating the review if needed
         } catch (e) {
