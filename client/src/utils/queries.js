@@ -58,6 +58,19 @@ export const QUERY_ALBUMS_BY_ARTIST = gql`
   }
   `;
 
+  // query to get an album by id
+  export const QUERY_ALBUM_BY_ID = gql`
+    query getAlbumById($idAlbum: ID!) {
+      getAlbumById(idAlbum: $idAlbum) {
+        idAlbum
+      strArtist
+      strAlbum
+      intYearReleased
+      strAlbumThumb
+      }
+    }
+    `;
+
 // query to get all reviews
 export const QUERY_REVIEWS = gql`
   query GetReviews($username: String) {

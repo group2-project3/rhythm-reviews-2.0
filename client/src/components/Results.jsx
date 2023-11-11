@@ -6,16 +6,12 @@ const Results = (props) => {
     const [selectedAlbum, setSelectedAlbum] = useState(null);
 
   const handleAlbumClick = (album) => {
+    window.location.assign(`/album/${album.idAlbum}`);
     setSelectedAlbum(album);
-  };
-
-  const handleGoBack = () => {
-    setSelectedAlbum(null);
   };
 
   return (
     <>
-      {!selectedAlbum ? (
         <div className="search-container">
           {props.data && props.data.getAlbumsByArtist && (
             <>
@@ -31,25 +27,7 @@ const Results = (props) => {
           )}
           {props.message && <p className="text-red-600">{props.message}</p>}
         </div>
-      ) : (
-        <AlbumDetails album={selectedAlbum} onGoBack={handleGoBack} />
-      )}
     </>
-  );
-};
-
-const AlbumDetails = ({ album, onGoBack }) => {
-  return (
-    <div className="album-details">
-      <button onClick={onGoBack}>Go Back</button>
-      <h2>{album.strAlbum}</h2>
-      <div>{album.intYearReleased}</div>
-      <img src={album.strAlbumThumb} alt={`${album.strArtist} - ${album.strAlbum}`} />
-      <div>
-        <button onClick={handleBuyClick}>Add Album to Cart</button>
-      </div>
-    </div>
-    
   );
 };
 

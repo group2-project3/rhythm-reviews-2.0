@@ -23,7 +23,7 @@ type Query {
   review(reviewId: ID!): Review
   me: User
   getAlbumsByArtist(artistName: String!): [Album]
-  getAlbumById(id: ID!): Album
+  getAlbumById(idAlbum: ID!): Album
 }
 
 type Album {

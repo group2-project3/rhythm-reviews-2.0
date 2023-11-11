@@ -8,6 +8,7 @@ import CreateAcct from './pages/CreateAccount';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Review from './pages/Review';
+import Album from './pages/Album';
 import AuthGuard from './components/Authguard';
 import Auth from './utils/auth';
 
@@ -33,8 +34,8 @@ const router = createBrowserRouter([
         element: <AuthGuard element={<Profile />} loggedIn={Auth.loggedIn()} />,
       },
       {
-        path: '/review',
-        element: <Review />,
+        path: '/album/:idAlbum',
+        element: <Album />,
       },
     ],
   },
