@@ -168,7 +168,7 @@ const resolvers = {
         throw new Error('Error updating the review: ' + error.message);
       }
     },
-    removeReview: async (parent, { reviewId }, context) => {
+    deleteReview: async (parent, { reviewId }, context) => {
       if (context.user) {
         const review = await Review.findOneAndDelete({
           _id: reviewId,

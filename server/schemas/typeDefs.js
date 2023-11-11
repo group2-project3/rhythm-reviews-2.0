@@ -41,7 +41,7 @@ type Mutation {
   updatePassword(currentPassword: String!, newPassword: String!, confirmPassword: String!): Auth
   createReview(title: String!, content: String!, idAlbum: ID!): Review
   updateReview(input: ReviewInput!): Review
-  removeReview(reviewId: ID!): Review
+  deleteReview(reviewId: ID!): Review
 }
 
 type Auth {

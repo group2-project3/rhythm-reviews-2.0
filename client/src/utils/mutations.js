@@ -74,8 +74,8 @@ mutation updatePassword($currentPassword: String!, $newPassword: String!, $confi
 
 // delete review mutation
 export const DELETE_REVIEW = gql`
-  mutation DeleteReview($id: ID!) {
-    removeReview(reviewId: $id) {
+  mutation deleteReview($id: ID!) {
+    deleteReview(reviewId: $id) {
       _id
       title
       content
