@@ -7,6 +7,7 @@ require('dotenv').config()
 const secret = process.env.AUTH_SECRET;
 const expiration = '2h';
 
+
 module.exports = {
   AuthenticationError: new GraphQLError('Could not authenticate user.', {
     extensions: {
@@ -21,13 +22,11 @@ module.exports = {
     }
   
     if (!token) {
-      // Set req.user to null or some other value indicating unauthenticated state
-      // req.user = null;
       return {req, res};
     }
   
     try {
-      const { data } = jwt.verify(token, secret, { maxAge: expiration });
+      const { data } = jwt.verify(token, secret, { expiresIn: expiration });
       console.log(data)
       req.user = data;
       console.log(req.user)

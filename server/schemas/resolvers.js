@@ -87,15 +87,12 @@ Mutation: {
           logoutUser: async (parent, args, context) => {
             
             if (context.req.user) {
-              // Clear the JWT token on the client side
               context.res.clearCookie('token'); // If using cookies
       
-              // Optionally, clear the user data from the context to indicate logout
               context.req.user = null;
       
               return true;
             } else {
-              // If the user is not authenticated, return false (or handle as needed)
               return false;
             }
           },

@@ -4,6 +4,7 @@ import Auth from '../utils/auth';
 import { UPDATE_PASSWORD, DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
 import { userProfileQuery } from '../utils/queries';
 import Logout from "../components/Logout";
+import { useEffect } from "react";
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -16,6 +17,14 @@ const Profile = () => {
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
   const [deleteReview] = useMutation(DELETE_REVIEW);
   const [updateReview] = useMutation(UPDATE_REVIEW);
+
+
+  // Check if user is logged in
+  useEffect(() => {
+    Auth.loggedIn();
+  }, []);
+
+  
 
   const handlePasswordChange = async (event,) => {
     event.preventDefault();

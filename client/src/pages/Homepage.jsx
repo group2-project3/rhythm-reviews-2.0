@@ -17,6 +17,12 @@ const Homepage = () => {
     variables: { artistName: artistName },
   });
 
+  // Check if user is logged in
+  useEffect(() => {
+    Auth.loggedIn();
+  }, []);
+  
+
   useEffect(() => {
     if (error) {
       setMessage("Error fetching data.");

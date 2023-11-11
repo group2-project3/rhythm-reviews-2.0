@@ -10,6 +10,14 @@ const CreateAccount = () => {
   
     const [registerUser, { loading, error }] = useMutation(REGISTER_USER);
   
+
+  // Check if user is logged in
+  useEffect(() => {
+    Auth.loggedIn();
+  }, []);
+
+  
+
     const signupFormHandler = async (event) => {
       event.preventDefault();
   

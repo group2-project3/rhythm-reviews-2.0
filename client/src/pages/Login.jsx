@@ -10,6 +10,12 @@ const Login = () => {
   const [loginUserMutation] = useMutation(LOGIN_USER);
 
   
+  // Check if user is logged in
+  useEffect(() => {
+    Auth.loggedIn();
+  }, []);
+
+ 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

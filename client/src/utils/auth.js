@@ -1,22 +1,28 @@
-import * as jwtDecode from 'jwt-decode';
+import * as jwt from 'jwt-decode';
 
 class AuthService {
   getProfile() {
-    return jwtDecode(this.getToken());
+    return jwt.jwtDecode(this.getToken());
   }
 
   loggedIn() {
-    const token = this.getToken();
-    return !!token && !this.isTokenExpired(token);
+    return !!this.getToken() && !this.isTokenExpired();
   }
 
-  isTokenExpired(token) {
+  isTokenExpired() {
+    const token = this.getToken();
     try {
-      const decoded = jwtDecode(token);
+      const decoded = jwt.jwtDecode(token);
       const currentTime = Date.now() / 1000;
-      return decoded.exp < currentTime;
-    } catch (err) {
+      if(decoded.exp < currentTime) {
+        this.removeToken();
+        return true;
+      }
       return false;
+    } catch (err) {
+      console.log('Error validating token',err);
+      this.removeToken();
+      return true;
     }
   }
 
@@ -30,8 +36,12 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('id_token');
+    this.removeToken();
     window.location.assign('/');
+  }
+
+  removeToken() {
+    localStorage.removeItem('id_token');
   }
 }
 

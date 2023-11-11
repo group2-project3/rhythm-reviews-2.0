@@ -15,6 +15,14 @@ const Review = () => {
     const logged_in = Auth.loggedIn();
     const [reviewAlbum, setReviewAlbum] = useState('');
 
+
+  // Check if user is logged in
+  useEffect(() => {
+    Auth.loggedIn();
+  }, []);
+
+  
+
     const handleAddReview = async (event) => {
         event.preventDefault();
         const token = Auth.loggedIn() ? Auth.getToken() : null;
