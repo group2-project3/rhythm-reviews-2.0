@@ -1,1 +1,44 @@
+.search-container,
+.add-flex-center {
+  display: flex;
+  margin-left: 10px;
+}
 
+.col {
+  display: inline-block;
+  width: 13%;
+}
+
+.hidden {
+  display: none;
+}
+
+.noShadow {
+  text-shadow: rgb(85, 85, 85) 1px 0px 10px;
+}
+
+@media only screen and (max-width: 968px) {
+  .logo {
+    width: 30%;
+  }
+
+  .col {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 969px) and (max-width: 1307px) {
+  .col {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* body {
+    background-image: url("../assets/rr-homepage-2.jpg");
+  } */
+
+  .logo {
+    display: none;
+  }
+}
