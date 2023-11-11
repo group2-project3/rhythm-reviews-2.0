@@ -8,9 +8,13 @@ const Logout = () => {
     const [logoutUser] = useMutation(LOGOUT_USER);
     const handleLogout = async () => {
         try {
-          const { data } = await logoutUser();
-          if (data.logoutUser) {
+          if (Auth.isTokenExpired(Auth.getToken())) {
             Auth.logout();
+          } else {
+            const { data } = await logoutUser();
+            if (data.logoutUser) {
+              Auth.logout();
+            }
           }
         } catch (error) {
           console.error('Logout failed', error);

@@ -1,25 +1,37 @@
 import React, { useState } from "react";
-
+import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
+import { useQuery } from '@apollo/client';
+import SearchBar from "../components/SearchBar";
+import { useLocation } from 'react-router-dom';
+import GoBack from "../components/GoBack";
 
 const Results = (props) => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  
+  // Access the value of a query parameter named 'example'
+  const artistName = queryParams.get('artistName');
 
     const [selectedAlbum, setSelectedAlbum] = useState(null);
 
-  const handleAlbumClick = (album) => {
-    setSelectedAlbum(album);
-  };
 
-  const handleGoBack = () => {
-    setSelectedAlbum(null);
+    const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
+        variables: { artistName: artistName },
+      });
+
+
+  const handleAlbumClick = (album) => {
+    window.location.assign(`/album/${album.idAlbum}`);
+    setSelectedAlbum(album);
   };
 
   return (
     <>
-      {!selectedAlbum ? (
+        <SearchBar />
         <div className="search-container">
-          {props.data && props.data.getAlbumsByArtist && (
+          {data && data.getAlbumsByArtist && (
             <>
-              {props.data.getAlbumsByArtist.map((album) => (
+              {data.getAlbumsByArtist.map((album) => (
                 <div key={album.idAlbum} onClick={() => handleAlbumClick(album)}>
                   <h3>{album.strArtist}</h3>
                   <div>{album.strAlbum}</div>
@@ -31,25 +43,8 @@ const Results = (props) => {
           )}
           {props.message && <p className="text-red-600">{props.message}</p>}
         </div>
-      ) : (
-        <AlbumDetails album={selectedAlbum} onGoBack={handleGoBack} />
-      )}
+        <GoBack />
     </>
-  );
-};
-
-const AlbumDetails = ({ album, onGoBack }) => {
-  return (
-    <div className="album-details">
-      <button onClick={onGoBack}>Go Back</button>
-      <h2>{album.strAlbum}</h2>
-      <div>{album.intYearReleased}</div>
-      <img src={album.strAlbumThumb} alt={`${album.strArtist} - ${album.strAlbum}`} />
-      <div>
-        <button onClick={handleBuyClick}>Add Album to Cart</button>
-      </div>
-    </div>
-    
   );
 };
 

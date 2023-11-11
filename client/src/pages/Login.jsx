@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import GoBack from '../components/GoBack';
 
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -10,6 +11,12 @@ const Login = () => {
   const [loginUserMutation] = useMutation(LOGIN_USER);
 
   
+  // Check if user is logged in
+  useEffect(() => {
+    Auth.loggedIn();
+  }, []);
+
+ 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -101,11 +108,7 @@ const Login = () => {
           </p>
         </form>
       </div>
-      <p className="text-center text-white underline go-back-link hover:text-blue-700 underline-offset-1 [text-shadow:_2px_2px_4px_rgb(0_0_0_/_100%)]">
-        <a href="/">
-          &lt;&lt; Go Back to Homepage
-        </a>
-      </p>
+      <GoBack />
     </div>
   );
 };

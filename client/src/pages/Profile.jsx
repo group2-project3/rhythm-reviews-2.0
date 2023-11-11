@@ -4,6 +4,8 @@ import Auth from '../utils/auth';
 import { UPDATE_PASSWORD, DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
 import { userProfileQuery } from '../utils/queries';
 import Logout from "../components/Logout";
+import { useEffect } from "react";
+import GoBack from "../components/GoBack";
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -16,6 +18,14 @@ const Profile = () => {
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
   const [deleteReview] = useMutation(DELETE_REVIEW);
   const [updateReview] = useMutation(UPDATE_REVIEW);
+
+
+  // Check if user is logged in
+  useEffect(() => {
+    Auth.loggedIn();
+  }, []);
+
+  
 
   const handlePasswordChange = async (event,) => {
     event.preventDefault();
@@ -165,9 +175,7 @@ const Profile = () => {
             <Logout />
             </button>
           </div>
-          <p className="mt-5 text-center text-white underline [text-shadow:_2px_2px_4px_rgb(0_0_0_/_100%)] go-back-link hover:text-blue-700 underline-offset-1">
-            <a href="/">{'<< Go back to Homepage'}</a>
-          </p>
+          <GoBack />
 
         </div>
       </div>

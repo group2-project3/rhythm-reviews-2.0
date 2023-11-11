@@ -1,35 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from '@apollo/client';
-import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
-import Results from "../components/Results";
+// import { useQuery } from '@apollo/client';
+// import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
+import Results from "./Results";
 import Auth from '../utils/auth';
 import Logout from "../components/Logout";
+import SearchBar from "../components/SearchBar";
 
 const Homepage = () => {
-  const [artistName, setArtistName] = useState("");
+  // const [artistName, setArtistName] = useState("");
   const [message, setMessage] = useState("");
   const [logged_in, setLoggedIn] = useState(Auth.loggedIn());
 
   
 
   
-  const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
-    variables: { artistName: artistName },
-  });
+  // const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
+  //   variables: { artistName: artistName },
+  // });
 
+  // Check if user is logged in
   useEffect(() => {
-    if (error) {
-      setMessage("Error fetching data.");
-    }
-  }, [error]);
+    Auth.loggedIn();
+  }, []);
+  
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-
-    console.log('searching ', artistName)
-    refetch();
-  };
-
+  // useEffect(() => {
+  //   if (error) {
+  //     setMessage("Error fetching data.");
+  //   }
+  // }, [error]);
 
   return (
     <>
@@ -40,24 +39,7 @@ const Homepage = () => {
         <h2 className="text-2xl text-center text-white mb-11 text-shadow">
           by sharing reviews and engaging in meaningful discussions about their favorite albums.
         </h2>
-
-        <form id="search-form" onSubmit={handleSearch} className="content-center text-center" action="/api/reviews/artist-search" method="GET">
-        <input
-          id="search-input"
-          className="p-2.5 w-[300px]"
-          type="text"
-          name="artistName"
-          value={artistName}
-          onChange={(e) => {
-            setArtistName(e.target.value)
-          }}
-          placeholder="Search your favorite artist..."
-        />
-        <button className="ml-1 text-white py-2.5 px-2.5 rounded border-2 border-white hover:bg-blue-700" type="submit">
-          Search
-        </button>
-      </form>
-
+        <SearchBar />
         <div className="search-container"></div>
         <div className="flex items-center justify-center mt-4">
           {logged_in ? (
@@ -68,7 +50,6 @@ const Homepage = () => {
               <p className="text-blue-600"></p>
               <p className="text-white break-words mr-1.5">or</p>
               <p className="text-white underline hover-text-blue-700 underline-offset-1">
-                {/* <a onClick={handleLogout}>Logout</a> */}
                 <Logout />
               </p>
             </>
@@ -85,13 +66,7 @@ const Homepage = () => {
             </>
           )}
         </div>
-        <Results data={data} message={message} />
         </div>
-      <div className="flex flex-col items-center justify-between min-h-screen mt-64">
-        <footer className="fixed bottom-0 items-center w-full py-4 text-center text-white bg-gray-800">
-          © 2023 Rhythm Reviews Site, developed by Jen Stemkowski, Ashley Zemina, Gilberto Rosario, Jason Torrealba, Florian Kreuk
-        </footer>
-      </div>
     </>
   );
 };

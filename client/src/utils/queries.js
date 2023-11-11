@@ -11,7 +11,7 @@ query GetUserProfile {
         _id
         title
         content
-        album_id
+        idAlbum
         date
       }
     }
@@ -58,20 +58,33 @@ export const QUERY_ALBUMS_BY_ARTIST = gql`
   }
   `;
 
+  // query to get an album by id
+  export const QUERY_ALBUM_BY_ID = gql`
+    query getAlbumById($idAlbum: ID!) {
+      getAlbumById(idAlbum: $idAlbum) {
+        idAlbum
+      strArtist
+      strAlbum
+      intYearReleased
+      strAlbumThumb
+      }
+    }
+    `;
+
 // query to get all reviews
 export const QUERY_REVIEWS = gql`
-  query GetReviews($username: String) {
-    reviews(username: $username) {
+  query GetReviews($idAlbum: ID!) {
+    reviews(idAlbum: $idAlbum) {
       _id
       title
       content
+      idAlbum
+      date
       user {
         _id
         username
         email
       }
-      album_id
-      date
     }
   }
 `;

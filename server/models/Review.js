@@ -1,4 +1,5 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
+// const { default: Review } = require('../../client/src/pages/Review');
 
 const reviewSchema = new Schema({
     title: {
@@ -16,10 +17,11 @@ const reviewSchema = new Schema({
         trim: true
     },
     user_id: {
-        type: String,
-        trim: true
+        type: Schema.Types.ObjectId,
+        trim: true,
+        ref: 'User'
     },
-    album_id: {
+    idAlbum: {
         type: Number,
         trim: true
     },
@@ -29,4 +31,7 @@ const reviewSchema = new Schema({
     }
     });
 
-    module.exports = reviewSchema;
+
+    const Review = model('Review', reviewSchema);
+
+    module.exports = {Review, reviewSchema};
