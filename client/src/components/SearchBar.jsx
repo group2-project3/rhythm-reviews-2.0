@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from "react";
-
+import Auth from '../utils/auth';
+import Logout from "../components/Logout";
 
 
 const SearchBar = () => {
     const [artistName, setArtistName] = useState("");
+    const [logged_in] = useState(Auth.loggedIn());
+
+
+    // Check if user is logged in
+    useEffect(() => {
+      Auth.loggedIn();
+    }, []);
 
     const handleSearch = (event) => {
         event.preventDefault();
@@ -30,6 +38,32 @@ const SearchBar = () => {
                     Search
                 </button>
             </form>
+            <div className="search-container"></div>
+        <div className="flex items-center justify-center mt-4">
+          {logged_in ? (
+            <>
+              <p className="text-white underline break-words mr-1.5 hover-text-blue-700 underline-offset-1">
+                <a href="/profile">Profile</a>
+              </p>
+              <p className="text-blue-600"></p>
+              <p className="text-white break-words mr-1.5">or</p>
+              <p className="text-white underline hover-text-blue-700 underline-offset-1">
+                <Logout />
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-white underline break-words mr-1.5 hover-text-blue-700 underline-offset-1">
+                <a href="/login">Login</a>
+              </p>
+              <p className="text-blue-600"></p>
+              <p className="text-white break-words mr-1.5">or</p>
+              <p className="text-white underline hover-text-blue-700 underline-offset-1">
+                <a href="/createacct">Create Account</a>
+              </p>
+            </>
+          )}
+        </div>
         </>
     )
 }
