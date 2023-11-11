@@ -40,7 +40,7 @@ type Mutation {
   logoutUser: Boolean
   updatePassword(currentPassword: String!, newPassword: String!, confirmPassword: String!): Auth
   createReview(title: String!, content: String!, idAlbum: ID!): Review
-  updateReview(input: ReviewInput!): Review
+  updateReview(id: ID!, title: String!, content: String!): Review
   deleteReview(reviewId: ID!): Review
 }
 

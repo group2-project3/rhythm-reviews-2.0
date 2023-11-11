@@ -147,21 +147,21 @@ const resolvers = {
       throw AuthenticationError;
       ('You need to be logged in!');
     },
-    updateReview: async (parent, { input }, context) => {
-      if (!context.user) {
+    updateReview: async (parent, { id, title, content }, context) => {
+      if (!context.req.user) {
         throw new Error('You need to be logged in to update a review');
       }
       try {
-        const existingReview = await Review.findByPk(input.id);
+        const existingReview = await Review.findOne({ _id: id });
         if (!existingReview) {
           throw new Error('Review not found');
         }
-        if (input.title) {
-          existingReview.title = input.title;
+
+        if (existingReview.user_id._id.toString() !== context.req.user._id.toString()) {
+          throw new Error('You do not have permission to delete this review');
         }
-        if (input.content) {
-          existingReview.content = input.content;
-        }
+          existingReview.title = title;
+          existingReview.content = content;
         await existingReview.save();
         return existingReview;
       } catch (error) {
