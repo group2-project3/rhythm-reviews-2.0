@@ -100,7 +100,7 @@ const Login = () => {
               Login
             </button>
           </div>
-          <p className="text-sm text-white">
+          <p className="text-sm text-white text-center">
             Don't have an account?{" "}
             <a href="/createacct" className="ml-2 text-center underline hover:text-blue-700 underline-offset-1">
               Create Account
