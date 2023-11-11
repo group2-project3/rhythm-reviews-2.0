@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import auth from '../utils/auth';
 import { REGISTER_USER } from '../utils/mutations';
+import Auth from '../utils/auth';
+import { useEffect } from 'react';
 
 const CreateAccount = () => {
     const [username, setUsername] = useState('');

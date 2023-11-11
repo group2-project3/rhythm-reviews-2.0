@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Outlet } from 'react-router-dom';
+import  Footer  from './components/Footer';
 
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 
@@ -20,7 +21,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Outlet />
-      
+      <Footer />
     </ApolloProvider>
   );
 }
