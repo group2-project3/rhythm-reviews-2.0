@@ -45,8 +45,8 @@ const CreateAccount = () => {
     };
 
   return (
-    <>
-      <h1 className="mb-10 ml-12 text-2xl text-white mt-60">Create Account</h1>
+    <div className="flex flex-col items-center">
+      <h1 className="mb-10 text-2xl text-white mt-60">Create Account</h1>
       <div className="flex-row-reverse">
         <form className="signup-form">
           <div className="mb-2">
@@ -59,7 +59,7 @@ const CreateAccount = () => {
               name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
               required
             />
           </div>
@@ -73,7 +73,7 @@ const CreateAccount = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
               required
             />
           </div>
@@ -87,7 +87,7 @@ const CreateAccount = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded"
               required
             />
           </div>
@@ -103,7 +103,7 @@ const CreateAccount = () => {
           <GoBack />
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
