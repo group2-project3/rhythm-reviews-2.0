@@ -7,7 +7,6 @@ import Homepage from './pages/Homepage';
 import CreateAcct from './pages/CreateAccount';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
-import Review from './pages/Review';
 import Results from './pages/Results';
 import Album from './pages/Album';
 import AuthGuard from './components/Authguard';
