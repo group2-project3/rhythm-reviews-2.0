@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import {  useMutation } from '@apollo/client';
+import {  useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import Helpers from '../utils/helpers';
 import { UPDATE_REVIEW, DELETE_REVIEW } from '../utils/mutations';
-
+import { QUERY_ALBUM_BY_ID } from "../utils/queries";
 
 const EditReview = (props) => {
 
+    const {data: album} = useQuery(QUERY_ALBUM_BY_ID, {
+      variables: { idAlbum: props.review.idAlbum },
+    });
     const [updateReview] = useMutation(UPDATE_REVIEW);
     const [deleteReview] = useMutation(DELETE_REVIEW);
     const [editing, setEditing] = useState(false);
@@ -140,6 +143,9 @@ const EditReview = (props) => {
                                 <div className="review-form w-[450px]">
                                     <div key={props.review._id} className="mt-4 text-white text-lg">
                                         <div className="px-5 py-5 mt-1 bg-white border-2 border-blue-600 rounded-md text-black">
+                                            {props.displayThumbnail ? <>
+                                              <img className="w-[400px]" src={album?.getAlbumById.strAlbumThumb} alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`} />
+                                            </> : null}
                                             <p className="mb-2 ml-5">Username: {props.review.user?.username}</p>
                                             <p className="mb-2 ml-5">Date: {Helpers.formatDate(props.review.date)}</p>
                                             <p className="mb-2 ml-5">Title: {props.review.title}</p>
@@ -160,7 +166,10 @@ const EditReview = (props) => {
                         <div className="review-form w-[450px]">
                             <div key={props.review._id} className="mt-4 text-white text-lg">
                                 <div className="px-5 py-5 mt-1 bg-white border-2 border-blue-600 rounded-md text-black">
-                                    <p className="mb-2 ml-5">Username: {props.review.user?.username}</p>
+                                {props.displayThumbnail ? <>
+                                              <img className="w-[400px]" src={album?.getAlbumById.strAlbumThumb} alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`} />
+                                            </> : null}
+                                            <p className="mb-2 ml-5">Username: {props.review.user?.username}</p>
                                     <p className="mb-2 ml-5">Date: {Helpers.formatDate(props.review.date)}</p>
                                     <p className="mb-2 ml-5">Title: {props.review.title}</p>
                                     <p className="mb-2 ml-5">Review: {props.review.content}</p>

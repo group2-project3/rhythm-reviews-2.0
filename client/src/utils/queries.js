@@ -38,18 +38,6 @@ export const albumReviewsQuery = gql`
   }
   `;
 
-// query to get all albums
-export const QUERY_ALBUMS = gql`
-  query GetAlbums {
-    getAlbums {
-      id
-      name
-      artist
-      year
-    }
-  }
-  `;
-
 // query to get all albums by artist
 export const QUERY_ALBUMS_BY_ARTIST = gql`
   query SearchAlbums($artistName: String!) {

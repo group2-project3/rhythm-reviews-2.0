@@ -106,7 +106,7 @@ const Profile = () => {
             <ul>
               {data?.getUserProfile.savedReviews.map((review) => (
                     <EditReview key={review._id} review={review} 
-                    onDelete={handleUpdateReview}
+                    onDelete={handleUpdateReview} displayThumbnail={true}
                      />
                 ))}
             </ul>
