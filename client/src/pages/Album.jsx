@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALBUM_BY_ID } from '../utils/queries';
-import { useState } from 'react';
+import SearchBar from "../components/SearchBar";
 
 const Album = (
 ) => {
@@ -10,7 +10,7 @@ const Album = (
 
     console.log('idAlbum', idAlbum)
 
-    const { data, loading, error, refetch } = useQuery(QUERY_ALBUM_BY_ID, {
+    const { data, loading, error } = useQuery(QUERY_ALBUM_BY_ID, {
         variables: { idAlbum: idAlbum },
     });
 
@@ -24,6 +24,7 @@ const Album = (
 
     return (
         <>
+            <SearchBar />
             <div className="album-details">
                 {/* {<button onClick={onGoBack}>Go Back</button>} */}
                 <h2>{data.getAlbumById.strAlbum}</h2>
