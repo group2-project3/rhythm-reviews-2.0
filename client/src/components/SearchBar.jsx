@@ -47,7 +47,7 @@ const SearchBar = () => {
               </p>
               <p className="text-blue-600"></p>
               <p className="text-white break-words mr-1.5">or</p>
-              <p className="text-white underline hover-text-blue-700 underline-offset-1">
+              <p className="text-white underline cursor-pointer hover-text-blue-700 underline-offset-1">
                 <Logout />
               </p>
             </>
