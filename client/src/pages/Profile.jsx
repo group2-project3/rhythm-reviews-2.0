@@ -6,6 +6,7 @@ import { userProfileQuery } from '../utils/queries';
 import Logout from "../components/Logout";
 import { useEffect } from "react";
 import GoBack from "../components/GoBack";
+import EditReview from "../components/EditReview";
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -23,9 +24,11 @@ const Profile = () => {
   // Check if user is logged in
   useEffect(() => {
     Auth.loggedIn();
-  }, []);
 
- 
+    console.log('data',data);
+  }, [data]);
+
+
 
   const handlePasswordChange = async (event,) => {
     event.preventDefault();
@@ -134,9 +137,14 @@ const Profile = () => {
           <div className="mt-5">
             <h2 className="mb-2 text-2xl text-white">Your Album Reviews</h2>
             <ul>
-              {reviews.map((review) => (
-                <li key={review.dataValues.id} className="p-2.5 rounded border-2 mb-5 bg-white album-review" data-review-id={review.dataValues.id}>
-                  <p className="mb-2 ml-5">Date of Review: {dataValues.date}</p>
+              {data?.getUserProfile.savedReviews.map((review) => (
+                    <EditReview key={review._id} review={review} 
+                    // onDelete={handleUpdateReview}
+                     />
+                ))}
+                {/* <EditReview key={review._id} review={review} />
+                <li key={review._id} className="p-2.5 rounded border-2 mb-5 bg-white album-review" data-review-id={review._id}>
+                  <p className="mb-2 ml-5">Date of Review: {review.date}</p>
                   <img src="{{strAlbumThumb}}" alt="{{strAlbum}}" />
                   <p className="mb-2 ml-5"><strong><u>Album Title:</u></strong> {dataValues.title}</p>
                   <p className="mb-2 ml-5"><strong><u>Review:</u></strong> {dataValues.content}</p>
@@ -166,7 +174,7 @@ const Profile = () => {
                       onclick="showUpdateFields(event, {{dataValues.id}})">Update</button>
                   </div>
                 </li>
-              ))}
+              ))} */}
             </ul>
           </div>
 

@@ -50,7 +50,7 @@ const Album = (
             </div>
             <div>
                 <AddReview idAlbum={idAlbum} onAdd={handleUpdateReview}/>
-                {reviewsData.reviews.map((review) => (
+                {reviewsData?.reviews.map((review) => (
                     <EditReview key={review._id} review={review} onDelete={handleUpdateReview} />
                 ))}
             </div>

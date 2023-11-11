@@ -13,6 +13,11 @@ query GetUserProfile {
         content
         idAlbum
         date
+        user {
+          _id
+          username
+          email
+        }
       }
     }
   }

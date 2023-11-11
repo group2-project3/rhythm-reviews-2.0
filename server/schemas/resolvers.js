@@ -20,7 +20,18 @@ const resolvers = {
       return User.find().populate('reviews');
     },
     getUserProfile: async (parent, { }, context) => {
-      const user = await User.findOne({ email: context.req.user.email }).populate('savedReviews');
+      const user = await User.findOne({ email: context.req.user.email }).populate({
+        path: 'savedReviews',
+        populate: {
+          path: 'user',
+          options: {
+            strictPopulate: false,
+          },
+        },
+      })
+      .exec();
+
+      console.log('user', user)
       if (!user) {
         throw AuthenticationError;
       }
@@ -28,17 +39,16 @@ const resolvers = {
     },
     reviews: async (parent, { idAlbum }) => {
 
-      const reviews = await Review.find({ idAlbum }).populate('user_id');
+      const reviews = await Review.find({ idAlbum }).populate('user');
         return reviews.map((review) => ({
           ...review.toObject(),
           user: {
-            _id: review.user_id._id.toString(),
-            username: review.user_id.username,
-            email: review.user_id.email,
+            _id: review.user._id.toString(),
+            username: review.user.username,
+            email: review.user.email,
           },
         }));
 
-      // return Review.find({idAlbum: idAlbum}).populate('user_id').sort({ createdAt: -1 });
     },
     review: async (parent, { reviewId }) => {
       return Review.findOne({ _id: reviewId });
@@ -134,7 +144,7 @@ const resolvers = {
           title: title,
           content: content,
           idAlbum: idAlbum,
-          user_id: context.req.user._id,
+          user: context.req.user._id,
         });
 
         await User.findOneAndUpdate(
@@ -157,7 +167,7 @@ const resolvers = {
           throw new Error('Review not found');
         }
 
-        if (existingReview.user_id._id.toString() !== context.req.user._id.toString()) {
+        if (existingReview.user._id.toString() !== context.req.user._id.toString()) {
           throw new Error('You do not have permission to delete this review');
         }
           existingReview.title = title;
@@ -171,13 +181,13 @@ const resolvers = {
     deleteReview: async (parent, { reviewId }, context) => {
       if (context.req.user) {
         try {
-          const review = await Review.findOne({ _id: reviewId }).populate('user_id');
+          const review = await Review.findOne({ _id: reviewId }).populate('user');
           if (!review) {
             throw new Error('Review not found');
           }
     console.log(review)
           // Make sure the user has permission to delete the review
-          if (review.user_id._id.toString() !== context.req.user._id.toString()) {
+          if (review.user._id.toString() !== context.req.user._id.toString()) {
             throw new Error('You do not have permission to delete this review');
           }
     
