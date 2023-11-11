@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 import Helpers from '../utils/helpers';
 
 const Review = ({idAlbum}) => {
-  const { loading, data } = useQuery(QUERY_REVIEWS, {
+  const { loading, data, refetch } = useQuery(QUERY_REVIEWS, {
     variables: { idAlbum: idAlbum },
   });
 
@@ -15,7 +15,6 @@ const Review = ({idAlbum}) => {
   const [deleteReview] = useMutation(DELETE_REVIEW);
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
-  const [reviewAlbum, setReviewAlbum] = useState('');
 
 
 
@@ -38,6 +37,7 @@ const Review = ({idAlbum}) => {
       const { data } = await addReview({
         variables: { title: reviewTitle, content: reviewContent, idAlbum: idAlbum },
       });
+      refetch();
       // Handle any logic after adding the review if needed
     } catch (e) {
       console.error(e);
@@ -85,16 +85,6 @@ const Review = ({idAlbum}) => {
     return (
 
     <div>
-      {/* {albums.map((album) => (
-        <div key={album.id} className="add-flex-center">
-          <div className="inline-block w-full h-auto max-w-xs p-4 m-10 text-white rounded bg-white/30 selected-album">
-            <h5>{album.strAlbum}</h5>
-            <p>{album.intYearReleased}</p>
-            <img className="w-[400px]" src={album.strAlbumThumb} alt={album.strAlbum} />
-          </div>
-        </div>
-      ))} */}
-
       <div className="review-form">
         {Auth.loggedIn() ? (
           <>
