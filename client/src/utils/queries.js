@@ -13,6 +13,11 @@ query GetUserProfile {
         content
         idAlbum
         date
+        user {
+          _id
+          username
+          email
+        }
       }
     }
   }
@@ -29,18 +34,6 @@ export const albumReviewsQuery = gql`
         id
         username
       }
-    }
-  }
-  `;
-
-// query to get all albums
-export const QUERY_ALBUMS = gql`
-  query GetAlbums {
-    getAlbums {
-      id
-      name
-      artist
-      year
     }
   }
   `;

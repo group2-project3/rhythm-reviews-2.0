@@ -20,25 +20,35 @@ const resolvers = {
       return User.find().populate('reviews');
     },
     getUserProfile: async (parent, { }, context) => {
-      const user = await User.findOne({ email: context.req.user.email });
+      const user = await User.findOne({ email: context.req.user.email }).populate({
+        path: 'savedReviews',
+        populate: {
+          path: 'user',
+          options: {
+            strictPopulate: false,
+          },
+        },
+      })
+      .exec();
+
+      console.log('user', user)
       if (!user) {
         throw AuthenticationError;
       }
-      return user.populate('savedReviews');
+      return user;
     },
     reviews: async (parent, { idAlbum }) => {
 
-      const reviews = await Review.find({ idAlbum }).populate('user_id');
+      const reviews = await Review.find({ idAlbum }).populate('user');
         return reviews.map((review) => ({
           ...review.toObject(),
           user: {
-            _id: review.user_id._id.toString(),
-            username: review.user_id.username,
-            email: review.user_id.email,
+            _id: review.user._id.toString(),
+            username: review.user.username,
+            email: review.user.email,
           },
         }));
 
-      // return Review.find({idAlbum: idAlbum}).populate('user_id').sort({ createdAt: -1 });
     },
     review: async (parent, { reviewId }) => {
       return Review.findOne({ _id: reviewId });
@@ -134,7 +144,7 @@ const resolvers = {
           title: title,
           content: content,
           idAlbum: idAlbum,
-          user_id: context.req.user._id,
+          user: context.req.user._id,
         });
 
         await User.findOneAndUpdate(
@@ -147,43 +157,56 @@ const resolvers = {
       throw AuthenticationError;
       ('You need to be logged in!');
     },
-    updateReview: async (parent, { input }, context) => {
-      if (!context.user) {
+    updateReview: async (parent, { id, title, content }, context) => {
+      if (!context.req.user) {
         throw new Error('You need to be logged in to update a review');
       }
       try {
-        const existingReview = await Review.findByPk(input.id);
+        const existingReview = await Review.findOne({ _id: id });
         if (!existingReview) {
           throw new Error('Review not found');
         }
-        if (input.title) {
-          existingReview.title = input.title;
+
+        if (existingReview.user._id.toString() !== context.req.user._id.toString()) {
+          throw new Error('You do not have permission to delete this review');
         }
-        if (input.content) {
-          existingReview.content = input.content;
-        }
+          existingReview.title = title;
+          existingReview.content = content;
         await existingReview.save();
         return existingReview;
       } catch (error) {
         throw new Error('Error updating the review: ' + error.message);
       }
     },
-    removeReview: async (parent, { reviewId }, context) => {
-      if (context.user) {
-        const review = await Review.findOneAndDelete({
-          _id: reviewId,
-          reviewUser: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { reviews: review._id } }
-        );
-        return review;
+    deleteReview: async (parent, { reviewId }, context) => {
+      if (context.req.user) {
+        try {
+          const review = await Review.findOne({ _id: reviewId }).populate('user');
+          if (!review) {
+            throw new Error('Review not found');
+          }
+    console.log(review)
+          // Make sure the user has permission to delete the review
+          if (review.user._id.toString() !== context.req.user._id.toString()) {
+            throw new Error('You do not have permission to delete this review');
+          }
+    
+          // Delete the review
+          await Review.deleteOne({ _id: reviewId });
+    
+          // Optionally, update any related user data (e.g., remove from savedReviews array)
+          await User.findOneAndUpdate(
+            { _id: context.req.user._id },
+            { $pull: { savedReviews: review._id } }
+          );
+    
+          return review;
+        } catch (error) {
+          throw new Error('Error deleting the review: ' + error.message);
+        }
       }
-      throw AuthenticationError;
+      throw new AuthenticationError ('You need to be logged in to delete a review');
     },
-
   },
 };
 

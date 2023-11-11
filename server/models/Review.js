@@ -16,11 +16,7 @@ const reviewSchema = new Schema({
         maxLength: 280,
         trim: true
     },
-    user_id: {
-        type: Schema.Types.ObjectId,
-        trim: true,
-        ref: 'User'
-    },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
     idAlbum: {
         type: Number,
         trim: true

@@ -51,9 +51,10 @@ mutation createReview($title: String!, $content: String!, $idAlbum: ID!) {
 export const UPDATE_REVIEW = gql`
 mutation updateReview($id: ID!, $title: String!, $content: String!) {
     updateReview(id: $id, title: $title, content: $content) {
-        id
+        _id
         title
         content
+        date
     }
 }
 `;
@@ -74,8 +75,8 @@ mutation updatePassword($currentPassword: String!, $newPassword: String!, $confi
 
 // delete review mutation
 export const DELETE_REVIEW = gql`
-  mutation DeleteReview($id: ID!) {
-    removeReview(reviewId: $id) {
+  mutation deleteReview($reviewId: ID!) {
+    deleteReview(reviewId: $reviewId) {
       _id
       title
       content
