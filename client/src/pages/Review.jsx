@@ -165,7 +165,7 @@ const Review = ({ idAlbum }) => {
 
       {data.reviews.map((review) => (
         <div className="flex justify-center">
-          {(review.user.username === Auth.getProfile().data.username) ?
+          {(review.user?.username === Auth.getProfile().data.username) ?
             <>
               {editing.includes(review._id) ?
                 <>
