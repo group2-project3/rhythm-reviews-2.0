@@ -30,7 +30,7 @@ const CreateAccount = () => {
           });
 
           if (data.registerUser) {
-            auth.login(data.registerUser.token);
+            Auth.login(data.registerUser.token);
             document.location.replace('/');
           } else {
             alert('Failed to signup');

@@ -139,7 +139,7 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.req.user._id },
-          { $addToSet: { reviews: review._id } }
+          { $addToSet: { savedReviews: review._id } }
         );
 
         return review;
