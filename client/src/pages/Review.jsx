@@ -85,7 +85,8 @@ const Review = ({idAlbum}) => {
     return (
 
     <div>
-      <div className="review-form">
+      <div className="flex justify-center">
+      <div className="review-form w-[450px]">
         {Auth.loggedIn() ? (
           <>
             <label htmlFor="review-title" className="block mb-2 text-sm font-medium text-white text-gray-900">
@@ -111,7 +112,7 @@ const Review = ({idAlbum}) => {
             <div className="add-flex-center">
               <button
                 id="submit-review"
-                className="add-review text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 mt-5"
+                className="add-review text-white text-lg py-2.5 px-4 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 mt-2"
                 type="submit"
                 onClick={handleAddReview}
               >
@@ -125,16 +126,21 @@ const Review = ({idAlbum}) => {
           </p>
         )}
       </div>
+      </div>
 
       {data.reviews.map((review) => (
-        <div key={review._id} className="mt-5 text-white">
+        <div className="flex justify-center">
+          <div className="review-form w-[450px]">
+        <div key={review._id} className="mt-4 text-white text-lg">
           Your review has been posted:
-          <div className="px-5 py-5 mt-5 bg-white border-2 border-blue-600 rounded-md">
+          <div className="px-5 py-5 mt-1 bg-white border-2 border-blue-600 rounded-md text-black">
             <p className="mb-2 ml-5">Username: {review.user?.username}</p>
             <p className="mb-2 ml-5">Date: {Helpers.formatDate(review.date)}</p>
             <p className="mb-2 ml-5">Title: {review.title}</p>
             <p className="mb-2 ml-5">Review: {review.content}</p>
           </div>
+        </div>
+        </div>
         </div>
       ))}
     </div>
