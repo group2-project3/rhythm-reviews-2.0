@@ -1,53 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-import { useEffect } from 'react';
 import GoBack from '../components/GoBack';
 
 const CreateAccount = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-  
-    const [registerUser, { loading, error }] = useMutation(REGISTER_USER);
-  
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  // Check if user is logged in
+  const [registerUser, { loading, error }] = useMutation(REGISTER_USER);
+
+  // Check if the user is logged in
   useEffect(() => {
     Auth.loggedIn();
   }, []);
 
-  
+  const signupFormHandler = async (event) => {
+    event.preventDefault();
 
-    const signupFormHandler = async (event) => {
-      event.preventDefault();
-  
-      if (username && email && password) {
-        try {
-          const { data } = await registerUser({
-            variables: { username, email, password },
-          });
+    if (username && email && password) {
+      try {
+        const { data } = await registerUser({
+          variables: { username, email, password },
+        });
 
-          if (data.registerUser) {
-            Auth.login(data.registerUser.token);
-            document.location.replace('/');
-          } else {
-            alert('Failed to signup');
-          }
-        } catch (error) {
-          console.error('Error during signup:', error);
-          alert('Failed to signup. Please try again.');
+        if (data.registerUser) {
+          Auth.login(data.registerUser.token);
+          document.location.replace('/');
+        } else {
+          alert('Failed to signup');
         }
-      } else {
-        alert('Please fill in all fields');
+      } catch (error) {
+        console.error('Error during signup:', error);
+        alert('Failed to signup. Please try again.');
       }
+    } else {
+      alert('Please fill in all fields');
+    }
+  };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'visible';
     };
+  }, []);
 
   return (
-    <>
-      <h1 className="mb-10 ml-12 text-2xl text-white mt-60">Create Account</h1>
-      <div className="flex-row-reverse">
+    <div className="flex items-center justify-center h-screen">
+      <div className="max-w-md"> 
+        <h1 className="mt-20 mb-8 ml-6 text-2xl text-white">Create Account</h1>
         <form className="signup-form">
           <div className="mb-2">
             <label htmlFor="username" className="text-white">
@@ -59,7 +62,7 @@ const CreateAccount = () => {
               name="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
               required
             />
           </div>
@@ -73,7 +76,7 @@ const CreateAccount = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
               required
             />
           </div>
@@ -87,15 +90,15 @@ const CreateAccount = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
               required
             />
           </div>
-          <div className="add-flex-center">
+          <div className="flex justify-center">
             <button
               type="submit"
               onClick={signupFormHandler}
-              className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 mt-5"
+              className="px-4 py-2 mt-3 text-white bg-blue-600 border-2 border-white rounded hover:bg-blue-700"
             >
               Submit
             </button>
@@ -103,7 +106,7 @@ const CreateAccount = () => {
           <GoBack />
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
