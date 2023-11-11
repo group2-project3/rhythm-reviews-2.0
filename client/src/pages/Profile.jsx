@@ -5,6 +5,7 @@ import { UPDATE_PASSWORD, DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutation
 import { userProfileQuery } from '../utils/queries';
 import Logout from "../components/Logout";
 import { useEffect } from "react";
+import GoBack from "../components/GoBack";
 
 const Profile = () => {
   const [currentPassword, setCurrentPassword] = useState('');
@@ -174,11 +175,7 @@ const Profile = () => {
             <Logout />
             </button>
           </div>
-          <p className="text-center text-white underline go-back-link hover:text-blue-700 underline-offset-1 [text-shadow:_2px_2px_4px_rgb(0_0_0_/_100%)]">
-        <a href="/">
-          &lt;&lt; Go Back to Homepage
-        </a>
-      </p>
+          <GoBack />
 
         </div>
       </div>

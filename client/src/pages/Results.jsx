@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import { useParams } from 'react-router-dom';
 import SearchBar from "../components/SearchBar";
 import { useLocation } from 'react-router-dom';
+import GoBack from "../components/GoBack";
 
 const Results = (props) => {
   const location = useLocation();
@@ -43,11 +43,7 @@ const Results = (props) => {
           )}
           {props.message && <p className="text-red-600">{props.message}</p>}
         </div>
-        <p className="text-center text-white underline go-back-link hover:text-blue-700 underline-offset-1 [text-shadow:_2px_2px_4px_rgb(0_0_0_/_100%)]">
-                    <a href="/">
-                        &lt;&lt; Go Back to Homepage
-                    </a>
-                </p>
+        <GoBack />
     </>
   );
 };
