@@ -57,7 +57,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container mt-60">
+    <div className="login-container mt-60 flex flex-col items-center">
       <h1 className="mb-8 text-2xl text-center text-white">Login</h1>
       <h4 id="api-message" className="hidden text-red-600"></h4>
 
@@ -73,7 +73,7 @@ const Login = () => {
               name="email"
               value={userFormData.email}
               onChange={handleInputChange}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
               required
             />
           </div>
@@ -87,7 +87,7 @@ const Login = () => {
               name="password"
               value={userFormData.password}
               onChange={handleInputChange}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5"
+              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
               required
             />
           </div>
