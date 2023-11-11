@@ -1,15 +1,32 @@
 const db = require('../config/connection');
-const { User, Review } = require('../models');
+const { Review } = require('../models/Review');
+const { User } = require('../models');
 const cleanDB = require('./cleanDB');
-
 const userData = require('./userData.json');
+const reviewData = require('./reviewData.json');
 
-db.once('open', async () => {
-  await cleanDB('User', 'users');
-  await User.insertMany(userData);
-  console.log('Users seeded!');
-  await cleanDB('Review', 'reviews');
-  await Review.insertMany(reviewData);
-  console.log('Reviews seeded!');
-  process.exit(0);
-});
+const seedDatabase = async () => {
+  try {
+    await cleanDB('User', 'users');
+    const users = await User.insertMany(userData);
+    console.log('Users seeded!');
+
+    await cleanDB('Review', 'reviews');
+    const userObjectIds = users.map((user) => user._id.toString());
+    const reviewsWithUserIds = reviewData.map((review, index) => ({
+      ...review,
+      user_id: userObjectIds[index % userObjectIds.length], 
+    }));
+
+    await Review.insertMany(reviewsWithUserIds);
+    console.log('Reviews seeded!');
+  } catch (error) {
+    console.error('Error seeding database:', error);
+  } finally {
+   
+    
+    db.close();
+  }
+};
+
+seedDatabase();
