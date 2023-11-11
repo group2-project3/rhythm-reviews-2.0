@@ -148,7 +148,7 @@ const EditReview = (props) => {
                       </> : null}
                       <p className="mb-2 ml-5">Username: {props.review.user?.username}</p>
                       <p className="mb-2 ml-5">Date: {Helpers.formatDate(props.review.date)}</p>
-                      <p className="mb-2 ml-5">Title: {props.review.title}</p>
+                      <p className="mb-2 ml-5">Review Title: {props.review.title}</p>
                       <p className="mb-2 ml-5">Review: {props.review.content}</p>
                     </div>
                   </div>
@@ -171,7 +171,7 @@ const EditReview = (props) => {
                   </> : null}
                   <p className="mb-2 ml-5">Username: {props.review.user?.username}</p>
                   <p className="mb-2 ml-5">Date: {Helpers.formatDate(props.review.date)}</p>
-                  <p className="mb-2 ml-5">Title: {props.review.title}</p>
+                  <p className="mb-2 ml-5">Review Title: {props.review.title}</p>
                   <p className="mb-2 ml-5">Review: {props.review.content}</p>
                 </div>
               </div>
