@@ -20,11 +20,11 @@ const resolvers = {
       return User.find().populate('reviews');
     },
     getUserProfile: async (parent, { }, context) => {
-      const user = await User.findOne({ email: context.req.user.email });
+      const user = await User.findOne({ email: context.req.user.email }).populate('savedReviews');
       if (!user) {
         throw AuthenticationError;
       }
-      return user.populate('savedReviews');
+      return user;
     },
     reviews: async (parent, { idAlbum }) => {
 
