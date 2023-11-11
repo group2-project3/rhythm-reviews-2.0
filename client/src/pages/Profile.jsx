@@ -171,7 +171,7 @@ const Profile = () => {
           </div>
 
           <div className="mt-5">
-            <button className="mt-5 text-white py-2.5 px-2.5 mr-2 rounded border-2 border-white bg-blue-600 hover:bg-blue-700" id="logout">
+            <button className="mt-5 text-white py-2.5 px-2.5 mr-2 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 cursor-pointer" id="logout">
             <Logout />
             </button>
           </div>
