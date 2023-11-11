@@ -174,9 +174,11 @@ const Profile = () => {
             <Logout />
             </button>
           </div>
-          <p className="mt-5 text-center text-white underline [text-shadow:_2px_2px_4px_rgb(0_0_0_/_100%)] go-back-link hover:text-blue-700 underline-offset-1">
-            <a href="/">{'<< Go back to Homepage'}</a>
-          </p>
+          <p className="text-center text-white underline go-back-link hover:text-blue-700 underline-offset-1 [text-shadow:_2px_2px_4px_rgb(0_0_0_/_100%)]">
+        <a href="/">
+          &lt;&lt; Go Back to Homepage
+        </a>
+      </p>
 
         </div>
       </div>
