@@ -25,7 +25,7 @@ const Profile = () => {
     Auth.loggedIn();
   }, []);
 
-  
+ 
 
   const handlePasswordChange = async (event,) => {
     event.preventDefault();

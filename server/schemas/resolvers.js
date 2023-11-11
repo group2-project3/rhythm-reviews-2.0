@@ -169,21 +169,34 @@ const resolvers = {
       }
     },
     deleteReview: async (parent, { reviewId }, context) => {
-      if (context.user) {
-        const review = await Review.findOneAndDelete({
-          _id: reviewId,
-          reviewUser: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { reviews: review._id } }
-        );
-        return review;
+      if (context.req.user) {
+        try {
+          const review = await Review.findOne({ _id: reviewId }).populate('user_id');
+          if (!review) {
+            throw new Error('Review not found');
+          }
+    console.log(review)
+          // Make sure the user has permission to delete the review
+          if (review.user_id._id.toString() !== context.req.user._id.toString()) {
+            throw new Error('You do not have permission to delete this review');
+          }
+    
+          // Delete the review
+          await Review.deleteOne({ _id: reviewId });
+    
+          // Optionally, update any related user data (e.g., remove from savedReviews array)
+          await User.findOneAndUpdate(
+            { _id: context.req.user._id },
+            { $pull: { savedReviews: review._id } }
+          );
+    
+          return review;
+        } catch (error) {
+          throw new Error('Error deleting the review: ' + error.message);
+        }
       }
-      throw AuthenticationError;
+      throw new AuthenticationError ('You need to be logged in to delete a review');
     },
-
   },
 };
 
