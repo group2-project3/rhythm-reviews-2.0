@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import SearchBar from "../components/SearchBar";
 import { useLocation } from 'react-router-dom';
 import GoBack from "../components/GoBack";
+import '../assets/css/style.css';
 
 const Results = (props) => {
   const location = useLocation();
