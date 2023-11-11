@@ -1,4 +1,5 @@
-const { User, Review } = require('../models');
+const { User } = require('../models');
+const { Review } = require('../models/Review');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const fetch = require('node-fetch');
 require('dotenv').config()
@@ -25,9 +26,19 @@ const resolvers = {
       }
       return user.populate('savedReviews');
     },
-    reviews: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Review.find(params).sort({ createdAt: -1 });
+    reviews: async (parent, { idAlbum }) => {
+
+      const reviews = await Review.find({ idAlbum }).populate('user_id');
+        return reviews.map((review) => ({
+          ...review.toObject(),
+          user: {
+            _id: review.user_id._id.toString(),
+            username: review.user_id.username,
+            email: review.user_id.email,
+          },
+        }));
+
+      // return Review.find({idAlbum: idAlbum}).populate('user_id').sort({ createdAt: -1 });
     },
     review: async (parent, { reviewId }) => {
       return Review.findOne({ _id: reviewId });
@@ -115,15 +126,19 @@ const resolvers = {
       return { token, user };
     },
 
-    createReview: async (parent, { content }, context) => {
-      if (context.user) {
+    createReview: async (parent, { title,content,idAlbum }, context) => {
+      console.log(title,content,idAlbum,context.req.user)
+      if (context.req.user) {
+        console.log('REV',context.req.user._id);
         const review = await Review.create({
-          content,
-          reviewUser: context.user.username,
+          title: title,
+          content: content,
+          idAlbum: idAlbum,
+          user_id: context.req.user._id,
         });
 
         await User.findOneAndUpdate(
-          { _id: context.user, _id },
+          { _id: context.req.user._id },
           { $addToSet: { reviews: review._id } }
         );
 

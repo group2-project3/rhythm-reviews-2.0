@@ -36,15 +36,13 @@ mutation {
 
 //create review mutation
 export const CREATE_REVIEW = gql`
-mutation createReview($title: String!, $content: String!, $album_id: ID!) {
-    createReview(title: $title, content: $content, album_id: $album_id) {
-        id
+mutation createReview($title: String!, $content: String!, $idAlbum: ID!) {
+    createReview(title: $title, content: $content, idAlbum: $idAlbum) {
+        _id
         title
         content
-      user {
-            id
-            username
-        }
+        idAlbum
+        date
     }
 }
 `;
@@ -74,24 +72,6 @@ mutation updatePassword($currentPassword: String!, $newPassword: String!, $confi
   }
 `;
 
-// add review mutation
-export const ADD_REVIEW = gql`
-  mutation AddReview($input: ReviewInput!) {
-    createReview(input: $input) {
-      _id
-      title
-      content
-      user {
-        _id
-        username
-        email
-      }
-      album_id
-      date
-    }
-  }
-`;
-
 // delete review mutation
 export const DELETE_REVIEW = gql`
   mutation DeleteReview($id: ID!) {
@@ -104,7 +84,7 @@ export const DELETE_REVIEW = gql`
         username
         email
       }
-      album_id
+      idAlbum
       date
     }
   }

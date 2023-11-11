@@ -11,15 +11,15 @@ type Review {
     _id: ID
     title: String
     content: String
-    user: User
-    album_id: Int
+    idAlbum: Int
     date: String
+    user: User
 }
 
 type Query {
   users: [User]
   getUserProfile: User
-  reviews(username: String): [Review]
+  reviews(idAlbum: ID!): [Review]
   review(reviewId: ID!): Review
   me: User
   getAlbumsByArtist(artistName: String!): [Album]
@@ -39,7 +39,7 @@ type Mutation {
   loginUser(email: String!, password: String!): Auth
   logoutUser: Boolean
   updatePassword(currentPassword: String!, newPassword: String!, confirmPassword: String!): Auth
-  createReview(content: String!): Review
+  createReview(title: String!, content: String!, idAlbum: ID!): Review
   updateReview(input: ReviewInput!): Review
   removeReview(reviewId: ID!): Review
 }
