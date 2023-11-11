@@ -142,6 +142,8 @@ const Review = ({ idAlbum }) => {
               </div>
             </div>
           </div>
+          {(review.user.username === Auth.getProfile().data.username) ? 
+          <>
           <button
             className="delete-review text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700 mt-3"
             onClick={() => handleDeleteReview(review._id)}
@@ -153,7 +155,7 @@ const Review = ({ idAlbum }) => {
             onClick={() => handleUpdateReview(review._id)}
           >
             Update Review
-          </button>
+          </button></> : null}
         </div>
       ))}
     </div>

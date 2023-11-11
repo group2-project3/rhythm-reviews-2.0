@@ -40,7 +40,7 @@ const Login = () => {
 
       // Check if the mutation was successful
       if (data && data.loginUser) {
-        const { token } = data.loginUser;
+        const { token, user } = data.loginUser;
         
         Auth.login(token);
         
