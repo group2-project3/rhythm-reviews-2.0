@@ -13,12 +13,11 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { loading, error, data } = useQuery(userProfileQuery);
+  const { loading, error, data, refetch } = useQuery(userProfileQuery);
   const user = data?.getUserProfile;
   const reviews = user?.reviews || [];
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
-  const [deleteReview] = useMutation(DELETE_REVIEW);
-  const [updateReview] = useMutation(UPDATE_REVIEW);
+  
 
 
   // Check if user is logged in
@@ -50,41 +49,9 @@ const Profile = () => {
     }
   };
 
-  const handleUpdateReview = async (reviewId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const { data } = await updateReview({
-        variables: { reviewId },
-      });
-
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const handleDeleteReview = async (reviewId) => {
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
-
-    try {
-      const { data } = await deleteReview({
-        variables: { reviewId },
-      });
-
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  if (loading) return <div>Loading...</div>;
+  const handleUpdateReview = async () => {
+    refetch();
+  }
 
   return (
     <div className="inline-block w-4/5 max-w-lg p-5 mt-10 text-center rounded bg-white/30 shadow-white-30">
@@ -139,42 +106,9 @@ const Profile = () => {
             <ul>
               {data?.getUserProfile.savedReviews.map((review) => (
                     <EditReview key={review._id} review={review} 
-                    // onDelete={handleUpdateReview}
+                    onDelete={handleUpdateReview}
                      />
                 ))}
-                {/* <EditReview key={review._id} review={review} />
-                <li key={review._id} className="p-2.5 rounded border-2 mb-5 bg-white album-review" data-review-id={review._id}>
-                  <p className="mb-2 ml-5">Date of Review: {review.date}</p>
-                  <img src="{{strAlbumThumb}}" alt="{{strAlbum}}" />
-                  <p className="mb-2 ml-5"><strong><u>Album Title:</u></strong> {dataValues.title}</p>
-                  <p className="mb-2 ml-5"><strong><u>Review:</u></strong> {dataValues.content}</p>
-                  <button href="#" onClick={() => handleDeleteReview(review.reviewId)} className="delete-review-link" data-review-id="{{dataValues.id}}">
-                    <span
-                      className="box-border inline-block w-20 px-1 py-1 mt-2 mr-3 text-xs text-white transition-colors duration-300 ease-in-out bg-blue-600 border-2 border-black rounded hover:bg-blue-700 h-51">Delete</span>
-                  </button>
-
-                  <div>
-                    <div id="update-review-form-{{dataValues.id}}" className="hidden">
-                      <input id="review-title-{{dataValues.id}}" type="text"
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-5"
-                        placeholder="Title your review" />
-                      <textarea id="review-content-{{dataValues.id}}" maxlength="1000" rows="4"
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-3"
-                        placeholder="Your thoughts on the album..."></textarea>
-                      <button id="save-review-{{dataValues.id}}" type="button"
-                        className="box-border inline-block w-20 px-1 py-1 mt-2 mt-5 mr-3 text-xs text-white transition-colors duration-300 ease-in-out bg-blue-600 border-2 border-black rounded hover:bg-blue-700 h-51"
-                        onclick="saveUpdatedReview({{dataValues.id}})">Save</button>
-                      <button id="cancel-review-{{dataValues.id}}" type="button"
-                        className="box-border inline-block w-20 px-1 py-1 mt-2 mr-3 text-xs text-white transition-colors duration-300 ease-in-out bg-blue-600 border-2 border-black rounded hover:bg-blue-700 h-51"
-                        onclick="cancelUpdateReview({{dataValues.id}})">Cancel</button>
-                    </div>
-
-                    <button onClick={() => handleUpdateReview(review.reviewId)} id="update-review-{{dataValues.id}}" type="button"
-                      className="box-border inline-block w-20 px-1 py-1 mt-2 mr-3 text-xs text-white transition-colors duration-300 ease-in-out bg-blue-600 border-2 border-black rounded hover:bg-blue-700 h-51"
-                      onclick="showUpdateFields(event, {{dataValues.id}})">Update</button>
-                  </div>
-                </li>
-              ))} */}
             </ul>
           </div>
 
