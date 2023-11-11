@@ -66,7 +66,7 @@ const Profile = () => {
   const handleUpdateReview = async () => {
     refetch();
   }
-
+  
   const handleDeleteAccount = async (event) => {
     event.preventDefault();
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -75,18 +75,34 @@ const Profile = () => {
       return false;
     }
 
-    if (deleteAccountConfirmation !== "DELETE") {
+    if (deleteAccountConfirmation !== 'DELETE') {
       alert('Please type "DELETE" to confirm account deletion.');
       return;
     }
 
+    const password = prompt('Please enter your password to confirm account deletion:');
+
+    if (!password) {
+      alert('Password is required to delete your account.');
+      return;
+    }
+
     try {
-      const { data } = await deleteAccount();
-      alert("Account deleted successfully!");
-      navigate.push("/login");
+      const { data } = await deleteAccount({
+        variables: {
+          password,
+        },
+      });
+
+      if (data.deleteAccount.success) {
+        alert(data.deleteAccount.message);
+        navigate('/login');
+      } else {
+        alert('Account deletion failed. ' + data.deleteAccount.message);
+      }
     } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please try again!");
+      alert('Something went wrong. Please try again!');
     }
   };
 

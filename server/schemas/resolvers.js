@@ -207,6 +207,39 @@ const resolvers = {
       }
       throw new AuthenticationError ('You need to be logged in to delete a review');
     },
+    deleteAccount: async (parent, { password }, context) => {
+      if (context.req.user) {
+        const user = await User.findOne({ _id: context.req.user._id });
+  
+        if (!user) {
+          throw AuthenticationError;
+        }
+  
+        const correctPw = await user.isCorrectPassword(password);
+  
+        if (!correctPw) {
+          throw new Error('Incorrect password. Account not deleted.');
+        }
+  
+        try {
+          await Review.deleteMany({ user: context.req.user._id });
+  
+          // Delete the account
+          await User.deleteOne({ _id: context.req.user._id });
+  
+          context.res.clearCookie('token');
+  
+          return {
+            success: true,
+            message: 'Account deleted successfully!',
+          };
+        } catch (error) {
+          throw new Error('Error deleting the account: ' + error.message);
+        }
+      }
+  
+      throw new AuthenticationError('You need to be logged in to delete your account.');
+    },
   },
 };
 
