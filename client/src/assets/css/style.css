@@ -84,6 +84,27 @@ button {
   animation: fadeInAnimation 2s ease-in-out forwards;
 }
 
+.reflected-text {
+  transform: scaleY(-1);
+  overflow: hidden;
+}
+
+.reflection-gradient {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 20px; /* Adjust the height based on your preference */
+  background: linear-gradient(to bottom, transparent 0%, white 100%);
+}
+
+.clipped-text {
+  display: block;
+  position: relative;
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+  
+}
+
 @keyframes fadeInAnimation {
   from {
     opacity: 0;

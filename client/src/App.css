@@ -4,7 +4,7 @@
 @import "tailwindcss/utilities";
 
 body{
-    background-image: url("./assets/rr-homepage-2.jpg");
+    background-image: url("./assets/rr-homepage-dark.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -25,4 +25,5 @@ body{
 .noShadow {
     text-shadow: rgb(85, 85, 85) 1px 0px 10px;
 }
+
   
