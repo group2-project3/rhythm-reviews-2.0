@@ -57,3 +57,21 @@
   clear: both;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.on {
+  color: orange;
+}
+.off {
+  color: #cccccc;
+}
+
+.star-rating button {
+  font-size: 2em; 
+  margin: 0.1em; 
+}
+

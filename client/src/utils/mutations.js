@@ -34,17 +34,18 @@ mutation {
 }
 `;
 
-//create review mutation
+// Create Review mutation
 export const CREATE_REVIEW = gql`
-mutation createReview($title: String!, $content: String!, $idAlbum: ID!) {
-    createReview(title: $title, content: $content, idAlbum: $idAlbum) {
-        _id
-        title
-        content
-        idAlbum
-        date
+  mutation createReview($title: String!, $content: String!, $idAlbum: ID!, $rating: Int!) {
+    createReview(title: $title, content: $content, idAlbum: $idAlbum, rating: $rating) {
+      _id
+      title
+      content
+      idAlbum
+      rating
+      date
     }
-}
+  }
 `;
 
 //update review mutation
