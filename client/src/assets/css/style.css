@@ -42,3 +42,18 @@
     display: none;
   }
 }
+
+.album-container {
+  border: 2px solid #fff;
+  padding: 10px;
+  width: calc(16.666% - 20px); /* 100% divided by 6 albums per row with 20px spacing */
+  margin: 0 10px 20px 0; /* Adjust margin as needed */
+  box-sizing: border-box;
+}
+
+.search-container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
