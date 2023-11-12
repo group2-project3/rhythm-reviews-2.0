@@ -1,39 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_REVIEWS } from '../utils/queries';
 import { QUERY_ALBUM_BY_ID } from '../utils/queries';
-import SearchBar from "../components/SearchBar";
+import SearchBar from '../components/SearchBar';
 import GoBack from '../components/GoBack';
 import AddReview from '../components/AddReview';
 import EditReview from '../components/EditReview';
 
-const Album = (
-) => {
-    const { idAlbum } = useParams();
-
-    const { loading: reviewsLoading, data: reviewsData, refetch: refetchReviews } = useQuery(QUERY_REVIEWS, {
-        variables: { idAlbum: idAlbum },
-    });
-
-    console.log('idAlbum', idAlbum)
-
-    const { data: albumData, loading: albumLoading, error: albumError } = useQuery(QUERY_ALBUM_BY_ID, {
-        variables: { idAlbum: idAlbum },
-    });
-
-    const handleUpdateReview = async () => {
-        refetchReviews();
-    }
+const Album = () => {
+  const { idAlbum } = useParams();
 
 
-    if (albumLoading) {
-        return <div>Loading...</div>;
-    }
+  const { loading: reviewsLoading, data: reviewsData, refetch: refetchReviews } = useQuery(QUERY_REVIEWS, {
+    variables: { idAlbum: idAlbum },
+  });
 
-    if (albumError) {
-        return <div>Error! {albumError.message}</div>;
-    }
+
+  const { data: albumData, loading: albumLoading, error: albumError } = useQuery(QUERY_ALBUM_BY_ID, {
+    variables: { idAlbum: idAlbum },
+  });
+
+  const [selectedRating, setSelectedRating] = useState(0);
+
+
+  const handleUpdateReview = (rating) => {
+    refetchReviews();
+    setSelectedRating(rating);
+  };
+
+  if (albumLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (albumError) {
+    return <div>Error! {albumError.message}</div>;
+  }
 
     return (
         <>

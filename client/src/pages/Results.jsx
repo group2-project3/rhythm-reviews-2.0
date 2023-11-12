@@ -24,8 +24,8 @@ const Results = (props) => {
       <div className="fixed top-0 left-0 z-10 w-full p-4 bg-white/50">
         <SearchBar />
       </div>
-      <div className="mt-48 search-container"> {/* Increase margin-top to move albums down more */}
-        <div className="grid grid-cols-5 gap-4">
+      <div className="mt-48 search-container"> 
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
           {data && data.getAlbumsByArtist && (
             data.getAlbumsByArtist.map((album) => (
               <div key={album.idAlbum} className="p-4 mb-4 text-white bg-white/30 rounded-xl hover:scale-110 hover:bg-blue-600 hover:bg-opacity-80 album-search-result" onClick={() => handleAlbumClick(album)}>
