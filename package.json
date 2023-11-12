@@ -15,10 +15,12 @@
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^8.2.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "react-animation": "^1.2.2"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
+    "react-animate-on-change": "^2.2.0",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.18.0"
   }
