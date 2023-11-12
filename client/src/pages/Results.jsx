@@ -9,41 +9,37 @@ import '../assets/css/style.css';
 const Results = (props) => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-
   const artistName = queryParams.get('artistName');
 
-    const [selectedAlbum, setSelectedAlbum] = useState(null);
-
-
-    const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
-        variables: { artistName: artistName },
-      });
-
+  const { data, loading, error, refetch } = useQuery(QUERY_ALBUMS_BY_ARTIST, {
+    variables: { artistName: artistName },
+  });
 
   const handleAlbumClick = (album) => {
     window.location.assign(`/album/${album.idAlbum}`);
-    setSelectedAlbum(album);
   };
 
   return (
     <>
+      <div className="fixed top-0 left-0 z-10 w-full p-4 bg-white/50">
         <SearchBar />
-        <div className="mt-5 search-container">
+      </div>
+      <div className="mt-48 search-container"> {/* Increase margin-top to move albums down more */}
+        <div className="grid grid-cols-5 gap-4">
           {data && data.getAlbumsByArtist && (
-            <>
-              {data.getAlbumsByArtist.map((album) => (
-                <div className="col ml-4 mr-4 p-4 mb-4 text-white bg-white/30 rounded-xl hover:scale-110 hover:bg-blue-600 hover:bg-opacity-80 album-search-result" key={album.idAlbum} onClick={() => handleAlbumClick(album)}>
-                  <h3>{album.strArtist}</h3>
-                  <div>{album.strAlbum}</div>
-                  <div>{album.intYearReleased}</div>
-                  <img src={album.strAlbumThumb} alt={`${album.strArtist} - ${album.strAlbum}`} />
-                </div>
-              ))}
-            </>
+            data.getAlbumsByArtist.map((album) => (
+              <div key={album.idAlbum} className="p-4 mb-4 text-white bg-white/30 rounded-xl hover:scale-110 hover:bg-blue-600 hover:bg-opacity-80 album-search-result" onClick={() => handleAlbumClick(album)}>
+                <h3>{album.strArtist}</h3>
+                <div>{album.strAlbum}</div>
+                <div>{album.intYearReleased}</div>
+                <img src={album.strAlbumThumb} alt={`${album.strArtist} - ${album.strAlbum}`} />
+              </div>
+            ))
           )}
-          {props.message && <p className="text-red-600">{props.message}</p>}
         </div>
-        <GoBack />
+        {props.message && <p className="text-red-600">{props.message}</p>}
+      </div>
+      <GoBack />
     </>
   );
 };
