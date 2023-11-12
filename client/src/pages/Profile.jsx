@@ -2,10 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
-import {
-  UPDATE_PASSWORD,
-  DELETE_ACCOUNT,
-} from "../utils/mutations";
+import { UPDATE_PASSWORD, DELETE_ACCOUNT } from "../utils/mutations";
 import { userProfileQuery } from "../utils/queries";
 import Logout from "../components/Logout";
 import GoBack from "../components/GoBack";
@@ -13,33 +10,25 @@ import EditReview from "../components/EditReview";
 
 const Profile = () => {
   const navigate = useNavigate();
-
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState(
-    ""
-  );
+  const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState("");
+  const [password, setPassword] = useState(""); // New state for password
 
   const { loading, error, data, refetch } = useQuery(userProfileQuery);
   const user = data?.getUserProfile;
   const reviews = user?.reviews || [];
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
-
   const [deleteAccount] = useMutation(DELETE_ACCOUNT);
-
 
   // Check if user is logged in
   useEffect(() => {
     Auth.loggedIn();
-
     console.log('data', data);
   }, [data]);
 
-
-
-  const handlePasswordChange = async (event,) => {
-
+  const handlePasswordChange = async (event) => {
     event.preventDefault();
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -62,11 +51,10 @@ const Profile = () => {
     }
   };
 
-
   const handleUpdateReview = async () => {
     refetch();
-  }
-  
+  };
+
   const handleDeleteAccount = async (event) => {
     event.preventDefault();
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -75,12 +63,10 @@ const Profile = () => {
       return false;
     }
 
-    if (deleteAccountConfirmation !== 'DELETE') {
+    if (deleteAccountConfirmation !== "DELETE") {
       alert('Please type "DELETE" to confirm account deletion.');
       return;
     }
-
-    const password = prompt('Please enter your password to confirm account deletion:');
 
     if (!password) {
       alert('Password is required to delete your account.');
@@ -96,13 +82,13 @@ const Profile = () => {
 
       if (data.deleteAccount.success) {
         alert(data.deleteAccount.message);
-        navigate('/login');
+        navigate("/login");
       } else {
         alert('Account deletion failed. ' + data.deleteAccount.message);
       }
     } catch (err) {
       console.error(err);
-      alert('Something went wrong. Please try again!');
+      alert("Something went wrong. Please try again!");
     }
   };
 
@@ -168,42 +154,19 @@ const Profile = () => {
               Save New Password
             </button>
           </form>
-          <form onSubmit={handleDeleteAccount}>
-            <h2 className="mb-3 text-white">Delete Account</h2>
-            <div className="mb-3 text-left form-group">
-              <label htmlFor="deleteConfirmation" className="mb-1 text-white">
-                Type "DELETE" to confirm deletion:
-              </label>
-              <input
-                type="text"
-                id="deleteConfirmation"
-                name="deleteConfirmation"
-                value={deleteAccountConfirmation}
-                onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
-                className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
-            >
-              Delete Account
-            </button>
-          </form>
           <div className="mt-5">
             <h2 className="mb-2 text-2xl text-white">Your Album Reviews</h2>
             <ul>
-
               {data?.getUserProfile.savedReviews.map((review) => (
-                <EditReview key={review._id} review={review}
-                  onDelete={handleUpdateReview} displayThumbnail={true}
+                <EditReview
+                  key={review._id}
+                  review={review}
+                  onDelete={handleUpdateReview}
+                  displayThumbnail={true}
                 />
               ))}
-
             </ul>
           </div>
-
           <div className="mt-5">
             <button
               className="mt-5 text-white py-2.5 px-2.5 mr-2 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
@@ -214,6 +177,46 @@ const Profile = () => {
           </div>
           <GoBack />
         </div>
+      </div>
+
+      {/* Right side - Delete Account Form */}
+      <div className="inline-block p-5 mt-4 ml-5 text-center rounded bg-white/30 shadow-white-30">
+        <form onSubmit={handleDeleteAccount}>
+          <h2 className="mb-3 text-white">Delete Account</h2>
+          <div className="mb-3 text-left form-group">
+            <label htmlFor="deleteConfirmation" className="mb-1 text-white">
+              Type "DELETE" to confirm deletion:
+            </label>
+            <input
+              type="text"
+              id="deleteConfirmation"
+              name="deleteConfirmation"
+              value={deleteAccountConfirmation}
+              onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
+              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+              required
+            />
+          </div>
+          <div className="mb-3 text-left form-group">
+            <label htmlFor="password" className="mb-1 text-white">
+              Enter your password to confirm account deletion:
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+          >
+            Delete Account
+          </button>
+        </form>
       </div>
     </div>
   );
