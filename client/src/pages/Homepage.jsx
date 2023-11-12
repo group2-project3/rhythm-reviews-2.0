@@ -14,7 +14,17 @@ const Homepage = () => {
   return (
     <>
       <div className="flex flex-col items-center justify-center mt-80">
+
         <div className={`text-center ${fadeInClass}`} >
+          <div className="text-5xl text-white font-bold">RHYTHM</div>
+          <div className="relative">
+            <div className="text-5xl text-white font-bold mb-0">REVIEWS</div>
+            <div className="bottom-0 left-0 right-0">
+              <div className="text-5xl text-white font-bold opacity-50 reflected-text">
+                <span className="clipped-text">REVIEWS</span>
+              </div>
+            </div>
+          </div>
           <h1 className="text-3xl text-white text-shadow">
             Our platform is for music enthusiasts to explore their favorite artists and albums,
           </h1>
