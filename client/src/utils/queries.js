@@ -60,6 +60,9 @@ export const QUERY_ALBUMS_BY_ARTIST = gql`
       strAlbum
       intYearReleased
       strAlbumThumb
+      strStyle
+      strLabel
+      strDescriptionEN
       }
     }
     `;
