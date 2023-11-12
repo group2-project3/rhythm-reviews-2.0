@@ -86,7 +86,7 @@ const EditReview = (props) => {
   return (
     <>
       <div className="flex justify-center">
-        {(props.review.user?.username === Auth.getProfile().data.username) ?
+        {(props.review.user?.username === (Auth.loggedIn() ? Auth.getProfile()?.data.username : null)) ?
           <>
             {editing ?
               <>
