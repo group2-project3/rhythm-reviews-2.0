@@ -140,27 +140,29 @@ const resolvers = {
       return { token, user };
     },
 
-    createReview: async (parent, { title,content,idAlbum }, context) => {
-      console.log(title,content,idAlbum,context.req.user)
+    createReview: async (parent, { title, content, idAlbum, rating }, context) => {
+      console.log(title, content, idAlbum, context.req.user);
       if (context.req.user) {
-        console.log('REV',context.req.user._id);
+        console.log('REV', context.req.user._id);
         const review = await Review.create({
           title: title,
           content: content,
           idAlbum: idAlbum,
+          rating: rating, // Include the rating here
           user: context.req.user._id,
         });
-
+    
         await User.findOneAndUpdate(
           { _id: context.req.user._id },
           { $addToSet: { savedReviews: review._id } }
         );
-
+    
         return review;
       }
       throw AuthenticationError;
       ('You need to be logged in!');
     },
+    
     updateReview: async (parent, { id, title, content }, context) => {
       if (!context.req.user) {
         throw new Error('You need to be logged in to update a review');

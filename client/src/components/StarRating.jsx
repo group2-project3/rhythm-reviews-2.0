@@ -23,6 +23,7 @@ const StarRating = ({ readOnly, initialRating, onRatingChange }) => {
             onClick={() => handleClick(index)}
             onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(rating)}
+            disabled={readOnly} 
           >
             <span className="star">&#9733;</span>
           </button>
