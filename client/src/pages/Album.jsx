@@ -22,6 +22,7 @@ const Album = () => {
   });
 
   const [selectedRating, setSelectedRating] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
 
 
   const handleUpdateReview = (rating) => {
@@ -37,43 +38,57 @@ const Album = () => {
     return <div>Error! {albumError.message}</div>;
   }
 
-    return (
-        <>
-            <SearchBar />
-            <div className="flex flex-col items-center lg:flex-row lg:justify-center">
-                <div className="grid" style={{ width: '380px' }}>
-                    <h1 className="text-2xl text-white md:ml-auto lg:text-right text-center">{albumData.getAlbumById.strArtist}</h1>
-                    <div className="d-none d-lg-block text-white ml-auto">
-                        <p className="text-right pt-2">{albumData.getAlbumById.strAlbum}</p>
-                        <p className="text-right pt-2">{albumData.getAlbumById.strLabel}</p>
-                        <p className="text-right pt-2">{albumData.getAlbumById.strStyle}</p>
-                    </div>
-                </div>
-                <div className="inline-block w-full h-auto max-w-xs p-4 m-10 text-white rounded bg-white/30 album-details" style={{ width: '380px' }}>
-                    <h2>{albumData.getAlbumById.strAlbum}</h2>
-                    <div>{albumData.getAlbumById.intYearReleased}</div>
-                    <img
-                        className="w-[400px]"
-                        src={albumData.getAlbumById.strAlbumThumb}
-                        alt={`${albumData.getAlbumById.strArtist} - ${albumData.getAlbumById.strAlbum}`}
-                    />
-                    <div>{/* <button onClick={handleBuyClick}>Add Album to Cart</button> */}</div>
-                </div>
-                <div className="lg:w-1/3 p-4 d-none d-lg-block text-white" style={{ width: '380px' }}>
-                    <p>{albumData.getAlbumById.strDescriptionEN}</p>
-                </div>
-            </div>
-            <div>
-                <AddReview idAlbum={idAlbum} onAdd={handleUpdateReview} />
-                {reviewsData?.reviews.map((review) => (
-                    <EditReview key={review._id} review={review} onDelete={handleUpdateReview} />
-                ))}
-            </div>
-            <div>
-                <GoBack />
-            </div>
-        </>
-    );
+  return (
+    <>
+      <SearchBar />
+      <div className="flex flex-col items-center lg:flex-row lg:justify-center">
+        <div className="grid" style={{ width: '380px' }}>
+          <h1 className="text-2xl text-white md:ml-auto lg:text-right text-center">{albumData.getAlbumById.strArtist}</h1>
+          <div className="d-none d-lg-block text-white ml-auto">
+            <p className="text-right pt-2">{albumData.getAlbumById.strAlbum}</p>
+            <p className="text-right pt-2">{albumData.getAlbumById.strLabel}</p>
+            <p className="text-right pt-2">{albumData.getAlbumById.strStyle}</p>
+          </div>
+        </div>
+        <div className="inline-block w-full h-auto max-w-xs p-4 m-10 text-white rounded bg-white/30 album-details" style={{ width: '380px' }}>
+          <h2>{albumData.getAlbumById.strAlbum}</h2>
+          <div>{albumData.getAlbumById.intYearReleased}</div>
+          <img
+            className="w-[400px]"
+            src={albumData.getAlbumById.strAlbumThumb}
+            alt={`${albumData.getAlbumById.strArtist} - ${albumData.getAlbumById.strAlbum}`}
+          />
+          <div>{/* <button onClick={handleBuyClick}>Add Album to Cart</button> */}</div>
+        </div>
+        <div className="lg:w-1/3 p-4 d-none d-lg-block text-white" style={{ width: '380px' }}>
+          <p>
+            {isExpanded
+              ? albumData.getAlbumById.strDescriptionEN
+              : `${albumData.getAlbumById.strDescriptionEN.slice(0, 250)}...`}
+          </p>
+          {!isExpanded && (
+            <button onClick={() => setIsExpanded(true)} className="text-blue-500 hover:underline">
+              Read More
+            </button>
+          )}
+          {isExpanded && (
+            <button onClick={() => setIsExpanded(false)} className="text-blue-500 hover:underline">
+              Read Less
+            </button>
+          )}
+        </div>
+      </div>
+      <div>
+        <AddReview idAlbum={idAlbum} onAdd={handleUpdateReview} />
+        {reviewsData?.reviews.map((review) => (
+          <EditReview key={review._id} review={review} onDelete={handleUpdateReview} />
+        ))}
+      </div>
+      <div>
+        <GoBack />
+      </div>
+    </>
+  );
 };
 
 export default Album;
