@@ -19,7 +19,7 @@ const resolvers = {
     users: async () => {
       return User.find().populate('reviews');
     },
-    getUserProfile: async (parent, { }, context) => {
+    getUserProfile: async (parent, {}, context) => {
       const user = await User.findOne({ email: context.req.user.email }).populate({
         path: 'savedReviews',
         populate: {
@@ -28,27 +28,35 @@ const resolvers = {
             strictPopulate: false,
           },
         },
-      })
-      .exec();
+      });
 
-      console.log('user', user)
       if (!user) {
         throw AuthenticationError;
       }
-      return user;
+
+      // Include 'rating' in each saved review
+      const updatedSavedReviews = user.savedReviews.map((review) => ({
+        ...review.toObject(),
+        user: {
+          _id: review.user._id.toString(),
+          username: review.user.username,
+          email: review.user.email,
+        },
+        rating: review.rating, 
+      }));
+
+      return { ...user.toObject(), savedReviews: updatedSavedReviews };
     },
     reviews: async (parent, { idAlbum }) => {
-
       const reviews = await Review.find({ idAlbum }).populate('user');
-        return reviews.map((review) => ({
-          ...review.toObject(),
-          user: {
-            _id: review.user._id.toString(),
-            username: review.user.username,
-            email: review.user.email,
-          },
-        }));
-
+      return reviews.map((review) => ({
+        ...review.toObject(),
+        user: {
+          _id: review.user._id.toString(),
+          username: review.user.username,
+          email: review.user.email,
+        },
+      }));
     },
     review: async (parent, { reviewId }) => {
       return Review.findOne({ _id: reviewId });
@@ -61,18 +69,14 @@ const resolvers = {
     },
     getAlbumsByArtist: async (parent, { artistName }, context) => {
       try {
-
         const searchResult = await fetch(`${audioDbRootUrl}/searchalbum.php?s=${artistName}`, audioDbOptions);
         const albums = await searchResult.json();
-
         return albums.album;
       } catch (error) {
         console.error('Error fetching albums:', error);
         throw error;
       }
-
     },
-
     getAlbumById: async (parent, { idAlbum }, context) => {
       try {
         const response = await fetch(`${audioDbRootUrl}/album.php?m=${idAlbum}`, audioDbOptions);
@@ -222,12 +226,13 @@ const resolvers = {
         }
   
         try {
+          // Optionally, you can perform any additional cleanup or data removal here
           await Review.deleteMany({ user: context.req.user._id });
   
           // Delete the account
           await User.deleteOne({ _id: context.req.user._id });
   
-          context.res.clearCookie('token');
+          context.res.clearCookie('token'); // Clear the user's token
   
           return {
             success: true,
