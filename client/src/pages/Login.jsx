@@ -7,16 +7,13 @@ import GoBack from '../components/GoBack';
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [showAlert, setShowAlert] = useState(false);
-  
+
   const [loginUserMutation] = useMutation(LOGIN_USER);
 
-  
   // Check if user is logged in
   useEffect(() => {
     Auth.loggedIn();
   }, []);
-
- 
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -41,9 +38,7 @@ const Login = () => {
       // Check if the mutation was successful
       if (data && data.loginUser) {
         const { token, user } = data.loginUser;
-        
         Auth.login(token);
-        
       } else {
         throw new Error('Something went wrong!');
       }
@@ -57,11 +52,11 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container mt-60 flex flex-col items-center">
+    <div className="flex flex-col items-center login-container mt-60">
       <h1 className="mb-8 text-2xl text-center text-white">Login</h1>
       <h4 id="api-message" className="hidden text-red-600"></h4>
 
-      <div className="flex-row-reverse">
+      <div className="flex flex-col items-center">
         <form className="text-left max-w-lg p-6 mb-2.5 block font-bold">
           <div className="mb-2">
             <label htmlFor="email" className="text-white">
@@ -91,7 +86,7 @@ const Login = () => {
               required
             />
           </div>
-          <div className="mb-2 add-flex-center">
+          <div className="mb-12 add-flex-center">
             <button
               type="button"
               onClick={loginFormHandler}
@@ -100,7 +95,7 @@ const Login = () => {
               Login
             </button>
           </div>
-          <p className="text-sm text-white text-center">
+          <p className="text-sm text-center text-white">
             Don't have an account?{" "}
             <a href="/createacct" className="ml-2 text-center underline hover:text-blue-700 underline-offset-1">
               Create Account
