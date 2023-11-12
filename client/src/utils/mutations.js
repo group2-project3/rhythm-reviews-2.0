@@ -101,4 +101,3 @@ export const DELETE_ACCOUNT = gql`
     }
   }
 `;
-

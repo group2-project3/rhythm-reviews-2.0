@@ -9,7 +9,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Results from './pages/Results';
 import Album from './pages/Album';
-import AuthGuard from './components/Authguard';
+import AuthGuard from './components/AuthGuard';
 import Auth from './utils/auth';
 
 const router = createBrowserRouter([

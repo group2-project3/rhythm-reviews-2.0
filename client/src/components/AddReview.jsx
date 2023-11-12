@@ -8,7 +8,7 @@ const AddReview = ({ idAlbum, onAdd }) => {
   const [addReview] = useMutation(CREATE_REVIEW);
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(0); 
   const token = Auth.getToken();
 
   const handleAddReview = async (event) => {
@@ -24,9 +24,13 @@ const AddReview = ({ idAlbum, onAdd }) => {
       await addReview({
         variables: { title: reviewTitle, content: reviewContent, rating, idAlbum: idAlbum },
       });
+      // Reset the form fields and selected rating after submitting the review
+      setReviewTitle('');
+      setReviewContent('');
+      setRating(0);
       onAdd();
     } catch (error) {
-      console.error(e);
+      console.error(error);
     }
   };
 
@@ -57,6 +61,9 @@ const AddReview = ({ idAlbum, onAdd }) => {
                 placeholder="Your thoughts on the album..."
               ></textarea>
               <div className="mt-3">
+                <p className="block mb-2 text-sm font-medium text-white text-gray-900">
+                  Your Rating: {rating}
+                </p>
                 <StarRating rating={rating} onRatingChange={setRating} />
               </div>
               <div className="add-flex-center">
@@ -82,3 +89,4 @@ const AddReview = ({ idAlbum, onAdd }) => {
 };
 
 export default AddReview;
+

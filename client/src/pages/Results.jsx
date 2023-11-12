@@ -24,7 +24,7 @@ const Results = (props) => {
       <div className="fixed top-0 left-0 z-10 w-full p-4 bg-white/50">
         <SearchBar />
       </div>
-      <div className="mt-48 search-container"> {/* Increase margin-top to move albums down more */}
+      <div className="mt-48 search-container"> 
         <div className="grid grid-cols-5 gap-4">
           {data && data.getAlbumsByArtist && (
             data.getAlbumsByArtist.map((album) => (
