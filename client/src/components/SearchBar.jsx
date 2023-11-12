@@ -34,7 +34,7 @@ const SearchBar = () => {
                     }}
                     placeholder="Search your favorite artist..."
                 />
-                <button className="ml-1 text-white py-2.5 px-2.5 rounded border-2 border-white hover:bg-blue-700" type="submit">
+                <button className="ml-1 text-white py-2.5 px-2.5 rounded border-2 border-solid border-white hover:bg-blue-700" type="submit">
                     Search
                 </button>
             </form>
