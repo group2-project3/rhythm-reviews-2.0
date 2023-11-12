@@ -1,52 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-
-
-import { CREATE_REVIEW } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import { CREATE_REVIEW } from '../utils/mutations';
+import StarRating from './StarRating';
 
-const AddReview = ({ idAlbum, onAdd}) => {
-  
-
+const AddReview = ({ idAlbum, onAdd }) => {
   const [addReview] = useMutation(CREATE_REVIEW);
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
-
-
-  // Check if user is logged in
-  useEffect(() => {
-    Auth.loggedIn();
-  }, []);
-
-
+  const [rating, setRating] = useState(0);
+  const token = Auth.getToken();
 
   const handleAddReview = async (event) => {
     event.preventDefault();
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
-      return false;
+      // Handle the case when the user is not logged in
+      console.log('User is not logged in. Redirect to login page or show a login modal.');
+      return;
     }
 
     try {
-      const { data } = await addReview({
-        variables: { title: reviewTitle, content: reviewContent, idAlbum: idAlbum },
+      await addReview({
+        variables: { title: reviewTitle, content: reviewContent, rating, idAlbum: idAlbum },
       });
       onAdd();
-      // Handle any logic after adding the review if needed
-    } catch (e) {
+    } catch (error) {
       console.error(e);
     }
   };
 
- 
-
   return (
-
     <div>
       <div className="flex justify-center">
         <div className="review-form w-[450px]">
-          {Auth.loggedIn() ? (
+          {token ? (
             <>
               <label htmlFor="review-title" className="block mb-2 text-sm font-medium text-white text-gray-900">
                 Add Your Review Here
@@ -68,6 +56,9 @@ const AddReview = ({ idAlbum, onAdd}) => {
                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-3"
                 placeholder="Your thoughts on the album..."
               ></textarea>
+              <div className="mt-3">
+                <StarRating rating={rating} onRatingChange={setRating} />
+              </div>
               <div className="add-flex-center">
                 <button
                   id="submit-review"
@@ -78,7 +69,6 @@ const AddReview = ({ idAlbum, onAdd}) => {
                   Add Review
                 </button>
               </div>
-
             </>
           ) : (
             <p className="text-center text-white underline break-words mr-14 hover:text-blue-700 underline-offset-1 ml-14">
@@ -87,9 +77,6 @@ const AddReview = ({ idAlbum, onAdd}) => {
           )}
         </div>
       </div>
-
-      
-     
     </div>
   );
 };

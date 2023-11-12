@@ -12,6 +12,7 @@ type Review {
     title: String
     content: String
     idAlbum: Int
+    rating: Int
     date: String
     user: User
 }
@@ -44,7 +45,7 @@ type Mutation {
   loginUser(email: String!, password: String!): Auth
   logoutUser: Boolean
   updatePassword(currentPassword: String!, newPassword: String!, confirmPassword: String!): Auth
-  createReview(title: String!, content: String!, idAlbum: ID!): Review
+  createReview(title: String!, content: String!, idAlbum: ID!, rating: Int): Review
   updateReview(id: ID!, title: String!, content: String!): Review
   deleteReview(reviewId: ID!): Review
   deleteAccount(password: String!): DeleteAccountResponse
