@@ -33,6 +33,9 @@ type Album {
   strArtist: String
   intYearReleased: String
   strAlbumThumb: String
+  strStyle: String
+  strLabel: String
+  strDescriptionEN: String
 }
 
 type DeleteAccountResponse {
