@@ -26,7 +26,6 @@ const EditReview = (props) => {
       setUpdatedReviewContent(props.review.content);
       setUpdatedRating(props.review.rating);
       setEditing(true);
-      // Handle any logic after updating the review if needed
     } catch (e) {
       console.error(e);
     }
@@ -164,6 +163,7 @@ const EditReview = (props) => {
                         Your Rating: {updatedRating}
                       </p>
                       <StarRating rating={updatedRating} readOnly />
+                      {/* <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} /> */}
                     </div>
                   </div>
                 </div>
@@ -192,7 +192,6 @@ const EditReview = (props) => {
                 <p className="mb-2 ml-5">Review Title: {props.review.title}</p>
                 <p className="mb-2 ml-5">Review: {props.review.content}</p>
                 <p className="mb-2 ml-5">Rating: {props.review.rating}</p>
-                {/* Display selected rating icons */}
                 <StarRating rating={props.review.rating} readOnly />
               </div>
             </div>
