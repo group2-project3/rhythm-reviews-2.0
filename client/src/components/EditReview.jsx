@@ -4,8 +4,14 @@ import { useMutation } from '@apollo/client';
 import { DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
 import StarRating from './StarRating';
 import Helpers from '../utils/helpers';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALBUM_BY_ID } from '../utils/queries';
+import defaultPic from '../assets/defaultPic.png';
 
 const EditReview = (props) => {
+  const { data: album } = useQuery(QUERY_ALBUM_BY_ID, {
+    variables: { idAlbum: props.review.idAlbum },
+  });
   const [updatedReviewTitle, setUpdatedReviewTitle] = useState('');
   const [updatedReviewContent, setUpdatedReviewContent] = useState('');
   const [updatedRating, setUpdatedRating] = useState(props.review.rating);
@@ -164,23 +170,34 @@ const EditReview = (props) => {
                   <div className="px-3 py-3 mt-1 text-black bg-white/30 border-2 rounded-md">
                     {props.displayThumbnail && (
                       <a href={`/album/${album?.getAlbumById.idAlbum}`}>
+
                         <img
-                          className="w-[400px]"
-                          src={album?.getAlbumById.strAlbumThumb}
+                          style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+                          className="w-[125px]"
+                          src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
                           alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                         />
                       </a>
+                      <div className="grow justify-self-stretch">
+                        <p style={{fontSize: '1.3rem' , fontWeight: 'bold'}}>{album?.getAlbumById.strArtist}</p>
+                        <p style={{fontWeight: '1.15rem'}}>{album?.getAlbumById.strAlbum}</p>
+                      </div>
+                      </div>
                     )}
+
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
+                      {!props.profileView && (
                         <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
+                        )}
                         <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
                         <p className="ml-2 text-sm text-gray-300">{Helpers.formatDate(props.review.date)}</p>
                       </div>
                       <div className="ml-auto">
                         {/* <p className="mb-2 ml-5">Rating: {props.review.rating}</p> */}
-                        <StarRating rating={props.review.rating} readOnly />
+                        <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
                       </div>
+
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
@@ -202,16 +219,18 @@ const EditReview = (props) => {
           </>
         ) : (
           <div className="review-form w-[450px]">
+
             <div
               key={props.review._id}
               className="mt-4 text-lg text-white"
               style={{ minWidth: '400px', maxWidth: '750px' }}
             >
               <div className="px-3 py-3 mt-1 text-white bg-white/30 border-2 rounded-md">
-                {props.displayThumbnail && (
+                {props.profileView && (
+
                   <img
                     className="w-[400px]"
-                    src={album?.getAlbumById.strAlbumThumb}
+                    src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
                     alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                   />
                 )}

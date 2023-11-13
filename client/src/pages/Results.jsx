@@ -5,6 +5,7 @@ import SearchBar from "../components/SearchBar";
 import { useLocation } from 'react-router-dom';
 import GoBack from "../components/GoBack";
 import '../assets/css/style.css';
+import defaultPic from '../assets/defaultPic.png';
 
 const Results = (props) => {
   const location = useLocation();
@@ -32,7 +33,7 @@ const Results = (props) => {
                 <h3>{album.strArtist}</h3>
                 <div>{album.strAlbum}</div>
                 <div>{album.intYearReleased}</div>
-                <img src={album.strAlbumThumb} alt={`${album.strArtist} - ${album.strAlbum}`} />
+                <img src={album.strAlbumThumb !== null ? album.strAlbumThumb : defaultPic} alt={`${album.strArtist} - ${album.strAlbum}`} />
               </div>
             ))
           )}
