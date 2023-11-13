@@ -24,9 +24,14 @@ const Profile = () => {
   const [deleteAccount] = useMutation(DELETE_ACCOUNT);
 
   const [isChangePasswordOpen, setChangePasswordOpen] = useState(false);
+  const [isDeleteAccountVisible, setDeleteAccountVisible] = useState(false);
 
   const toggleChangePasswordForm = () => {
     setChangePasswordOpen(!isChangePasswordOpen);
+  };
+
+  const toggleDeleteAccountVisibleForm = () => {
+    setDeleteAccountVisible(!isDeleteAccountVisible);
   };
 
   // Check if user is logged in
@@ -175,7 +180,14 @@ const Profile = () => {
           </div>
            
           <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
-            <form onSubmit={handleDeleteAccount}>
+          <button
+        onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
+        className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+      >
+        {isDeleteAccountVisible ? 'Close Delete Account' : 'Delete Account'}
+      </button>
+      {isDeleteAccountVisible && (
+      <form onSubmit={handleDeleteAccount}>
               <h2 className="mb-3 text-white">Delete Account</h2>
               <div className="mb-3 text-left form-group">
                 <label htmlFor="deleteConfirmation" className="mb-1 text-white">
@@ -211,6 +223,7 @@ const Profile = () => {
                 Delete Account
               </button>
             </form>
+             )}
           </div>
         
         </div>
