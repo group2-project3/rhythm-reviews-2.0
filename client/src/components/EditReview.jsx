@@ -6,6 +6,7 @@ import StarRating from './StarRating';
 import Helpers from '../utils/helpers';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALBUM_BY_ID } from '../utils/queries';
+import defaultPic from '../assets/defaultPic.png';
 
 const EditReview = (props) => {
   const { data: album } = useQuery(QUERY_ALBUM_BY_ID, {
@@ -154,7 +155,7 @@ const EditReview = (props) => {
                       <a href={`/album/${album?.getAlbumById.idAlbum}`}>
                         <img
                           className="w-[400px]"
-                          src={album?.getAlbumById.strAlbumThumb}
+                          src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
                           alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                         />
                       </a>
@@ -188,7 +189,7 @@ const EditReview = (props) => {
                 {props.displayThumbnail && (
                   <img
                     className="w-[400px]"
-                    src={album?.getAlbumById.strAlbumThumb}
+                    src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
                     alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                   />
                 )}
