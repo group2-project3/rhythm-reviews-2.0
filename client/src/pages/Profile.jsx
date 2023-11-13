@@ -7,6 +7,7 @@ import { userProfileQuery } from "../utils/queries";
 import Logout from "../components/Logout";
 import GoBack from "../components/GoBack";
 import EditReview from "../components/EditReview";
+import SearchBar from '../components/SearchBar';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -21,6 +22,12 @@ const Profile = () => {
   const reviews = user?.reviews || [];
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
   const [deleteAccount] = useMutation(DELETE_ACCOUNT);
+
+  const [isChangePasswordOpen, setChangePasswordOpen] = useState(false);
+
+  const toggleChangePasswordForm = () => {
+    setChangePasswordOpen(!isChangePasswordOpen);
+  };
 
   // Check if user is logged in
   useEffect(() => {
@@ -95,130 +102,139 @@ const Profile = () => {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="inline-block w-4/5 max-w-lg p-5 mt-10 text-center rounded bg-white/30 shadow-white-30">
-        <div className="text-black">
-          <h1 className="mb-5 text-center text-white">User Profile </h1>
-          <div className="mb-10">
-            <h2 className="text-2xl text-white">Welcome, {user?.username}!</h2>
-            <p className="text-white">Email: {user?.email}</p>
+    <>
+      <SearchBar />
+
+      <div className="flex flex-col items-center lg:flex-row lg:justify">
+        <div className="grid ml-auto mb-auto mr-2" style={{ width: '380px', flex: '1', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
+          <h1 className="text-2xl text-center text-white md:ml-auto lg:text-right">Welcome, {user?.username}!</h1>
+          <div className="ml-auto text-white d-none d-lg-block">
+            <p className="pt-2 text-right">{user?.email}</p>
           </div>
-          <form onSubmit={handlePasswordChange}>
-            <h2 className="mb-3 text-white">Change Password</h2>
-            <div className="mb-3 text-left form-group">
-              <label htmlFor="currentPassword" className="mb-1 text-white">
-                Current Password:
-              </label>
-              <input
-                type="password"
-                id="currentPassword"
-                name="currentPassword"
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                required
-              />
-            </div>
-            <div className="mb-3 text-left">
-              <label htmlFor="newPassword" className="mb-1 text-white">
-                New Password:
-              </label>
-              <input
-                type="password"
-                id="newPassword"
-                name="newPassword"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                required
-              />
-            </div>
-            <div className="mb-3 text-left">
-              <label htmlFor="confirmPassword" className="mb-1 text-white">
-                Confirm New Password:
-              </label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                required
-              />
-            </div>
-            <button
-              type="submit"
-              className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
-            >
-              Save New Password
-            </button>
-          </form>
-          <div className="mt-5">
-            <h2 className="mb-2 text-2xl text-white">Your Album Reviews</h2>
-            <ul>
-              {data?.getUserProfile.savedReviews.map((review) => (
-                <EditReview
-                  key={review._id}
-                  review={review}
-                  onDelete={handleUpdateReview}
-                  profileView={true}
+          
+          <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
+          <button
+          onClick={toggleChangePasswordForm}
+          className=" text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+        >
+          {isChangePasswordOpen ? 'Close Password Editor' : 'Change Password'}
+        </button>
+        {isChangePasswordOpen && (
+            <form onSubmit={handlePasswordChange}>
+              <h2 className="mb-3 text-white">Change Password</h2>
+              <div className="mb-3 text-left form-group">
+                <label htmlFor="currentPassword" className="mb-1 text-white">
+                  Current Password:
+                </label>
+                <input
+                  type="password"
+                  id="currentPassword"
+                  name="currentPassword"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
+                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                  required
                 />
-              ))}
-            </ul>
+              </div>
+              <div className="mb-3 text-left">
+                <label htmlFor="newPassword" className="mb-1 text-white">
+                  New Password:
+                </label>
+                <input
+                  type="password"
+                  id="newPassword"
+                  name="newPassword"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                  required
+                />
+              </div>
+              <div className="mb-3 text-left">
+                <label htmlFor="confirmPassword" className="mb-1 text-white">
+                  Confirm New Password:
+                </label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+              >
+                Save New Password
+              </button>
+            </form>
+            )}
           </div>
-          <div className="mt-5">
-            <button
-              className="mt-5 text-white py-2.5 px-2.5 mr-2 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
-              id="logout"
-            >
-              <Logout />
-            </button>
+           
+          <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
+            <form onSubmit={handleDeleteAccount}>
+              <h2 className="mb-3 text-white">Delete Account</h2>
+              <div className="mb-3 text-left form-group">
+                <label htmlFor="deleteConfirmation" className="mb-1 text-white">
+                  Type "DELETE" to confirm deletion:
+                </label>
+                <input
+                  type="text"
+                  id="deleteConfirmation"
+                  name="deleteConfirmation"
+                  value={deleteAccountConfirmation}
+                  onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
+                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                  required
+                />
+              </div>
+              <div className="mb-3 text-left form-group">
+                <label htmlFor="password" className="mb-1 text-white">
+                  Enter your password to confirm account deletion:
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+              >
+                Delete Account
+              </button>
+            </form>
           </div>
-          <GoBack />
+        
+        </div>
+        <div className="grid justify-center mt-2" style={{ width: '380px', flex: '1' }}>
+          <div className="inline-block w-full h-auto max-w-lg p-4 m-1 text-white rounded bg-white/30">
+            <div>
+              <h2 className="mb-2 text-2xl text-white text-center">Your Reviews</h2>
+              <ul>
+                {data?.getUserProfile.savedReviews.map((review) => (
+                  <EditReview
+                    key={review._id}
+                    review={review}
+                    onDelete={handleUpdateReview}
+                    profileView={true}
+                  />
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div className="grid justify-center mt-2 ml-5 mb-auto" style={{ width: '380px', flex: '1' }}>
         </div>
       </div>
-
-      {/* Right side - Delete Account Form */}
-      <div className="inline-block p-5 mt-4 ml-5 text-center rounded bg-white/30 shadow-white-30">
-        <form onSubmit={handleDeleteAccount}>
-          <h2 className="mb-3 text-white">Delete Account</h2>
-          <div className="mb-3 text-left form-group">
-            <label htmlFor="deleteConfirmation" className="mb-1 text-white">
-              Type "DELETE" to confirm deletion:
-            </label>
-            <input
-              type="text"
-              id="deleteConfirmation"
-              name="deleteConfirmation"
-              value={deleteAccountConfirmation}
-              onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-              required
-            />
-          </div>
-          <div className="mb-3 text-left form-group">
-            <label htmlFor="password" className="mb-1 text-white">
-              Enter your password to confirm account deletion:
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-              required
-            />
-          </div>
-          <button
-            type="submit"
-            className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
-          >
-            Delete Account
-          </button>
-        </form>
-      </div>
-    </div>
+    </>
   );
 };
 

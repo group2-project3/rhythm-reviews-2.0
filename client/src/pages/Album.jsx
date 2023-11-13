@@ -40,6 +40,9 @@ const Album = () => {
   return (
     <>
       <SearchBar />
+
+
+      
       <div className="flex flex-col items-center lg:flex-row lg:justify-center">
         <div className="grid" style={{ width: '380px' }}>
           <h1 className="text-2xl text-center text-white md:ml-auto lg:text-right">{albumData.getAlbumById.strArtist}</h1>
