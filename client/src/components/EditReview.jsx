@@ -4,8 +4,13 @@ import { useMutation } from '@apollo/client';
 import { DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
 import StarRating from './StarRating';
 import Helpers from '../utils/helpers';
+import { useQuery } from '@apollo/client';
+import { QUERY_ALBUM_BY_ID } from '../utils/queries';
 
 const EditReview = (props) => {
+  const { data: album } = useQuery(QUERY_ALBUM_BY_ID, {
+    variables: { idAlbum: props.review.idAlbum },
+  });
   const [updatedReviewTitle, setUpdatedReviewTitle] = useState('');
   const [updatedReviewContent, setUpdatedReviewContent] = useState('');
   const [updatedRating, setUpdatedRating] = useState(props.review.rating);
