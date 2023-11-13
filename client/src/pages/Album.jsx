@@ -7,6 +7,7 @@ import SearchBar from '../components/SearchBar';
 import GoBack from '../components/GoBack';
 import AddReview from '../components/AddReview';
 import EditReview from '../components/EditReview';
+import defaultPic from '../assets/defaultPic.png';
 
 const Album = () => {
   const { idAlbum } = useParams();
@@ -53,16 +54,15 @@ const Album = () => {
           <div>{albumData.getAlbumById.intYearReleased}</div>
           <img
             className="w-[400px]"
-            src={albumData.getAlbumById.strAlbumThumb}
+            src={albumData.getAlbumById.strAlbumThumb !== null ? albumData.getAlbumById.strAlbumThumb : defaultPic}
             alt={`${albumData.getAlbumById.strArtist} - ${albumData.getAlbumById.strAlbum}`}
           />
-          <div>{/* <button onClick={handleBuyClick}>Add Album to Cart</button> */}</div>
         </div>
         <div className="p-4 text-white lg:w-1/3 d-none d-lg-block" style={{ width: '380px' }}>
           <p>
             {isExpanded
               ? albumData.getAlbumById.strDescriptionEN
-              : `${albumData.getAlbumById.strDescriptionEN.slice(0, 250)}...`}
+              : `${albumData.getAlbumById.strDescriptionEN?.slice(0, 250)}...`}
           </p>
           {!isExpanded && (
             <button onClick={() => setIsExpanded(true)} className="text-blue-500 hover:underline">
