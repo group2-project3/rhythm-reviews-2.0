@@ -151,16 +151,25 @@ const EditReview = (props) => {
               <div className="review-form w-[450px]">
                 <div key={props.review._id} className="mt-4 text-lg text-white">
                   <div className="px-5 py-5 mt-1 text-black bg-white border-2 border-blue-600 rounded-md">
-                    {props.displayThumbnail && (
-                      <a href={`/album/${album?.getAlbumById.idAlbum}`}>
+                    {props.profileView && (
+                      <div className="flex">
+                      <a className="grow-0" href={`/album/${album?.getAlbumById.idAlbum}`}>
                         <img
-                          className="w-[400px]"
+                          style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+                          className="w-[125px]"
                           src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
                           alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                         />
                       </a>
+                      <div className="grow justify-self-stretch">
+                        <p style={{fontSize: '1.3rem' , fontWeight: 'bold'}}>{album?.getAlbumById.strArtist}</p>
+                        <p style={{fontWeight: '1.15rem'}}>{album?.getAlbumById.strAlbum}</p>
+                      </div>
+                      </div>
                     )}
+                    {!props.profileView && (
                     <p className="mb-2 ml-5">Username: {props.review.user?.username}</p>
+                    )}
                     <p className="mb-2 ml-5">Date: {Helpers.formatDate(props.review.date)}</p>
                     <p className="mb-2 ml-5">Review Title: {props.review.title}</p>
                     <p className="mb-2 ml-5">Review: {props.review.content}</p>
@@ -186,7 +195,7 @@ const EditReview = (props) => {
           <div className="review-form w-[450px]">
             <div key={props.review._id} className="mt-4 text-lg text-white">
               <div className="px-5 py-5 mt-1 text-black bg-white border-2 border-blue-600 rounded-md">
-                {props.displayThumbnail && (
+                {props.profileView && (
                   <img
                     className="w-[400px]"
                     src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
