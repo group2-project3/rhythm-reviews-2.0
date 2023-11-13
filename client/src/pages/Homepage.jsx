@@ -20,7 +20,7 @@ const Homepage = () => {
           <div className="relative">
             <div className="text-5xl text-white font-bold mb-0">REVIEWS</div>
             <div className="bottom-0 left-0 right-0">
-              <div className="text-5xl text-white font-bold opacity-50 reflected-text">
+              <div className="text-5xl text-blue-500 font-bold opacity-50 reflected-text">
                 <span className="clipped-text">REVIEWS</span>
               </div>
             </div>
