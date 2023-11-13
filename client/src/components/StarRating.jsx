@@ -25,7 +25,7 @@ const StarRating = ({ readOnly, initialRating, onRatingChange }) => {
             onMouseLeave={() => setHover(rating)}
             disabled={readOnly} 
           >
-            <span className="star">&#9733;</span>
+            <span className="star" style={{ fontSize: '1.5rem' }}>&#9733;</span>
           </button>
         );
       })}
