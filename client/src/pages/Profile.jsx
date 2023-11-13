@@ -14,27 +14,20 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState("");
-  const [password, setPassword] = useState(""); // New state for password
-
+  const [password, setPassword] = useState("");
+  
   const { loading, error, data, refetch } = useQuery(userProfileQuery);
   const user = data?.getUserProfile;
   const reviews = user?.reviews || [];
   const [updatePassword] = useMutation(UPDATE_PASSWORD);
   const [deleteAccount] = useMutation(DELETE_ACCOUNT);
 
-  // Check if user is logged in
   useEffect(() => {
     Auth.loggedIn();
-    console.log('data', data);
   }, [data]);
 
   const handlePasswordChange = async (event) => {
     event.preventDefault();
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
 
     try {
       const { data } = await updatePassword({
@@ -57,11 +50,6 @@ const Profile = () => {
 
   const handleDeleteAccount = async (event) => {
     event.preventDefault();
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
-
-    if (!token) {
-      return false;
-    }
 
     if (deleteAccountConfirmation !== "DELETE") {
       alert('Please type "DELETE" to confirm account deletion.');

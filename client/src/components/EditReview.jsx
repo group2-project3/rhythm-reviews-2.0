@@ -145,12 +145,13 @@ const EditReview = (props) => {
               <div className="review-form w-[450px]">
                 <div key={props.review._id} className="mt-4 text-lg text-white">
                   <div className="px-5 py-5 mt-1 text-black bg-white border-2 border-blue-600 rounded-md">
-                    {props.displayThumbnail && (
-                      <a href={`/album/${album?.getAlbumById.idAlbum}`}>
+                    {/* Optional chaining and nullish coalescing added here */}
+                    {props.displayThumbnail && album?.getAlbumById && (
+                      <a href={`/album/${album.getAlbumById.idAlbum}`}>
                         <img
                           className="w-[400px]"
-                          src={album?.getAlbumById.strAlbumThumb}
-                          alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
+                          src={album.getAlbumById.strAlbumThumb}
+                          alt={`${album.getAlbumById.strArtist} - ${album.getAlbumById.strAlbum}`}
                         />
                       </a>
                     )}
@@ -163,7 +164,6 @@ const EditReview = (props) => {
                         Your Rating: {updatedRating}
                       </p>
                       <StarRating rating={updatedRating} readOnly />
-                      {/* <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} /> */}
                     </div>
                   </div>
                 </div>
@@ -180,11 +180,11 @@ const EditReview = (props) => {
           <div className="review-form w-[450px]">
             <div key={props.review._id} className="mt-4 text-lg text-white">
               <div className="px-5 py-5 mt-1 text-black bg-white border-2 border-blue-600 rounded-md">
-                {props.displayThumbnail && (
+                {props.displayThumbnail && album?.getAlbumById && (
                   <img
                     className="w-[400px]"
-                    src={album?.getAlbumById.strAlbumThumb}
-                    alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
+                    src={album.getAlbumById.strAlbumThumb}
+                    alt={`${album.getAlbumById.strArtist} - ${album.getAlbumById.strAlbum}`}
                   />
                 )}
                 <p className="mb-2 ml-5">Username: {props.review.user?.username}</p>

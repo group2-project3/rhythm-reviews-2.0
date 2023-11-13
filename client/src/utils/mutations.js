@@ -53,6 +53,10 @@ export const UPDATE_REVIEW = gql`
 mutation updateReview($id: ID!, $title: String!, $content: String!, $rating: Int!) {
   updateReview(id: $id, title: $title, content: $content, rating: $rating) {
     _id
+    title
+    content
+    rating
+    date
   }
 }
 `;
