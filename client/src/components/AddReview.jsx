@@ -4,27 +4,25 @@ import Auth from '../utils/auth';
 import { CREATE_REVIEW } from '../utils/mutations';
 import StarRating from './StarRating';
 
-const AddReview = ({ idAlbum, onAdd }) => {
+const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
   const [addReview] = useMutation(CREATE_REVIEW);
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
-  const [rating, setRating] = useState(0); 
+  const [rating, setRating] = useState(selectedRating || 0); 
   const token = Auth.getToken();
 
   const handleAddReview = async (event) => {
     event.preventDefault();
 
     if (!token) {
-      // Handle the case when the user is not logged in
       console.log('User is not logged in. Redirect to login page or show a login modal.');
       return;
     }
 
     try {
       await addReview({
-        variables: { title: reviewTitle, content: reviewContent, rating, idAlbum: idAlbum },
+        variables: { title: reviewTitle, content: reviewContent, rating: rating, idAlbum: idAlbum },
       });
-      // Reset the form fields and selected rating after submitting the review
       setReviewTitle('');
       setReviewContent('');
       setRating(0);
@@ -64,7 +62,7 @@ const AddReview = ({ idAlbum, onAdd }) => {
                 <p className="block mb-2 text-sm font-medium text-white text-gray-900">
                   Your Rating: {rating}
                 </p>
-                <StarRating rating={rating} onRatingChange={setRating} />
+                <StarRating rating={rating} onRatingChange={setRating} initialRating={selectedRating} />
               </div>
               <div className="add-flex-center">
                 <button
@@ -89,4 +87,3 @@ const AddReview = ({ idAlbum, onAdd }) => {
 };
 
 export default AddReview;
-
