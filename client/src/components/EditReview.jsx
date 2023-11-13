@@ -168,7 +168,8 @@ const EditReview = (props) => {
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
                   <div className="px-3 py-3 mt-1 text-black bg-white/30 border-2 rounded-md">
-                    {props.displayThumbnail && (
+                    {props.profileView && (
+                      <div>
                       <a href={`/album/${album?.getAlbumById.idAlbum}`}>
 
                         <img
