@@ -16,7 +16,7 @@ const Homepage = () => {
       <div className="flex flex-col items-center justify-center mt-80">
 
         <div className={`text-center ${fadeInClass}`} >
-          <div className="text-5xl text-white font-bold">RHYTHM</div>
+          <div className="text-5xl text-white font-bold blurry-text">RHYTHM</div>
           <div className="relative">
             <div className="text-5xl text-white font-bold mb-0">REVIEWS</div>
             <div className="bottom-0 left-0 right-0">
