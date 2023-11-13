@@ -99,7 +99,7 @@ const EditReview = (props) => {
                   className="mt-4 text-lg text-white"
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
-                  <div className="px-3 py-3 mt-1 text-black bg-white/30 border-2 rounded-md">
+                  <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
                   <div className="flex items-center justify-between">
                       <div className="flex items-center">
                         <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
@@ -131,7 +131,7 @@ const EditReview = (props) => {
                         {/* <p className="block mb-2 text-sm font-medium text-white text-gray-900">
                           Your Rating: {updatedRating}
                         </p> */}
-                        <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
+                        {/* <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} /> */}
                       </div>
                     </form>
                     <div className="flex items-center justify-end">
@@ -167,7 +167,7 @@ const EditReview = (props) => {
                   className="mt-4 text-lg text-white"
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
-                  <div className="px-3 py-3 mt-1 text-black bg-white/30 border-2 rounded-md">
+                  <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
                     {props.profileView && (
                       <div>
                       <a href={`/album/${album?.getAlbumById.idAlbum}`}>
@@ -202,12 +202,12 @@ const EditReview = (props) => {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <p className=" text-md text-white"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
+                        <p className="text-white  text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
                         </div>
                         </div>
                         <div className="flex items-center justify-end">
                           <button
-                            className="update-review text-sm text-blue-500 hover:underline"
+                            className="text-sm text-blue-500 update-review hover:underline"
                             onClick={() => handleEditReview(props.review._id)}
                           >   Edit
                           </button>
@@ -226,7 +226,7 @@ const EditReview = (props) => {
               className="mt-4 text-lg text-white"
               style={{ minWidth: '400px', maxWidth: '750px' }}
             >
-              <div className="px-3 py-3 mt-1 text-white bg-white/30 border-2 rounded-md">
+              <div className="px-3 py-3 mt-1 text-white border-2 rounded-md bg-white/30">
                 {props.profileView && (
 
                   <img
@@ -248,7 +248,7 @@ const EditReview = (props) => {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                  <p className=" text-md text-white"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
+                  <p className="text-white  text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
                     <div className="flex items-center justify-end">
                     </div>
                   </div>
