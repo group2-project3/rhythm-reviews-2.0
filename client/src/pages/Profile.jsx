@@ -162,7 +162,7 @@ const Profile = () => {
                   key={review._id}
                   review={review}
                   onDelete={handleUpdateReview}
-                  displayThumbnail={true}
+                  profileView={true}
                 />
               ))}
             </ul>
