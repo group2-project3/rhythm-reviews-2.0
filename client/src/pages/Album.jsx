@@ -46,11 +46,9 @@ const Album = () => {
       <div className="flex flex-col items-center lg:flex-row lg:justify-center">
         <div className="grid album-mobile" style={{ width: '380px' }}>
           <h1 className="text-2xl text-center text-white md:ml-auto lg:text-right">{albumData.getAlbumById.strArtist}</h1>
-          <div className="ml-auto text-white d-none d-lg-block">
-            <p className="pt-2 text-right">{albumData.getAlbumById.strAlbum}</p>
-            <p className="pt-2 text-right">{albumData.getAlbumById.strLabel}</p>
-            <p className="pt-2 text-right">{albumData.getAlbumById.strStyle}</p>
-          </div>
+            <p className="pt-2 text-center text-white md:ml-auto lg:text-right">{albumData.getAlbumById.strAlbum}</p>
+            <p className="pt-2 text-center text-white md:ml-auto lg:text-right">{albumData.getAlbumById.strLabel}</p>
+            <p className="pt-2 text-center text-white md:block md:ml-auto lg:text-right">{albumData.getAlbumById.strStyle}</p>
         </div>
         <div className="inline-block w-full h-auto max-w-xs p-4 m-10 text-white rounded bg-white/30 album-details" style={{ width: '380px' }}>
           <h2>{albumData.getAlbumById.strAlbum}</h2>
@@ -61,7 +59,7 @@ const Album = () => {
             alt={`${albumData.getAlbumById.strArtist} - ${albumData.getAlbumById.strAlbum}`}
           />
         </div>
-        <div className="p-4 text-white lg:w-1/3 d-none d-lg-block" style={{ width: '380px' }}>
+        <div className="p-4 text-white lg:w-1/3 d-lg-block" style={{ width: '380px' }}>
           <p>
             {isExpanded
               ? albumData.getAlbumById.strDescriptionEN
