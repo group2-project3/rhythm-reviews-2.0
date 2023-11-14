@@ -44,7 +44,7 @@ const Album = () => {
 
       
       <div className="flex flex-col items-center lg:flex-row lg:justify-center">
-        <div className="grid" style={{ width: '380px' }}>
+        <div className="grid album-mobile" style={{ width: '380px' }}>
           <h1 className="text-2xl text-center text-white md:ml-auto lg:text-right">{albumData.getAlbumById.strArtist}</h1>
           <div className="ml-auto text-white d-none d-lg-block">
             <p className="pt-2 text-right">{albumData.getAlbumById.strAlbum}</p>
