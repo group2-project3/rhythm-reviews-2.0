@@ -85,9 +85,6 @@ const Album = () => {
           <EditReview key={review._id} review={review} onDelete={handleUpdateReview} />
         ))}
       </div>
-      <div>
-        <GoBack />
-      </div>
     </>
   );
 };
