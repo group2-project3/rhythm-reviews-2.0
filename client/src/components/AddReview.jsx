@@ -3,6 +3,7 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { CREATE_REVIEW } from '../utils/mutations';
 import StarRating from './StarRating';
+import '../assets/css/style.css';
 
 const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
   const [addReview] = useMutation(CREATE_REVIEW);
@@ -42,11 +43,11 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
 
   return (
     <div>
-      <div className="flex justify-center">
-        <div className="review-form w-[450px]">
+      <div className="center-container">
+        <div className="review-form adjust-width">
           {token ? (
             <>
-              <label htmlFor="review-title" className="block mb-2 text-sm font-medium text-white text-gray-900">
+              <label htmlFor="review-title" className="style-title">
                 Add Your Review Here
               </label>
               <input
@@ -54,7 +55,7 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
                 type="text"
                 value={reviewTitle}
                 onChange={(e) => setReviewTitle(e.target.value)}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="form-input-box"
                 placeholder="Title your review"
               />
               <textarea
@@ -63,18 +64,18 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
                 rows="4"
                 value={reviewContent}
                 onChange={(e) => setReviewContent(e.target.value)}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-3"
+                className="form-input-box"
                 placeholder="Your thoughts on the album..."
               ></textarea>
-              <div className="flex items-center justify-between mt-0 mb-4">
+              <div className="center-container-between">
                 <div>
-                  <p className="text-sm text-white">Rating: {hoveredRating !== null ? hoveredRating : rating}</p>
+                  <p className="white-font-color">Rating: {hoveredRating !== null ? hoveredRating : rating}</p>
                   <StarRating rating={rating} onRatingChange={setRating} onHoverRatingChange={setHoveredRating} initialRating={selectedRating} />
                 </div>
                 <div className="add-flex-center">
                   <button
                     id="submit-review"
-                    className="add-review text-white text-m py-2.5 px-4 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 mt-2"
+                    className="add-review add-review-button"
                     type="submit"
                     onClick={handleAddReview}
                   >
@@ -84,7 +85,7 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
               </div>
             </>
           ) : (
-            <p className="text-center text-white underline break-words mr-14 hover:text-blue-700 underline-offset-1 ml-14">
+            <p className="links center-container">
               <a href="/login">Login to leave a review</a>
             </p>
           )}
