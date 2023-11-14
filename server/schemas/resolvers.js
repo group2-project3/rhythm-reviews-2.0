@@ -148,7 +148,7 @@ const resolvers = {
           title: title,
           content: content,
           idAlbum: idAlbum,
-          rating: rating,
+          rating: rating, // Include the rating here
           user: context.req.user._id,
         });
     

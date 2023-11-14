@@ -49,7 +49,7 @@ type Mutation {
   logoutUser: Boolean
   updatePassword(currentPassword: String!, newPassword: String!, confirmPassword: String!): Auth
   createReview(title: String!, content: String!, idAlbum: ID!, rating: Int): Review
-  updateReview(id: ID!, title: String!, content: String!, rating: Int): Review
+  updateReview(id: ID!, title: String!, content: String!): Review
   deleteReview(reviewId: ID!): Review
   deleteAccount(password: String!): DeleteAccountResponse
 }
@@ -63,7 +63,6 @@ input ReviewInput {
   id: Int!
   title: String
   content: String
-  rating: Int
 }
 
 `;

@@ -21,10 +21,17 @@ const EditReview = (props) => {
   const [updateReview] = useMutation(UPDATE_REVIEW);
 
   useEffect(() => {
+    // Update the rating when the review's rating changes
     setUpdatedRating(props.review.rating);
   }, [props.review.rating]);
 
   const handleEditReview = async (reviewId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     try {
       setUpdatedReviewTitle(props.review.title);
       setUpdatedReviewContent(props.review.content);
@@ -36,14 +43,27 @@ const EditReview = (props) => {
   };
 
   const handleCancelEditReview = async (reviewId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     try {
       setEditing(false);
+      // Handle any logic after canceling the edit if needed
     } catch (e) {
       console.error(e);
     }
   };
 
   const handleDeleteReview = async (reviewId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     try {
       const { data } = await deleteReview({
         variables: { reviewId },
@@ -55,6 +75,12 @@ const EditReview = (props) => {
   };
 
   const handleUpdateReview = async (reviewId) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     try {
       const { data } = await updateReview({
         variables: {
@@ -65,6 +91,7 @@ const EditReview = (props) => {
         },
       });
       setEditing(false);
+      // Handle any logic after updating the review if needed
     } catch (e) {
       console.error(e);
     }
@@ -111,10 +138,7 @@ const EditReview = (props) => {
                         placeholder={props.review.content}
                       ></textarea>
                       <div>
-                        <StarRating
-                          rating={updatedRating}
-                          onRatingChange={setUpdatedRating}
-                        />
+                        <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
                       </div>
                     </form>
                     <div className="flex items-center justify-end">
