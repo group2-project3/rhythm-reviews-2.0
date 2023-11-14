@@ -9,7 +9,7 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
   const [rating, setRating] = useState(selectedRating || 0);
-  const [hoveredRating, setHoveredRating] = useState(null); // State to track hovered rating
+  const [hoveredRating, setHoveredRating] = useState(0);
   const token = Auth.getToken();
 
   const handleAddReview = async (event) => {
@@ -68,7 +68,7 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
               ></textarea>
               <div className="flex items-center justify-between mt-0 mb-4">
                 <div>
-                  <p className="text-sm text-white">Rating: {hoveredRating !== null ? hoveredRating : rating}</p>
+                  <p className="text-sm text-white">Rating: {hoveredRating || rating}</p>
                   <StarRating rating={rating} onRatingChange={setRating} onHoverRatingChange={setHoveredRating} initialRating={selectedRating} />
                 </div>
                 <div className="add-flex-center">
