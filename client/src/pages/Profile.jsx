@@ -180,7 +180,6 @@ const Profile = () => {
             )}
           </div>
            
-
           <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
           <button
         onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
