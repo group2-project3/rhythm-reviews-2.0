@@ -36,6 +36,11 @@
   clear: both;
 }
 
+.submit-container {
+  display: flex;
+  justify-content: center;
+}
+
 button {
   background-color: transparent;
   border: none;
@@ -61,6 +66,23 @@ button {
 
 .search-button:hover {
   background-color: #1e67e5;
+}
+
+.submit-button {
+  padding: 8px 16px 8px 16px;
+  margin-top: 10px;
+  margin-bottom: 45px;
+  color: white;
+  background-color: #1e67e5;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+
+}
+
+.submit-button:hover {
+  background-color: #1842b8;
 }
 
 .star-rating button {
@@ -125,10 +147,47 @@ button {
   margin-right: 10px;
 }
 
-/* .album-mobile {
-  justify-content: center;
+.adjust-height {
+  height: 100vh;
+}
 
-} */
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adjust-width {
+  max-width: 28rem;
+}
+
+.adjust-bottom-margin {
+  margin-bottom: 0.5rem;
+}
+
+.create-account-title {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  margin-left: 2px;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
+}
+
+.white-font-color {
+  color: white;
+}
+
+.form-input-box {
+  width: 100%;
+  padding: 0.625rem;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: rgb(214 211 209);
+  margin-bottom: 0.75rem;
+}
 
 @keyframes fadeInAnimation {
   from {
@@ -162,11 +221,5 @@ button {
 
   .logo {
     display: none;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .album-mobile {
-    justify-content: center;
   }
 }
