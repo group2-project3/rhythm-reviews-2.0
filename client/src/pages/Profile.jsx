@@ -94,6 +94,7 @@ const Profile = () => {
 
       if (data.deleteAccount.success) {
         alert(data.deleteAccount.message);
+        Auth.removeToken();
         navigate("/login");
       } else {
         alert('Account deletion failed. ' + data.deleteAccount.message);

@@ -125,11 +125,6 @@ button {
   margin-right: 10px;
 }
 
-/* .album-mobile {
-  justify-content: center;
-
-} */
-
 @keyframes fadeInAnimation {
   from {
     opacity: 0;
