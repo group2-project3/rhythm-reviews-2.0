@@ -111,8 +111,8 @@ const Profile = () => {
       <SearchBar />
 
       <div className="flex flex-col items-center lg:flex-row">
-        <div className="grid mb-auto w-full lg:w-1/3 lg:justify-end">
-          <h1 className="text-2xl text-white mb-2 text-center">Welcome, {user?.username}!</h1>
+        <div className="grid mb-auto md:w-1/3 md:justify-end lg:w/13 lg:justify-end">
+          <h1 className="text-2xl text-white mb-1 text-center">Welcome, {user?.username}!</h1>
           <div className="text-white d-none d-lg-block">
             <p className="pt-2 text-center">{user?.email}</p>
           </div>
@@ -126,7 +126,7 @@ const Profile = () => {
             </button>
             {isChangePasswordOpen && (
               <form onSubmit={handlePasswordChange}>
-                <h2 className="mb-3 text-white">Change Password</h2>
+                <h2 className="mb-3 text-white"></h2>
                 <div className="mb-3 text-left form-group">
                   <label htmlFor="currentPassword" className="mb-1 text-white">
                     Current Password:
@@ -188,7 +188,7 @@ const Profile = () => {
             </button>
             {isDeleteAccountVisible && (
               <form onSubmit={handleDeleteAccount}>
-                <h2 className="mb-3 text-white">Delete Account</h2>
+                <h2 className="mb-3 text-white"></h2>
                 <div className="mb-3 text-left form-group">
                   <label htmlFor="deleteConfirmation" className="mb-1 text-white">
                     Type "DELETE" to confirm deletion:
