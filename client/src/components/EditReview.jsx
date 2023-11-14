@@ -82,6 +82,10 @@ const EditReview = (props) => {
     }
 
     try {
+      setUpdatedReviewTitle(updatedReviewTitle);
+      setUpdatedReviewContent(updatedReviewContent);
+      setUpdatedRating(updatedRating);
+
       const { data } = await updateReview({
         variables: {
           id: reviewId,
