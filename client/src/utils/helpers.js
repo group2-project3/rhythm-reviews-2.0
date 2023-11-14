@@ -7,9 +7,15 @@ class HelpersService {
       const month = formattedDate.getMonth() + 1;
       const day = formattedDate.getDate();
       const year = formattedDate.getFullYear();
-      const hours = formattedDate.getHours();
-      const mins = formattedDate.getMinutes();
-      return `${month}/${day}/${year} ${hours}:${mins}`;
-    };
+      let hours = formattedDate.getHours();
+      let mins = formattedDate.getMinutes();
+      const period = hours >= 12 ? 'PM' : 'AM';
+  
+      hours = hours % 12 || 12;
+
+      mins = mins < 10 ? `0${mins}` : mins;
+  
+      return `${month}/${day}/${year} ${hours}:${mins} ${period}`;
+    }
   }
 export default new HelpersService();
