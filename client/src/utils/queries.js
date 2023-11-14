@@ -30,7 +30,6 @@ export const albumReviewsQuery = gql`
       id
       title
       content
-      rating
       user {
         id
         username
@@ -76,7 +75,6 @@ export const QUERY_REVIEWS = gql`
       title
       content
       idAlbum
-      rating
       date
       user {
         _id
