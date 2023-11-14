@@ -110,14 +110,14 @@ const Profile = () => {
     <>
       <SearchBar />
 
-      <div className="flex flex-col items-center lg:flex-row lg:justify">
-        <div className="grid mb-auto w-full lg:w-1/3">
-          <h1 className="text-2xl text-center text-white mb-2 lg:text-right">Welcome, {user?.username}!</h1>
-          <div className="ml-auto text-white d-none d-lg-block">
-            <p className="pt-2 text-right">{user?.email}</p>
+      <div className="flex flex-col items-center lg:flex-row">
+        <div className="grid mb-auto w-full lg:w-1/3 lg:justify-end">
+          <h1 className="text-2xl text-white mb-2 text-center">Welcome, {user?.username}!</h1>
+          <div className="text-white d-none d-lg-block">
+            <p className="pt-2 text-center">{user?.email}</p>
           </div>
 
-          <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
+          <div className="inline-block w-5/5 ml-4 mr-4 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2">
             <button
               onClick={toggleChangePasswordForm}
               className=" text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
@@ -179,7 +179,7 @@ const Profile = () => {
             )}
           </div>
 
-          <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
+          <div className="inline-block w-5/5 ml-4 mr-4 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2">
             <button
               onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
               className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
