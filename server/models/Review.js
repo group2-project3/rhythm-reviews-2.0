@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-// const { default: Review } = require('../../client/src/pages/Review');
 
 const reviewSchema = new Schema({
     title: {
@@ -21,13 +20,18 @@ const reviewSchema = new Schema({
         type: Number,
         trim: true
     },
+    rating: {
+        type: Number,
+        required: 'You need to leave a rating!',
+        min: 1, 
+        max: 5, 
+    },
     date: {
         type: Date,
         default: Date.now
     }
-    });
+});
 
+const Review = model('Review', reviewSchema);
 
-    const Review = model('Review', reviewSchema);
-
-    module.exports = {Review, reviewSchema};
+module.exports = { Review, reviewSchema };
