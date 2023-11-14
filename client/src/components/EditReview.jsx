@@ -95,7 +95,7 @@ const EditReview = (props) => {
         },
       });
       setEditing(false);
-      // Handle any logic after updating the review if needed
+      props.onDelete();
     } catch (e) {
       console.error(e);
     }
