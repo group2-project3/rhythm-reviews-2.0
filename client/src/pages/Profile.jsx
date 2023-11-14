@@ -112,125 +112,124 @@ const Profile = () => {
      <GoBack />
       <SearchBar />
 
-      <div className="flex flex-col items-center lg:flex-row lg:justify">
-        <div className="grid mb-auto ml-auto mr-2" style={{ width: '380px', flex: '1', justifyContent: 'flex-end', alignItems: 'flex-start' }}>
-          <h1 className="text-2xl text-center text-white md:ml-auto lg:text-right">Welcome, {user?.username}!</h1>
-          <div className="ml-auto text-white d-none d-lg-block">
-            <p className="pt-2 text-right">{user?.email}</p>
+      <div className="flex flex-col items-center lg:flex-row">
+        <div className="grid mb-auto md:w-1/3 md:justify-end lg:w/13 lg:justify-end">
+          <h1 className="text-2xl text-white mb-1 text-center">Welcome, {user?.username}!</h1>
+          <div className="text-white d-none d-lg-block">
+            <p className="pt-2 text-center">{user?.email}</p>
           </div>
-          
-          <div className="inline-block w-4/5 max-w-lg p-5 mt-2 ml-auto text-center rounded bg-white/30 shadow-white-30">
-          <button
-          onClick={toggleChangePasswordForm}
-          className=" text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
-        >
-          {isChangePasswordOpen ? 'Close Password Editor' : 'Change Password'}
-        </button>
-        {isChangePasswordOpen && (
-            <form onSubmit={handlePasswordChange}>
-              <h2 className="mb-3 text-white">Change Password</h2>
-              <div className="mb-3 text-left form-group">
-                <label htmlFor="currentPassword" className="mb-1 text-white">
-                  Current Password:
-                </label>
-                <input
-                  type="password"
-                  id="currentPassword"
-                  name="currentPassword"
-                  value={currentPassword}
-                  onChange={(e) => setCurrentPassword(e.target.value)}
-                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                  required
-                />
-              </div>
-              <div className="mb-3 text-left">
-                <label htmlFor="newPassword" className="mb-1 text-white">
-                  New Password:
-                </label>
-                <input
-                  type="password"
-                  id="newPassword"
-                  name="newPassword"
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                  required
-                />
-              </div>
-              <div className="mb-3 text-left">
-                <label htmlFor="confirmPassword" className="mb-1 text-white">
-                  Confirm New Password:
-                </label>
-                <input
-                  type="password"
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
-              >
-                Save New Password
-              </button>
-            </form>
+
+          <div className="inline-block w-5/5 ml-4 mr-4 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2">
+            <button
+              onClick={toggleChangePasswordForm}
+              className=" text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+            >
+              {isChangePasswordOpen ? 'Close Password Editor' : 'Change Password'}
+            </button>
+            {isChangePasswordOpen && (
+              <form onSubmit={handlePasswordChange}>
+                <h2 className="mb-3 text-white"></h2>
+                <div className="mb-3 text-left form-group">
+                  <label htmlFor="currentPassword" className="mb-1 text-white">
+                    Current Password:
+                  </label>
+                  <input
+                    type="password"
+                    id="currentPassword"
+                    name="currentPassword"
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    required
+                  />
+                </div>
+                <div className="mb-3 text-left">
+                  <label htmlFor="newPassword" className="mb-1 text-white">
+                    New Password:
+                  </label>
+                  <input
+                    type="password"
+                    id="newPassword"
+                    name="newPassword"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    required
+                  />
+                </div>
+                <div className="mb-3 text-left">
+                  <label htmlFor="confirmPassword" className="mb-1 text-white">
+                    Confirm New Password:
+                  </label>
+                  <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+                >
+                  Save New Password
+                </button>
+              </form>
             )}
           </div>
-           
-          <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
-          <button
-        onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
-        className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
-      >
-        {isDeleteAccountVisible ? 'Close Delete Account' : 'Delete Account'}
-      </button>
-      {isDeleteAccountVisible && (
-      <form onSubmit={handleDeleteAccount}>
 
-              <h2 className="mb-3 text-white">Delete Account</h2>
-              <div className="mb-3 text-left form-group">
-                <label htmlFor="deleteConfirmation" className="mb-1 text-white">
-                  Type "DELETE" to confirm deletion:
-                </label>
-                <input
-                  type="text"
-                  id="deleteConfirmation"
-                  name="deleteConfirmation"
-                  value={deleteAccountConfirmation}
-                  onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
-                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                  required
-                />
-              </div>
-              <div className="mb-3 text-left form-group">
-                <label htmlFor="password" className="mb-1 text-white">
-                  Enter your password to confirm account deletion:
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
-              >
-                Delete Account
-              </button>
-            </form>
-             )}
+          <div className="inline-block w-5/5 ml-4 mr-4 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2">
+            <button
+              onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
+              className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+            >
+              {isDeleteAccountVisible ? 'Close Delete Account' : 'Delete Account'}
+            </button>
+            {isDeleteAccountVisible && (
+              <form onSubmit={handleDeleteAccount}>
+                <h2 className="mb-3 text-white"></h2>
+                <div className="mb-3 text-left form-group">
+                  <label htmlFor="deleteConfirmation" className="mb-1 text-white">
+                    Type "DELETE" to confirm deletion:
+                  </label>
+                  <input
+                    type="text"
+                    id="deleteConfirmation"
+                    name="deleteConfirmation"
+                    value={deleteAccountConfirmation}
+                    onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
+                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    required
+                  />
+                </div>
+                <div className="mb-3 text-left form-group">
+                  <label htmlFor="password" className="mb-1 text-white">
+                    Enter your password to confirm account deletion:
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    required
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+                >
+                  Delete Account
+                </button>
+              </form>
+            )}
           </div>
-        
+
         </div>
-        <div className="grid justify-center mt-2" style={{ width: '380px', flex: '1' }}>
+        <div className="grid justify-center mt-2" style={{ width: '67%', flex: '1' }}>
           <div className="inline-block w-full h-auto max-w-md p-4 m-1 text-white rounded bg-white/30">
             <div>
               <h2 className="mb-2 text-2xl text-center text-white">Your Reviews</h2>
@@ -247,7 +246,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="grid justify-center mt-2 mb-auto ml-5" style={{ width: '380px', flex: '1' }}>
+        <div className="grid justify-center mt-2 ml-2 mb-auto" style={{ width: '380px', flex: '1' }}>
         </div>
       </div>
     </>
