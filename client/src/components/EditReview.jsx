@@ -179,7 +179,7 @@ const EditReview = (props) => {
                           alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                         />
                       </a>
-                      <div className="grow justify-self-stretch">
+                      <div className="grow justify-self-stretch text-white">
                         <p style={{fontSize: '1.3rem' , fontWeight: 'bold'}}>{album?.getAlbumById.strArtist}</p>
                         <p style={{fontWeight: '1.15rem'}}>{album?.getAlbumById.strAlbum}</p>
                       </div>

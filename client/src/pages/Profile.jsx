@@ -228,7 +228,7 @@ const Profile = () => {
         
         </div>
         <div className="grid justify-center mt-2" style={{ width: '380px', flex: '1' }}>
-          <div className="inline-block w-full h-auto max-w-lg p-4 m-1 text-white rounded bg-white/30">
+          <div className="inline-block w-full h-auto max-w-md p-4 m-1 text-white rounded bg-white/30">
             <div>
               <h2 className="mb-2 text-2xl text-white text-center">Your Reviews</h2>
               <ul>
