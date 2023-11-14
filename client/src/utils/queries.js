@@ -11,6 +11,7 @@ query GetUserProfile {
         _id
         title
         content
+        rating
         idAlbum
         date
         user {
@@ -30,6 +31,7 @@ export const albumReviewsQuery = gql`
       id
       title
       content
+      rating
       user {
         id
         username
@@ -74,6 +76,7 @@ export const QUERY_REVIEWS = gql`
       _id
       title
       content
+      rating
       idAlbum
       date
       user {
