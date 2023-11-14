@@ -3,7 +3,7 @@ const GoBack = () => {
         <>
         <p className="links">
             <a href="/">
-              &lt;&lt; Go Back to Homepage
+              Home
             </a>
           </p>
         </>
