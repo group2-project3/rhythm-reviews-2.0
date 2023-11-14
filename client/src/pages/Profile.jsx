@@ -24,9 +24,14 @@ const Profile = () => {
   const [deleteAccount] = useMutation(DELETE_ACCOUNT);
 
   const [isChangePasswordOpen, setChangePasswordOpen] = useState(false);
+  const [isDeleteAccountVisible, setDeleteAccountVisible] = useState(false);
 
   const toggleChangePasswordForm = () => {
     setChangePasswordOpen(!isChangePasswordOpen);
+  };
+
+  const toggleDeleteAccountVisibleForm = () => {
+    setDeleteAccountVisible(!isDeleteAccountVisible);
   };
 
   // Check if user is logged in
@@ -175,8 +180,17 @@ const Profile = () => {
             )}
           </div>
            
-          <div className="inline-block w-4/5 max-w-lg p-5 mt-2 ml-auto text-center rounded bg-white/30 shadow-white-30">
-            <form onSubmit={handleDeleteAccount}>
+
+          <div className="inline-block w-4/5 max-w-lg p-5 text-center rounded bg-white/30 shadow-white-30 mt-2 ml-auto">
+          <button
+        onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
+        className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+      >
+        {isDeleteAccountVisible ? 'Close Delete Account' : 'Delete Account'}
+      </button>
+      {isDeleteAccountVisible && (
+      <form onSubmit={handleDeleteAccount}>
+
               <h2 className="mb-3 text-white">Delete Account</h2>
               <div className="mb-3 text-left form-group">
                 <label htmlFor="deleteConfirmation" className="mb-1 text-white">
@@ -212,11 +226,12 @@ const Profile = () => {
                 Delete Account
               </button>
             </form>
+             )}
           </div>
         
         </div>
         <div className="grid justify-center mt-2" style={{ width: '380px', flex: '1' }}>
-          <div className="inline-block w-full h-auto max-w-lg p-4 m-1 text-white rounded bg-white/30">
+          <div className="inline-block w-full h-auto max-w-md p-4 m-1 text-white rounded bg-white/30">
             <div>
               <h2 className="mb-2 text-2xl text-center text-white">Your Reviews</h2>
               <ul>
