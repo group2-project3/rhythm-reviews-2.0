@@ -22,6 +22,7 @@ const SearchBar = () => {
 
     return (
         <>
+            <div className="flex flex-col items-center justify-center">
             <form id="search-form" onSubmit={handleSearch} action="/api/reviews/artist-search" method="GET">
                 <input
                     id="search-input"
@@ -61,6 +62,7 @@ const SearchBar = () => {
               </p>
             </>
           )}
+        </div>
         </div>
         </>
     )
