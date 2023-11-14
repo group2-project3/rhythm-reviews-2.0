@@ -3,6 +3,7 @@ import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import GoBack from '../components/GoBack';
+import './Login.css';
 
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -52,14 +53,14 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center login-container mt-60">
-      <h1 className="mb-8 text-2xl text-center text-white">Login</h1>
-      <h4 id="api-message" className="hidden text-red-600"></h4>
+    <div className="login-container">
+      <h1 className="login-title">Login</h1>
+      <h4 id="api-message" className="hidden red-warning-text"></h4>
 
-      <div className="flex flex-col items-center">
-        <form className="text-left max-w-lg p-6 mb-2.5 block font-bold">
-          <div className="mb-2">
-            <label htmlFor="email" className="text-white">
+      <div className="center-container">
+        <form className="align-font">
+          <div className="adjust-bottom-margin">
+            <label htmlFor="email" className="white-font-color">
               Email:
             </label>
             <input
@@ -68,12 +69,12 @@ const Login = () => {
               name="email"
               value={userFormData.email}
               onChange={handleInputChange}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
+              className="form-input-box"
               required
             />
           </div>
-          <div className="mb-2">
-            <label htmlFor="password" className="text-white">
+          <div className="adjust-bottom-margin">
+            <label htmlFor="password" className="white-font-color">
               Password:
             </label>
             <input
@@ -82,22 +83,22 @@ const Login = () => {
               name="password"
               value={userFormData.password}
               onChange={handleInputChange}
-              className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-3"
+              className="form-input-box"
               required
             />
           </div>
-          <div className="mb-12 add-flex-center">
+          <div className="larger-margin-bottom add-flex-center">
             <button
               type="button"
               onClick={loginFormHandler}
-              className="create text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 mb-7"
+              className="login-button"
             >
               Login
             </button>
           </div>
-          <p className="text-sm text-center text-white">
+          <p className="small-white-text">
             Don't have an account?{" "}
-            <a href="/createacct" className="ml-2 text-center underline hover:text-blue-700 underline-offset-1">
+            <a href="/createacct" className="create-account-link">
               Create Account
             </a>
           </p>
