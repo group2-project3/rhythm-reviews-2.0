@@ -40,7 +40,6 @@ const Results = (props) => {
         </div>
         {props.message && <p className="text-red-600">{props.message}</p>}
       </div>
-      <GoBack />
     </>
   );
 };
