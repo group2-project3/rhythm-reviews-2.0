@@ -163,7 +163,7 @@ const resolvers = {
       ('You need to be logged in!');
     },
     
-    updateReview: async (parent, { id, title, content }, context) => {
+    updateReview: async (parent, { id, title, content, rating }, context) => {
       if (!context.req.user) {
         throw new Error('You need to be logged in to update a review');
       }
@@ -178,6 +178,7 @@ const resolvers = {
         }
           existingReview.title = title;
           existingReview.content = content;
+          existingReview.rating = rating;
         await existingReview.save();
         return existingReview;
       } catch (error) {
