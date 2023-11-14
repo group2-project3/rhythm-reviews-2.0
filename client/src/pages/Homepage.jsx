@@ -25,12 +25,12 @@ const Homepage = () => {
               </div>
             </div>
           </div>
-          <h1 className="text-3xl text-white text-shadow">
-            Our platform is for music enthusiasts to explore their favorite artists and albums,
+      
+          <div className="max-w-400px mx-auto lg:w-2/3">
+            <h1 className="text-3xl text-white text-shadow mb-12 ml-5 mr-5 lg:ml-0 lg:mr-0">
+            Our platform is for music enthusiasts to explore their favorite artists and albums, by sharing reviews and engaging in meaningful discussions about their favorite albums.
           </h1>
-          <h2 className="mb-12 text-3xl text-white text-shadow">
-            by sharing reviews and engaging in meaningful discussions about their favorite albums.
-          </h2>
+        </div>
         </div>
         <div className="items-center justify-center">
           <SearchBar />
