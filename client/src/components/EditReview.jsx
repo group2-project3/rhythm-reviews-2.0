@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
@@ -14,11 +14,16 @@ const EditReview = (props) => {
   });
   const [updatedReviewTitle, setUpdatedReviewTitle] = useState('');
   const [updatedReviewContent, setUpdatedReviewContent] = useState('');
-  const [updatedRating, setUpdatedRating] = useState(props.review.rating);
+  const [updatedRating, setUpdatedRating] = useState(props.review.rating); // Initialize with review's rating
   const [editing, setEditing] = useState(false);
 
   const [deleteReview] = useMutation(DELETE_REVIEW);
   const [updateReview] = useMutation(UPDATE_REVIEW);
+
+  useEffect(() => {
+    // Update the rating when the review's rating changes
+    setUpdatedRating(props.review.rating);
+  }, [props.review.rating]);
 
   const handleEditReview = async (reviewId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -78,7 +83,12 @@ const EditReview = (props) => {
 
     try {
       const { data } = await updateReview({
-        variables: { id: reviewId, title: updatedReviewTitle, content: updatedReviewContent, rating: updatedRating },
+        variables: {
+          id: reviewId,
+          title: updatedReviewTitle,
+          content: updatedReviewContent,
+          rating: updatedRating,
+        },
       });
       setEditing(false);
       // Handle any logic after updating the review if needed
@@ -131,7 +141,7 @@ const EditReview = (props) => {
                         {/* <p className="block mb-2 text-sm font-medium text-white text-gray-900">
                           Your Rating: {updatedRating}
                         </p> */}
-                        {/* <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} /> */}
+                        <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
                       </div>
                     </form>
                     <div className="flex items-center justify-end">
@@ -202,7 +212,7 @@ const EditReview = (props) => {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <p className="text-white  text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
+                        <p className="text-white text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
                         </div>
                         </div>
                         <div className="flex items-center justify-end">
@@ -248,7 +258,7 @@ const EditReview = (props) => {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                  <p className="text-white  text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
+                  <p className="text-white text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
                     <div className="flex items-center justify-end">
                     </div>
                   </div>
