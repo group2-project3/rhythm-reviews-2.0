@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { CREATE_REVIEW } from '../utils/mutations';
@@ -9,12 +9,14 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
   const [rating, setRating] = useState(selectedRating || 0);
+  const [hoveredRating, setHoveredRating] = useState(null); // State to track hovered rating
   const token = Auth.getToken();
 
   const handleAddReview = async (event) => {
     event.preventDefault();
 
     if (!token) {
+      // Redirect to login if not logged in
       console.log('User is not logged in. Redirect to login page or show a login modal.');
       return;
     }
@@ -23,9 +25,16 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
       await addReview({
         variables: { title: reviewTitle, content: reviewContent, rating: rating, idAlbum: idAlbum },
       });
+
+      // Clear the form
       setReviewTitle('');
       setReviewContent('');
-      onAdd();
+      setRating(0);
+
+      // Trigger the callback to refetch the album data
+      if (onAdd) {
+        onAdd();
+      }
     } catch (error) {
       console.error(error);
     }
@@ -58,7 +67,10 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
                 placeholder="Your thoughts on the album..."
               ></textarea>
               <div className="flex items-center justify-between mt-0 mb-4">
-                <StarRating rating={rating} onRatingChange={setRating} initialRating={selectedRating} />
+                <div>
+                  <p className="text-sm text-white">Rating: {hoveredRating !== null ? hoveredRating : rating}</p>
+                  <StarRating rating={rating} onRatingChange={setRating} onHoverRatingChange={setHoveredRating} initialRating={selectedRating} />
+                </div>
                 <div className="add-flex-center">
                   <button
                     id="submit-review"

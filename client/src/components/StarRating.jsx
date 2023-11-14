@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
 
-const StarRating = ({ rating, onRatingChange, initialRating }) => {
+const StarRating = ({ rating, onRatingChange, onHoverRatingChange, readOnly }) => {
   const [hoveredRating, setHoveredRating] = useState(0);
   const stars = Array.from({ length: 5 }, (_, index) => index + 1);
 
   const handleMouseEnter = (star) => {
     setHoveredRating(star);
+    onHoverRatingChange(star);
   };
 
   const handleMouseLeave = () => {
     setHoveredRating(0);
+    onHoverRatingChange(null);
   };
 
   const handleStarClick = (star) => {
+    // Update the database with the selected star count
     onRatingChange(star);
   };
 
@@ -27,7 +30,7 @@ const StarRating = ({ rating, onRatingChange, initialRating }) => {
           onMouseLeave={handleMouseLeave}
           style={{
             fontSize: '1.8rem',
-            color: star <= (hoveredRating || rating) ? 'orange' : 'gray',
+            color: (readOnly ? star <= rating : star <= (hoveredRating || rating)) ? 'orange' : 'gray',
           }}
         >
           {star <= (hoveredRating || rating) ? '★' : '☆'}

@@ -14,7 +14,7 @@ const EditReview = (props) => {
   });
   const [updatedReviewTitle, setUpdatedReviewTitle] = useState('');
   const [updatedReviewContent, setUpdatedReviewContent] = useState('');
-  const [updatedRating, setUpdatedRating] = useState(props.review.rating); // Initialize with review's rating
+  const [updatedRating, setUpdatedRating] = useState(props.review.rating);
   const [editing, setEditing] = useState(false);
 
   const [deleteReview] = useMutation(DELETE_REVIEW);
@@ -110,7 +110,7 @@ const EditReview = (props) => {
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
                   <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
-                  <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between">
                       <div className="flex items-center">
                         <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
                         <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
@@ -138,37 +138,31 @@ const EditReview = (props) => {
                         placeholder={props.review.content}
                       ></textarea>
                       <div>
-                        {/* <p className="block mb-2 text-sm font-medium text-white text-gray-900">
-                          Your Rating: {updatedRating}
-                        </p> */}
                         <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
                       </div>
                     </form>
                     <div className="flex items-center justify-end">
-                  
-                  
-                
-                <button
-                  className="delete-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2 "
-                  onClick={() => handleCancelEditReview(props.review._id)}
-                >
-                  Cancel
-                </button>
-                <button
-                  className="delete-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2 "
-                  onClick={() => handleDeleteReview(props.review._id)}
-                >
-                  Delete
-                </button>
-                <button
-                  className="update-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2"
-                  onClick={() => handleUpdateReview(props.review._id)}
-                >
-                  Update
-                </button>
-              </div>
-              </div>
-              </div>
+                      <button
+                        className="delete-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2 "
+                        onClick={() => handleCancelEditReview(props.review._id)}
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        className="delete-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2 "
+                        onClick={() => handleDeleteReview(props.review._id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="update-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2"
+                        onClick={() => handleUpdateReview(props.review._id)}
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="review-form w-[450px]">
@@ -180,49 +174,48 @@ const EditReview = (props) => {
                   <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
                     {props.profileView && (
                       <div>
-                      <a href={`/album/${album?.getAlbumById.idAlbum}`}>
-
-                        <img
-                          style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
-                          className="w-[125px]"
-                          src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
-                          alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
-                        />
-                      </a>
-                      <div className="grow justify-self-stretch text-white">
-                        <p style={{fontSize: '1.3rem' , fontWeight: 'bold'}}>{album?.getAlbumById.strArtist}</p>
-                        <p style={{fontWeight: '1.15rem'}}>{album?.getAlbumById.strAlbum}</p>
-                      </div>
+                        <a href={`/album/${album?.getAlbumById.idAlbum}`}>
+                          <img
+                            style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
+                            className="w-[125px]"
+                            src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
+                            alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
+                          />
+                        </a>
+                        <div className="text-white grow justify-self-stretch">
+                          <p style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>{album?.getAlbumById.strArtist}</p>
+                          <p style={{ fontWeight: '1.15rem' }}>{album?.getAlbumById.strAlbum}</p>
+                        </div>
                       </div>
                     )}
 
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                      {!props.profileView && (
-                        <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
+                        {!props.profileView && (
+                          <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
                         )}
                         <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
                         <p className="ml-2 text-sm text-gray-300">{Helpers.formatDate(props.review.date)}</p>
                       </div>
                       <div className="ml-auto">
-                        {/* <p className="mb-2 ml-5">Rating: {props.review.rating}</p> */}
                         <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
                       </div>
-
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <p className="text-white text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
-                        </div>
-                        </div>
-                        <div className="flex items-center justify-end">
-                          <button
-                            className="text-sm text-blue-500 update-review hover:underline"
-                            onClick={() => handleEditReview(props.review._id)}
-                          >   Edit
-                          </button>
-                        
+                        <p className="text-white text-md">
+                          <span className="font-bold">{props.review.title}:</span> {props.review.content}
+                        </p>
                       </div>
+                    </div>
+                    <div className="flex items-center justify-end">
+                      <button
+                        className="text-sm text-blue-500 update-review hover:underline"
+                        onClick={() => handleEditReview(props.review._id)}
+                      >
+                        Edit
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -230,7 +223,6 @@ const EditReview = (props) => {
           </>
         ) : (
           <div className="review-form w-[450px]">
-
             <div
               key={props.review._id}
               className="mt-4 text-lg text-white"
@@ -238,7 +230,6 @@ const EditReview = (props) => {
             >
               <div className="px-3 py-3 mt-1 text-white border-2 rounded-md bg-white/30">
                 {props.profileView && (
-
                   <img
                     className="w-[400px]"
                     src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
@@ -252,19 +243,17 @@ const EditReview = (props) => {
                     <p className="ml-2 text-sm text-gray-300">{Helpers.formatDate(props.review.date)}</p>
                   </div>
                   <div className="ml-auto">
-                    {/* <p className="mb-2 ml-5">Rating: {props.review.rating}</p> */}
                     <StarRating rating={props.review.rating} readOnly />
                   </div>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                  <p className="text-white text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
-                    <div className="flex items-center justify-end">
-                    </div>
+                    <p className="text-white text-md">
+                      <span className="font-bold">{props.review.title}:</span> {props.review.content}
+                    </p>
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
-                </div>
+                <div className="flex items-center justify-between"></div>
               </div>
             </div>
           </div>
