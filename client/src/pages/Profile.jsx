@@ -109,7 +109,6 @@ const Profile = () => {
 
   return (
     <>
-     <GoBack />
       <SearchBar />
 
       <div className="flex flex-col items-center lg:flex-row">
