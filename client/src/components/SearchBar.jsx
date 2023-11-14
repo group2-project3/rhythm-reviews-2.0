@@ -3,6 +3,7 @@ import Auth from '../utils/auth';
 import Logout from "../components/Logout";
 import GoBack from "../components/GoBack";
 import { useLocation } from 'react-router-dom';
+import '../assets/css/style.css';
 
 
 const SearchBar = () => {
