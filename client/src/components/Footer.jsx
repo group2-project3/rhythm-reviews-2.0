@@ -1,8 +1,8 @@
 import React from 'react';
-import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa';
 
 const Footer = () => {
-  const iconSize = 30; 
+  const iconSize = 30; // You can adjust the size according to your preference
 
   return (
     <>
@@ -21,6 +21,9 @@ const Footer = () => {
             <a href="https://www.instagram.com/your-instagram-account" target="_blank" rel="noopener noreferrer" className="text-white">
               <FaInstagram size={iconSize} />
             </a>
+            <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" className="text-white">
+              <FaGithub size={iconSize} />
+            </a>
           </div>
           <p className="mt-4">
             © 2023 Rhythm Reviews Site, developed by Jen Stemkowski, Ashley Zemina, Gilberto Rosario, Jason Torrealba, Florian Kreuk
@@ -31,4 +34,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default Footer
