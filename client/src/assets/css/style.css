@@ -4,6 +4,11 @@
   margin-left: 10px;
 }
 
+.search-box {
+  padding: 10px;
+  width: 300px;
+}
+
 .col {
   display: inline-block;
   width: 13%;
@@ -17,36 +22,10 @@
   text-shadow: rgb(85, 85, 85) 1px 0px 10px;
 }
 
-@media only screen and (max-width: 968px) {
-  .logo {
-    width: 30%;
-  }
-
-  .col {
-    width: 100%;
-  }
-}
-
-@media only screen and (min-width: 969px) and (max-width: 1307px) {
-  .col {
-    width: 30%;
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  /* body {
-    background-image: url("../assets/rr-homepage-2.jpg");
-  } */
-
-  .logo {
-    display: none;
-  }
-}
-
 .album-container {
   border: 2px solid #fff;
   padding: 10px;
-  width: calc(16.666% - 20px); 
+  width: calc(16.666% - 20px);
   margin: 0 10px 20px 0;
   box-sizing: border-box;
 }
@@ -70,9 +49,23 @@ button {
   color: #cccccc;
 }
 
+.search-button {
+  color: white;
+  margin-left: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white;
+}
+
+.search-button:hover {
+  background-color: #1e67e5;
+}
+
 .star-rating button {
-  font-size: 2em; 
-  margin: 0.1em; 
+  font-size: 2em;
+  margin: 0.1em;
 }
 
 .text-shadow {
@@ -102,7 +95,7 @@ button {
   display: block;
   position: relative;
   clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
-  
+
 }
 
 .blurry-text {
@@ -110,11 +103,70 @@ button {
   text-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
+.link-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.links {
+  color: white;
+  text-decoration: underline;
+  margin-right: 10px;
+}
+
+.links:hover {
+  color: #1e67e5;
+}
+
+.right-space {
+  color: white;
+  margin-right: 10px;
+}
+
+/* .album-mobile {
+  justify-content: center;
+
+} */
+
 @keyframes fadeInAnimation {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 968px) {
+  .logo {
+    width: 30%;
+  }
+
+  .col {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 969px) and (max-width: 1307px) {
+  .col {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* body {
+    background-image: url("../assets/rr-homepage-2.jpg");
+  } */
+
+  .logo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .album-mobile {
+    justify-content: center;
   }
 }

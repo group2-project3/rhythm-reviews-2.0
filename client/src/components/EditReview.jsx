@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { DELETE_REVIEW, UPDATE_REVIEW } from '../utils/mutations';
@@ -14,11 +14,16 @@ const EditReview = (props) => {
   });
   const [updatedReviewTitle, setUpdatedReviewTitle] = useState('');
   const [updatedReviewContent, setUpdatedReviewContent] = useState('');
-  const [updatedRating, setUpdatedRating] = useState(props.review.rating);
+  const [updatedRating, setUpdatedRating] = useState(props.review.rating); // Initialize with review's rating
   const [editing, setEditing] = useState(false);
 
   const [deleteReview] = useMutation(DELETE_REVIEW);
   const [updateReview] = useMutation(UPDATE_REVIEW);
+
+  useEffect(() => {
+    // Update the rating when the review's rating changes
+    setUpdatedRating(props.review.rating);
+  }, [props.review.rating]);
 
   const handleEditReview = async (reviewId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -78,7 +83,12 @@ const EditReview = (props) => {
 
     try {
       const { data } = await updateReview({
-        variables: { id: reviewId, title: updatedReviewTitle, content: updatedReviewContent, rating: updatedRating },
+        variables: {
+          id: reviewId,
+          title: updatedReviewTitle,
+          content: updatedReviewContent,
+          rating: updatedRating,
+        },
       });
       setEditing(false);
       // Handle any logic after updating the review if needed
@@ -99,7 +109,7 @@ const EditReview = (props) => {
                   className="mt-4 text-lg text-white"
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
-                  <div className="px-3 py-3 mt-1 text-black bg-white/30 border-2 rounded-md">
+                  <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
                   <div className="flex items-center justify-between">
                       <div className="flex items-center">
                         <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
@@ -167,7 +177,7 @@ const EditReview = (props) => {
                   className="mt-4 text-lg text-white"
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
-                  <div className="px-3 py-3 mt-1 text-black bg-white/30 border-2 rounded-md">
+                  <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
                     {props.profileView && (
                       <div>
                       <a href={`/album/${album?.getAlbumById.idAlbum}`}>
@@ -202,12 +212,12 @@ const EditReview = (props) => {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <p className=" text-md text-white"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
+                        <p className="text-white text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
                         </div>
                         </div>
                         <div className="flex items-center justify-end">
                           <button
-                            className="update-review text-sm text-blue-500 hover:underline"
+                            className="text-sm text-blue-500 update-review hover:underline"
                             onClick={() => handleEditReview(props.review._id)}
                           >   Edit
                           </button>
@@ -226,7 +236,7 @@ const EditReview = (props) => {
               className="mt-4 text-lg text-white"
               style={{ minWidth: '400px', maxWidth: '750px' }}
             >
-              <div className="px-3 py-3 mt-1 text-white bg-white/30 border-2 rounded-md">
+              <div className="px-3 py-3 mt-1 text-white border-2 rounded-md bg-white/30">
                 {props.profileView && (
 
                   <img
@@ -248,7 +258,7 @@ const EditReview = (props) => {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                  <p className=" text-md text-white"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
+                  <p className="text-white text-md"><span className="font-bold">{props.review.title}:</span> {props.review.content}</p>
                     <div className="flex items-center justify-end">
                     </div>
                   </div>

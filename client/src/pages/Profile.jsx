@@ -108,6 +108,7 @@ const Profile = () => {
 
   return (
     <>
+     <GoBack />
       <SearchBar />
 
       <div className="flex flex-col items-center lg:flex-row">
@@ -230,7 +231,7 @@ const Profile = () => {
         <div className="grid justify-center mt-2" style={{ width: '67%', flex: '1' }}>
           <div className="inline-block w-full h-auto max-w-md p-4 m-1 text-white rounded bg-white/30">
             <div>
-              <h2 className="mb-2 text-2xl text-white text-center">Your Reviews</h2>
+              <h2 className="mb-2 text-2xl text-center text-white">Your Reviews</h2>
               <ul>
                 {data?.getUserProfile.savedReviews.map((review) => (
                   <EditReview

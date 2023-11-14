@@ -8,7 +8,7 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
   const [addReview] = useMutation(CREATE_REVIEW);
   const [reviewTitle, setReviewTitle] = useState('');
   const [reviewContent, setReviewContent] = useState('');
-  const [rating, setRating] = useState(selectedRating || 0); 
+  const [rating, setRating] = useState(selectedRating || 0);
   const token = Auth.getToken();
 
   const handleAddReview = async (event) => {
@@ -25,7 +25,6 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
       });
       setReviewTitle('');
       setReviewContent('');
-      setRating(0);
       onAdd();
     } catch (error) {
       console.error(error);
@@ -58,22 +57,18 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-3"
                 placeholder="Your thoughts on the album..."
               ></textarea>
-              <div className="mt-0 mb-4 flex justify-between items-center">
-                {/* <p className="text-sm font-medium text-white text-gray-900">
-                  Your Rating: {rating}
-                </p> */}
+              <div className="flex items-center justify-between mt-0 mb-4">
                 <StarRating rating={rating} onRatingChange={setRating} initialRating={selectedRating} />
-              
-              <div className="add-flex-center">
-                <button
-                  id="submit-review"
-                  className="add-review text-white text-m py-2.5 px-4 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 mt-2"
-                  type="submit"
-                  onClick={handleAddReview}
-                >
-                  Add Review
-                </button>
-              </div>
+                <div className="add-flex-center">
+                  <button
+                    id="submit-review"
+                    className="add-review text-white text-m py-2.5 px-4 rounded border-2 border-white bg-blue-600 hover:bg-blue-700 mt-2"
+                    type="submit"
+                    onClick={handleAddReview}
+                  >
+                    Add Review
+                  </button>
+                </div>
               </div>
             </>
           ) : (
