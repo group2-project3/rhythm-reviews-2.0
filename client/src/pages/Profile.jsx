@@ -163,7 +163,7 @@ const Profile = () => {
 
       <div className="content-div">
         <div className="change-account">
-          <h1 className="mb-1 text-2xl text-center text-white">Welcome, {user?.username}!</h1>
+          <h1 className="user-info-div">Welcome, {user?.username}!</h1>
           <div className="text-white">
             <p className="pt-2 text-center">{user?.email}</p>
           </div>
