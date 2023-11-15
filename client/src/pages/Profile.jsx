@@ -171,7 +171,7 @@ const Profile = () => {
           <div className="button-div">
             <button
               onClick={toggleChangePasswordForm}
-              className=" text-white py-2.5 px-2.5 mr-3 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+              className="password-button"
             >
               {isChangePasswordOpen ? 'Close Password Editor' : 'Change Password'}
             </button>
