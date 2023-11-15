@@ -177,8 +177,8 @@ const Profile = () => {
             </button>
             {isChangePasswordOpen && (
               <form onSubmit={handlePasswordChange}>
-                <h2 className="password-text"></h2>
-                <div className="mb-3 text-left form-group">
+                <h2 className="form-text"></h2>
+                <div className="form-div form-group">
                   <label htmlFor="currentPassword" className="mb-1 text-white">
                     Current Password:
                   </label>
@@ -192,7 +192,7 @@ const Profile = () => {
                     required
                   />
                 </div>
-                <div className="mb-3 text-left">
+                <div className="form-div">
                   <label htmlFor="newPassword" className="mb-1 text-white">
                     New Password:
                   </label>
@@ -206,7 +206,7 @@ const Profile = () => {
                     required
                   />
                 </div>
-                <div className="mb-3 text-left">
+                <div className="form-div">
                   <label htmlFor="confirmPassword" className="mb-1 text-white">
                     Confirm New Password:
                   </label>
@@ -237,8 +237,8 @@ const Profile = () => {
             </button>
             {isDeleteAccountVisible && (
               <form onSubmit={handleDeleteAccount}>
-                <h2 className="mb-3 text-white"></h2>
-                <div className="mb-3 text-left form-group">
+                <h2 className="form-text"></h2>
+                <div className="form-div form-group">
                   <label htmlFor="deleteConfirmation" className="mb-1 text-white">
                     Type "DELETE" to confirm deletion:
                   </label>
@@ -252,7 +252,7 @@ const Profile = () => {
                     required
                   />
                 </div>
-                <div className="mb-3 text-left form-group">
+                <div className="form-div form-group">
                   <label htmlFor="password" className="mb-1 text-white">
                     Enter your password to confirm account deletion:
                   </label>
