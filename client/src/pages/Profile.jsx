@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Modal from 'react-modal';
+import '../assets/css/modal.css';
 import { useQuery, useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
@@ -16,6 +18,9 @@ const Profile = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState("");
   const [password, setPassword] = useState(""); // New state for password
+  const [errorMessage, setErrorMessage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalErrorMessage, setModalErrorMessage] = useState('');
 
   const { loading, error, data, refetch } = useQuery(userProfileQuery);
   const user = data?.getUserProfile;
@@ -34,11 +39,41 @@ const Profile = () => {
     setDeleteAccountVisible(!isDeleteAccountVisible);
   };
 
+  const [isPasswordUpdatedModalOpen, setPasswordUpdatedModalOpen] = useState(false);
+
+  const openPasswordUpdatedModal = () => {
+    setPasswordUpdatedModalOpen(true);
+  };
+
+  const closePasswordUpdatedModal = () => {
+    setPasswordUpdatedModalOpen(false);
+  };
+
+  const openModal = (message) => {
+    console.log('Message in openModal:', message);
+    setModalIsOpen(true);
+    setErrorMessage(message);
+  };
+  
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setErrorMessage('');
+  };
+
+
   // Check if user is logged in
   useEffect(() => {
     Auth.loggedIn();
     console.log('data', data);
   }, [data]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      setModalErrorMessage(errorMessage);
+      openModal(errorMessage);
+    }
+  }, [errorMessage]);
+
 
   const handlePasswordChange = async (event) => {
     event.preventDefault();
@@ -56,10 +91,11 @@ const Profile = () => {
           confirmPassword,
         },
       });
-      alert("Password updated successfully!");
+      openPasswordUpdatedModal("Password updated successfully!");
     } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please try again!");
+      setModalErrorMessage("Something went wrong. Confirm you are entering your current password and the updated passwords match.");
+      openModal(errorMessage);
     }
   };
 
@@ -248,6 +284,55 @@ const Profile = () => {
         <div className="grid justify-center mt-2 mb-auto ml-2" style={{ width: '380px', flex: '1' }}>
         </div>
       </div>
+      <Modal
+        isOpen={isPasswordUpdatedModalOpen}
+        onRequestClose={closePasswordUpdatedModal}
+        contentLabel="Password Updated Modal"
+        className="modal-overlay"
+      >
+        <div className="modal-container">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Success</h3>
+          <div className="p-4 md:p-5 space-y-4">
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              Password updated successfully!
+            </p>
+          </div>
+          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button
+              onClick={closePasswordUpdatedModal}
+              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel="Error Modal"
+  className="modal-overlay"
+>
+  <div className="modal-container">
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Error</h3>
+    <div className="p-4 md:p-5 space-y-4">
+      <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+        {modalErrorMessage}
+      </p>
+    </div>
+    <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+      <button
+        onClick={closeModal}
+        className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</Modal>
+
     </>
   );
 };
