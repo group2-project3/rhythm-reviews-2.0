@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaEnvelope, FaFacebook, FaTwitter, FaInstagram, FaGithub } from 'react-icons/fa';
+import '../assets/css/style.css';
 
 const Footer = () => {
   const iconSize = 30; // You can adjust the size according to your preference
