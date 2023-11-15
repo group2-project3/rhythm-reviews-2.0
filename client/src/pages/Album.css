@@ -28,6 +28,14 @@
     width: 380px
 }
 
+.style-album-subdata {
+    font-size: 1rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #ffffff;
+    width: 380px
+}
+
 .style-album-details {
     display: inline-block;
     padding: 1rem;
@@ -73,6 +81,10 @@
     }
 
     .style-album-data {
+        text-align: right;
+    }
+
+    .style-album-subdata {
         text-align: right;
     }
 
