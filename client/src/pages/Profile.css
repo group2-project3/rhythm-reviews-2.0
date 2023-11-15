@@ -79,6 +79,56 @@
   margin-bottom: 48px; 
 }
 
+.save-button {
+  margin-bottom: 1.25rem; 
+  color: #ffffff; 
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem; 
+  padding-left: 0.625rem;
+  padding-right: 0.625rem; 
+  border-radius: 0.25rem; 
+  border-width: 2px; 
+  border-color: #ffffff; 
+  background-color: #2563EB; 
+}
+
+.save-button:hover {
+  background-color: #1D4ED8; 
+}
+
+.delete-button {
+  color: #ffffff; 
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem; 
+  padding-left: 0.625rem;
+  padding-right: 0.625rem; 
+  border-radius: 0.25rem; 
+  border-width: 2px; 
+  border-color: #ffffff; 
+  background-color: #DC2626; 
+}
+
+.delete-button:hover {
+  background-color: #B91C1C; 
+}
+
+.delete-account-button {
+  margin-bottom: 1.25rem; 
+  color: #ffffff; 
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem; 
+  padding-left: 0.625rem;
+  padding-right: 0.625rem; 
+  border-radius: 0.25rem; 
+  border-width: 2px; 
+  border-color: #ffffff; 
+  background-color: #DC2626; 
+}
+
+.delete-account-button:hover {
+  background-color: #B91C1C; 
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
