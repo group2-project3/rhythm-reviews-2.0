@@ -1,0 +1,19 @@
+@media only screen and (min-width: 1397px) {
+  .change-account {
+    width: 33%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .change-account {
+    justify-content: flex-end;
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  .change-account {
+    justify-content: flex-end;
+  }
+}
+

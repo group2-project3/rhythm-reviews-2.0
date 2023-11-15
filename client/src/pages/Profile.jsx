@@ -10,6 +10,7 @@ import Logout from "../components/Logout";
 import GoBack from "../components/GoBack";
 import EditReview from "../components/EditReview";
 import SearchBar from '../components/SearchBar';
+import './Profile.css';
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const Profile = () => {
     setModalIsOpen(true);
     setErrorMessage(message);
   };
-  
+
   const closeModal = () => {
     setModalIsOpen(false);
     setErrorMessage('');
@@ -156,19 +157,21 @@ const Profile = () => {
 
   return (
     <>
-      <SearchBar />
+      <div className="pt-3">
+        <SearchBar />
+      </div>
 
       <div className="flex flex-col items-center lg:flex-row">
-        <div className="grid mb-auto md:w-1/3 md:justify-end lg:w/13 lg:justify-end">
+        <div className="grid mb-auto change-account">
           <h1 className="mb-1 text-2xl text-center text-white">Welcome, {user?.username}!</h1>
-          <div className="text-white d-none d-lg-block">
+          <div className="text-white">
             <p className="pt-2 text-center">{user?.email}</p>
           </div>
 
           <div className="inline-block max-w-lg p-5 mt-2 ml-4 mr-4 text-center rounded w-5/5 bg-white/30 shadow-white-30">
             <button
               onClick={toggleChangePasswordForm}
-              className=" text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+              className=" text-white py-2.5 px-2.5 mr-3 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
             >
               {isChangePasswordOpen ? 'Close Password Editor' : 'Change Password'}
             </button>
@@ -225,9 +228,7 @@ const Profile = () => {
                 </button>
               </form>
             )}
-          </div>
 
-          <div className="inline-block max-w-lg p-5 mt-2 ml-4 mr-4 text-center rounded w-5/5 bg-white/30 shadow-white-30">
             <button
               onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
               className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
@@ -320,53 +321,53 @@ const Profile = () => {
         </div>
       </Modal>
       <Modal
-  isOpen={modalIsOpen}
-  onRequestClose={closeModal}
-  contentLabel="Error Modal"
-  className="modal-overlay"
->
-  <div className="modal-container">
-    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Oops</h3>
-    <div className="p-4 md:p-5 space-y-4">
-      <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-        {modalErrorMessage}
-      </p>
-    </div>
-    <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-      <button
-        onClick={closeModal}
-        className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Error Modal"
+        className="modal-overlay"
       >
-        Close
-      </button>
-    </div>
-  </div>
-</Modal>
-<Modal
-  isOpen={modalIsOpen}
-  onRequestClose={closeModal}
-  contentLabel="Error Modal"
-  className="modal-overlay"
->
-  <div className="modal-container">
-    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Success</h3>
-    <div className="p-4 md:p-5 space-y-4">
-      <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-        {modalSuccessMessage}
-      </p>
-    </div>
-    <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-      <button
-        onClick={closeModal}
-        className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
+        <div className="modal-container">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Oops</h3>
+          <div className="p-4 md:p-5 space-y-4">
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              {modalErrorMessage}
+            </p>
+          </div>
+          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button
+              onClick={closeModal}
+              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        contentLabel="Error Modal"
+        className="modal-overlay"
       >
-        Close
-      </button>
-    </div>
-  </div>
-</Modal>
+        <div className="modal-container">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Success</h3>
+          <div className="p-4 md:p-5 space-y-4">
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              {modalSuccessMessage}
+            </p>
+          </div>
+          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button
+              onClick={closeModal}
+              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </Modal>
 
     </>
   );
