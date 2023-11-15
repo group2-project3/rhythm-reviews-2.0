@@ -177,7 +177,7 @@ const Profile = () => {
             </button>
             {isChangePasswordOpen && (
               <form onSubmit={handlePasswordChange}>
-                <h2 className="mb-3 text-white"></h2>
+                <h2 className="password-text"></h2>
                 <div className="mb-3 text-left form-group">
                   <label htmlFor="currentPassword" className="mb-1 text-white">
                     Current Password:
