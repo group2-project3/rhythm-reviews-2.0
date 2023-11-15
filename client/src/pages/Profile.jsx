@@ -164,7 +164,7 @@ const Profile = () => {
       <div className="content-div">
         <div className="change-account">
           <h1 className="user-info-div">Welcome, {user?.username}!</h1>
-          <div className="text-white">
+          <div className="email-div">
             <p className="pt-2 text-center">{user?.email}</p>
           </div>
 
