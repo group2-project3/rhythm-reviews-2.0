@@ -332,6 +332,40 @@ button {
   background-color: #F9FAFB;
 }
 
+.footer-container {
+  display: flex;
+  margin-top: 16rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-fixed-position {
+  position: fixed;
+  bottom: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  background-color: #1F2937;
+}
+
+.footer-flex-center {
+  display: flex;
+  margin-left: 1rem;
+  justify-content: center;
+}
+
+.footer-flex-center a {
+  padding-left: 9px;
+}
+
+.footer-margin {
+  margin-top: 1rem;
+}
+
 @keyframes fadeInAnimation {
   from {
     opacity: 0;
