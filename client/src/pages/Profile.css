@@ -22,6 +22,20 @@
   text-align: center;
 }
 
+.button-div {
+  display: inline-block;
+  max-width: 24rem; 
+  padding: 48px;
+  margin-top: 0.5rem; 
+  margin-left: 1rem; 
+  margin-right: 1rem; 
+  text-align: center;
+  border-radius: 0.25rem; 
+  width: 100%; 
+  background-color: rgba(255, 255, 255, 0.3);
+   
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
