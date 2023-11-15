@@ -112,12 +112,14 @@ const Profile = () => {
     }
 
     if (deleteAccountConfirmation !== "DELETE") {
-      alert('Please type "DELETE" to confirm account deletion.');
+      setModalErrorMessage('Please type "DELETE" to confirm account deletion.');
+      openModal(errorMessage);
       return;
     }
 
     if (!password) {
-      alert('Password is required to delete your account.');
+      setModalErrorMessage('Password is required to delete your account.');
+      openModal(errorMessage);
       return;
     }
 
@@ -133,11 +135,13 @@ const Profile = () => {
         Auth.removeToken();
         navigate("/login");
       } else {
-        alert('Account deletion failed. ' + data.deleteAccount.message);
+        setModalErrorMessage('Account deletion failed. ' + data.deleteAccount.message);
+        openModal(errorMessage);
       }
     } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please try again!");
+      setModalErrorMessage("Something went wrong. Did you type in the correct password? Please try again!");
+      openModal(errorMessage);
     }
   };
 
