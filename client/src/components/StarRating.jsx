@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../assets/css/style.css';
 
 const StarRating = ({ rating, onRatingChange, onHoverRatingChange, readOnly }) => {
   const [hoveredRating, setHoveredRating] = useState(0);
@@ -24,7 +25,7 @@ const StarRating = ({ rating, onRatingChange, onHoverRatingChange, readOnly }) =
   };
 
   return (
-    <div className="flex items-center">
+    <div className="submit-container">
       {stars.map((star) => (
         <button
           key={star}
