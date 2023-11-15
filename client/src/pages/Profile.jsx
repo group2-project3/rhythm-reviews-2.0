@@ -304,7 +304,7 @@ const Profile = () => {
       >
         <div className="modal-container">
           <h3 className="model-h-tag">Success</h3>
-          <div className="p-4 md:p-5 space-y-4">
+          <div className="model-div">
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
               Password updated successfully!
             </p>
@@ -328,7 +328,7 @@ const Profile = () => {
       >
         <div className="modal-container">
           <h3 className="model-h-tag">Oops</h3>
-          <div className="p-4 md:p-5 space-y-4">
+          <div className="model-div">
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
               {modalErrorMessage}
             </p>
@@ -352,7 +352,7 @@ const Profile = () => {
       >
         <div className="modal-container">
           <h3 className="model-h-tag">Success</h3>
-          <div className="p-4 md:p-5 space-y-4">
+          <div className="model-div">
             <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
               {modalSuccessMessage}
             </p>
