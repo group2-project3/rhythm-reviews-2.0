@@ -60,7 +60,7 @@ const Album = () => {
             alt={`${albumData.getAlbumById.strArtist} - ${albumData.getAlbumById.strAlbum}`}
           />
         </div>
-        <div className="style-text">
+        <div className="style-text" style={{ width: '380px' }}>
           <p className="overflow-text">
             {isExpanded
               ? albumData.getAlbumById.strDescriptionEN
