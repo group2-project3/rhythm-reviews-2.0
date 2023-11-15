@@ -5,6 +5,13 @@
   align-items: center;
 }
 
+.user-info-div {
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  text-align: center;
+  color: #ffffff;
+}
 
 @media only screen and (min-width: 1397px) {
   .change-account {
