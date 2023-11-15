@@ -178,6 +178,11 @@ body.dark-mode .model-h-tag {
   color: white;
 }
 
+.model-div {
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
@@ -199,6 +204,10 @@ body.dark-mode .model-h-tag {
     justify-content: flex-end;
     display: grid;
     margin-bottom: auto;
+  }
+
+  .model-div {
+    padding: 1.25rem;
   }
 }
 
