@@ -188,7 +188,7 @@ const Profile = () => {
                     name="currentPassword"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
@@ -202,7 +202,7 @@ const Profile = () => {
                     name="newPassword"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
@@ -216,7 +216,7 @@ const Profile = () => {
                     name="confirmPassword"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
@@ -248,7 +248,7 @@ const Profile = () => {
                     name="deleteConfirmation"
                     value={deleteAccountConfirmation}
                     onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
@@ -261,7 +261,7 @@ const Profile = () => {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
