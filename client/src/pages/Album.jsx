@@ -40,16 +40,16 @@ const Album = () => {
 
   return (
     <>
-    <div className="add-margin-top">
-      <SearchBar />
+      <div className="add-margin-top">
+        <SearchBar />
       </div>
 
       <div className="flex-container">
         <div className="add-grid album-mobile" style={{ width: '380px' }}>
           <h1 className="style-album-data top-space">{albumData.getAlbumById.strArtist}</h1>
-            <p className="style-album-data">{albumData.getAlbumById.strAlbum}</p>
-            <p className="style-album-data">{albumData.getAlbumById.strLabel}</p>
-            <p className="style-album-data">{albumData.getAlbumById.strStyle}</p>
+          <p className="style-album-subdata">{albumData.getAlbumById.strAlbum}</p>
+          <p className="style-album-subdata">{albumData.getAlbumById.strLabel}</p>
+          <p className="style-album-subdata">{albumData.getAlbumById.strStyle}</p>
         </div>
         <div className="style-album-details album-details">
           <h2>{albumData.getAlbumById.strAlbum}</h2>
@@ -62,11 +62,13 @@ const Album = () => {
         </div>
         <div className="style-text" style={{ width: '380px' }}>
           <p className="overflow-text">
-            {isExpanded
-              ? albumData.getAlbumById.strDescriptionEN
-              : `${albumData.getAlbumById.strDescriptionEN?.slice(0, 250)}...`}
+            {albumData.getAlbumById.strDescriptionEN
+              ? isExpanded
+                ? albumData.getAlbumById.strDescriptionEN
+                : `${albumData.getAlbumById.strDescriptionEN.slice(0, 250)}...`
+              : ''}
           </p>
-          {!isExpanded && (
+          {albumData.getAlbumById.strDescriptionEN && !isExpanded && (
             <button onClick={() => setIsExpanded(true)} className="read-more-less">
               Read More
             </button>

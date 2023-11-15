@@ -71,7 +71,7 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
                 <div>
                   <StarRating rating={rating} onRatingChange={setRating} onHoverRatingChange={setHoveredRating} initialRating={selectedRating} />
                 </div>
-                <div className="add-margin-submit-button">
+                <div className="add-margin-submit-button edit-review-adjust-ml-auto">
                   <button
                     id="submit-review"
                     className="add-review add-review-button"
