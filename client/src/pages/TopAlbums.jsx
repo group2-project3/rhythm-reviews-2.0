@@ -13,7 +13,6 @@ const TopAlbums = () => {
     const { loading, error, data } = useQuery(QUERY_GET_TOP_ALBUMS);
 
     useEffect(() => {
-        console.log(data);
     }, [data]);
 
     const handleAlbumClick = (album) => {
@@ -27,10 +26,10 @@ const TopAlbums = () => {
       <SearchBar />
       </div>
             <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
+                <div >
+                    <div >
                         <h1 className="title">Top Reviewed Albums</h1>
-                        <div className="row">
+                        <div >
                             {loading ? (
                                 <div>Loading...</div>
                             ) : (
