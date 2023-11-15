@@ -276,10 +276,10 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="grid justify-center mt-2" style={{ width: '67%', flex: '1' }}>
-          <div className="inline-block w-full h-auto max-w-md p-4 m-1 text-white rounded bg-white/30">
+        <div className="album-div">
+          <div className="album-box">
             <div>
-              <h2 className="mb-2 text-2xl text-center text-white">Your Reviews</h2>
+              <h2 className="album-head">Your Reviews</h2>
               <ul>
                 {data?.getUserProfile.savedReviews.map((review) => (
                   <EditReview
@@ -293,7 +293,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="grid justify-center mt-2 mb-auto ml-2" style={{ width: '380px', flex: '1' }}>
+        <div className="album-right-div">
         </div>
       </div>
       <Modal
