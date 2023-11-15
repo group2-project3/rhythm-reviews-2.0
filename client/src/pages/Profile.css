@@ -42,19 +42,25 @@
   padding-left: 0.625rem;
   padding-right: 0.625rem; 
   margin-right: 0.75rem;
+  margin-bottom: 0.5rem;
   border-radius: 0.25rem; 
   border-width: 2px; 
   border-color: #ffffff;
-  background-color: #2563EB;;
+  background-color: #2563EB;
 }
 
 .password-button:hover {
   background-color: #1D4ED8; 
 }
 
-.password-text {
+.form-text {
   margin-bottom: 0.75rem;
   color: #ffffff;
+}
+
+.form-div {
+  margin-bottom: 0.75rem; 
+  text-align: left; 
 }
 
 @media only screen and (min-width: 1397px) {
