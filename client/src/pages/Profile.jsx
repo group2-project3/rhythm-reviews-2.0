@@ -168,7 +168,7 @@ const Profile = () => {
             <p className="email-p-tag">{user?.email}</p>
           </div>
 
-          <div className="inline-block max-w-lg p-5 mt-2 ml-4 mr-4 text-center rounded w-5/5 bg-white/30 shadow-white-30">
+          <div className="button-div">
             <button
               onClick={toggleChangePasswordForm}
               className=" text-white py-2.5 px-2.5 mr-3 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
