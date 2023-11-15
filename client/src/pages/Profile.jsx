@@ -179,7 +179,7 @@ const Profile = () => {
               <form onSubmit={handlePasswordChange}>
                 <h2 className="form-text"></h2>
                 <div className="form-div form-group">
-                  <label htmlFor="currentPassword" className="mb-1 text-white">
+                  <label htmlFor="currentPassword" className="form-div-text">
                     Current Password:
                   </label>
                   <input
@@ -193,7 +193,7 @@ const Profile = () => {
                   />
                 </div>
                 <div className="form-div">
-                  <label htmlFor="newPassword" className="mb-1 text-white">
+                  <label htmlFor="newPassword" className="form-div-text">
                     New Password:
                   </label>
                   <input
@@ -207,7 +207,7 @@ const Profile = () => {
                   />
                 </div>
                 <div className="form-div">
-                  <label htmlFor="confirmPassword" className="mb-1 text-white">
+                  <label htmlFor="confirmPassword" className="form-div-text">
                     Confirm New Password:
                   </label>
                   <input
@@ -239,7 +239,7 @@ const Profile = () => {
               <form onSubmit={handleDeleteAccount}>
                 <h2 className="form-text"></h2>
                 <div className="form-div form-group">
-                  <label htmlFor="deleteConfirmation" className="mb-1 text-white">
+                  <label htmlFor="deleteConfirmation" className="form-div-text">
                     Type "DELETE" to confirm deletion:
                   </label>
                   <input
@@ -253,7 +253,7 @@ const Profile = () => {
                   />
                 </div>
                 <div className="form-div form-group">
-                  <label htmlFor="password" className="mb-1 text-white">
+                  <label htmlFor="password" className="form-div-text">
                     Enter your password to confirm account deletion:
                   </label>
                   <input
