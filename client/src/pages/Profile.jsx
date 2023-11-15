@@ -222,7 +222,7 @@ const Profile = () => {
                 </div>
                 <button
                   type="submit"
-                  className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+                  className="save-button"
                 >
                   Save New Password
                 </button>
@@ -231,7 +231,7 @@ const Profile = () => {
 
             <button
               onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
-              className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+              className="delete-button"
             >
               {isDeleteAccountVisible ? 'Close Delete Account' : 'Delete Account'}
             </button>
@@ -267,7 +267,7 @@ const Profile = () => {
                 </div>
                 <button
                   type="submit"
-                  className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+                  className="delete-account-button"
                 >
                   Delete Account
                 </button>
