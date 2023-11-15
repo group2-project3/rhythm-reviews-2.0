@@ -183,6 +183,17 @@ body.dark-mode .model-h-tag {
   margin-top: 1rem;
 }
 
+.model-text {
+  font-size: 1rem;
+  line-height: 1.5rem; 
+  line-height: 1.625; 
+  color: #6B7280; 
+}
+
+body.dark-mode .model-text {
+  color: rgb(156 163 175);
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
