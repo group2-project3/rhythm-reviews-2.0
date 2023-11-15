@@ -63,6 +63,11 @@
   text-align: left; 
 }
 
+.form-div-text {
+  margin-bottom: 0.25rem;
+  color: #ffffff;
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
