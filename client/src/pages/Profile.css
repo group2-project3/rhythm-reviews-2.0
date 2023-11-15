@@ -17,6 +17,11 @@
   color: #ffffff;
 }
 
+.email-p-tag {
+  padding-top: 0.5rem;
+  text-align: center;
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
