@@ -157,11 +157,11 @@ const Profile = () => {
 
   return (
     <>
-      <div className="pt-3">
+      <div className="pt-3 results-container">
         <SearchBar />
       </div>
 
-      <div className="flex flex-col items-center lg:flex-row">
+      <div className="flex flex-col items-center lg:flex-row mt-64">
         <div className="grid mb-auto change-account">
           <h1 className="mb-1 text-2xl text-center text-white">Welcome, {user?.username}!</h1>
           <div className="text-white">
