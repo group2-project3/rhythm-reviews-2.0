@@ -47,9 +47,11 @@ button {
   outline: none;
   cursor: pointer;
 }
+
 .on {
   color: orange;
 }
+
 .off {
   color: #cccccc;
 }
@@ -107,7 +109,7 @@ button {
 }
 
 #search-form {
-  display:flex;
+  display: flex;
   flex-direction: column;
   gap: 16px;
   justify-content: center;
@@ -139,7 +141,8 @@ button {
   bottom: -5px;
   left: 0;
   right: 0;
-  height: 20px; /* Adjust the height based on your preference */
+  height: 20px;
+  /* Adjust the height based on your preference */
   background: linear-gradient(to bottom, transparent 0%, white 100%);
 }
 
@@ -196,6 +199,11 @@ button {
   justify-content: between;
 }
 
+.align-center {
+  align-items: center;
+
+}
+
 .adjust-width {
   max-width: 28rem;
 }
@@ -216,6 +224,12 @@ button {
 
 .white-font-color {
   color: white;
+}
+
+.small-gray-font {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #D1D5DB;
 }
 
 .form-input-box {
@@ -247,8 +261,40 @@ button {
   background: rgba(255, 255, 255, .3);
 }
 
+.edit-review-links {
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+  border-radius: 0.25rem;
+  border-width: 2px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #1842b8;
+  font-weight: bold;
+}
+
+.edit-review-links:hover {
+  color: #1842b8;
+  text-decoration: underline;
+}
+
 .edit-review-adjust-width {
   width: 125px;
+}
+
+.edit-review-adjust-width-400 {
+  width: 400px;
+}
+
+.edit-review-adjust-m-left {
+  margin-left: 0.5rem;
+}
+
+.edit-review-adjust-m-right {
+  margin-right: 0.5rem;
+}
+
+.edit-review-adjust-ml-auto {
+  margin-left: auto;
 }
 
 .edit-review-stretch-text {
@@ -256,10 +302,41 @@ button {
   color: #ffffff;
 }
 
+.edit-review-gray-bg {
+  border-radius: 9999px;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #D1D5DB;
+}
+
+.edit-review-input-block {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  color: #ffffff;
+  color: #111827;
+}
+
+.edit-review-update-style {
+  display: block;
+  padding: 0.625rem;
+  border-radius: 0.5rem;
+  border-width: 1px;
+  border-color: #D1D5DB;
+  width: 100%;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #111827;
+  background-color: #F9FAFB;
+}
+
 @keyframes fadeInAnimation {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -283,7 +360,7 @@ button {
 
 @media only screen and (min-width: 600px) {
   #search-form {
-    display:flex;
+    display: flex;
     flex-direction: row;
     gap: 16px;
     justify-content: center;
