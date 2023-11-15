@@ -68,6 +68,17 @@
   color: #ffffff;
 }
 
+.form-input {
+  text-align: left; 
+  width: 100%; 
+  padding: 0.625rem; 
+  border-style: solid;
+  border-color: rgb(214 211 209); 
+  border-width: 1px; 
+  border-radius: 6px; 
+  margin-bottom: 48px; 
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
