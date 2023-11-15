@@ -1,0 +1,83 @@
+.add-margin-top {
+    margin-top: 80px;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-grid {
+    display: grid;
+    width: 380px;
+}
+
+@media (min-width: 1024px) {
+    .flex-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+.style-album-data {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #ffffff;
+    width: 380px
+}
+
+.style-album-details {
+    display: inline-block;
+    padding: 1rem;
+    margin: 2.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    max-width: 20rem;
+    height: auto;
+    color: #ffffff;
+    background: rgba(255, 255, 255, .3);
+}
+
+.adjust-img-width {
+    width: 400px;
+}
+
+.style-text {
+    padding: 1rem;
+    color: #ffffff;
+    width: 380px;
+}
+
+.overflow-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 14;
+    -webkit-box-orient: vertical;
+}
+
+.read-more-less {
+    color: #3B82F6;
+}
+
+.read-more-less:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 1024px) {
+    .flex-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .style-album-data {
+        text-align: right;
+    }
+
+    .style-text {
+        width: 33.333333%;
+        display: block;
+    }
+}
