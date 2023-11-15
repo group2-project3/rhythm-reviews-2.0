@@ -6,12 +6,16 @@ const StarRating = ({ rating, onRatingChange, onHoverRatingChange, readOnly }) =
 
   const handleMouseEnter = (star) => {
     setHoveredRating(star);
-    onHoverRatingChange(star);
+    if (onHoverRatingChange) {
+      onHoverRatingChange(star);
+    }
   };
 
   const handleMouseLeave = () => {
     setHoveredRating(0);
-    onHoverRatingChange(null);
+    if (onHoverRatingChange) {
+      onHoverRatingChange(null);
+    }
   };
 
   const handleStarClick = (star) => {

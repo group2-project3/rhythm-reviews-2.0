@@ -6,11 +6,12 @@ const Footer = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-between min-h-screen mt-64">
+      <div className="flex flex-col items-center justify-between mt-64">
         <footer className="fixed bottom-0 items-center w-full py-4 text-center text-white bg-gray-800">
           <div className="flex justify-center space-x-4">
-            <a href="mailto:your-email@example.com" className="text-white">
-              <FaEnvelope size={iconSize} />
+            <a href="https://github.com/group2-project3/rhythm-reviews-2.0" target="_blank" rel="noopener noreferrer" className="text-white">
+              <FaGithub size={iconSize}
+              />
             </a>
             <a href="https://www.facebook.com/your-facebook-page" target="_blank" rel="noopener noreferrer" className="text-white">
               <FaFacebook size={iconSize} />
@@ -21,8 +22,8 @@ const Footer = () => {
             <a href="https://www.instagram.com/your-instagram-account" target="_blank" rel="noopener noreferrer" className="text-white">
               <FaInstagram size={iconSize} />
             </a>
-            <a href="https://github.com/your-github-username" target="_blank" rel="noopener noreferrer" className="text-white">
-              <FaGithub size={iconSize} />
+            <a href="mailto:your-email@example.com" className="text-white">
+              <FaEnvelope size={iconSize} />
             </a>
           </div>
           <p className="mt-4">
