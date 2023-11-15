@@ -56,7 +56,6 @@ button {
 
 .search-button {
   color: white;
-  margin-left: 16px;
   padding: 10px;
   border-radius: 5px;
   border-width: 2px;
@@ -66,6 +65,12 @@ button {
 
 .search-button:hover {
   background-color: #1e67e5;
+}
+
+.search-button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }
 
 .submit-button {
@@ -83,6 +88,15 @@ button {
 
 .submit-button:hover {
   background-color: #1842b8;
+}
+
+#search-form {
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .star-rating button {
@@ -215,9 +229,13 @@ button {
 }
 
 @media only screen and (min-width: 600px) {
-  /* body {
-    background-image: url("../assets/rr-homepage-2.jpg");
-  } */
+  #search-form {
+    display:flex;
+    flex-direction: row;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;  
+  }
 
   .logo {
     display: none;

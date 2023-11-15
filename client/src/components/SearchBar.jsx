@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Auth from '../utils/auth';
 import Logout from "../components/Logout";
-import GoBack from "../components/GoBack";
 import { useLocation } from 'react-router-dom';
 import '../assets/css/style.css';
 
@@ -20,9 +19,14 @@ const SearchBar = () => {
   const handleSearch = (event) => {
     event.preventDefault();
 
-    console.log('searching ', artistName)
     window.location.assign(`/results?artistName=${artistName}`);
   };
+
+  const handleTopSearch = (event) => {
+   
+    window.location.assign(`/topalbums`)
+  };
+
 
   return (
     <>
@@ -39,9 +43,14 @@ const SearchBar = () => {
             }}
             placeholder="Search your favorite artist..."
           />
-          <button className="search-button" type="submit">
-            Search
-          </button>
+          <div className="search-button-container">
+            <button className="search-button" type="submit">
+              Search
+            </button>
+            <button className="search-button" type="button" onClick={handleTopSearch}>
+              Top Albums
+            </button>
+          </div>
         </form>
         <div className="search-container"></div>
         <div className="link-box">
