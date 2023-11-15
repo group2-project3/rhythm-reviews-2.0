@@ -64,18 +64,18 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
                 rows="4"
                 value={reviewContent}
                 onChange={(e) => setReviewContent(e.target.value)}
-                className="form-input-box mb-0"
+                className="form-input-box"
                 placeholder="Your thoughts on the album..."
               ></textarea>
-              <div className="flex justify-between items-center mb-5">
+              <div className="center-container-between">
                 <div>
                   {/* <p className="white-font-color">Rating: {hoveredRating !== null ? hoveredRating : rating}</p> */}
                   <StarRating rating={rating} onRatingChange={setRating} onHoverRatingChange={setHoveredRating} initialRating={selectedRating} />
                 </div>
-                <div className="flex items-center">
+                <div className="add-flex-center left-space">
                   <button
                     id="submit-review"
-                    className="add-review add-review-button text-blue-500"
+                    className="add-review add-review-button"
                     type="submit"
                     onClick={handleAddReview}
                   >
