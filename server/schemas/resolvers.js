@@ -87,6 +87,27 @@ const resolvers = {
         throw error;
       }
     },
+    getTopAlbums: async (parent, args, context) => {
+      const reviews = await Review.find()
+      const albumIds = reviews.map(review => review.idAlbum)
+      console.log(albumIds)
+      const idCounts = albumIds.reduce((acc, id) => {
+        acc[id] = (acc[id] || 0) + 1;
+        return acc;
+      }, {});
+    
+      const sortedIds = Object.keys(idCounts).sort((a, b) => idCounts[b] - idCounts[a]);
+    
+      const topIdALbums = sortedIds.slice(0, 4);
+      console.log(topIdALbums)
+      const albums = []
+      for (let i = 0; i < topIdALbums.length; i++) {
+        const response = await fetch(`${audioDbRootUrl}/album.php?m=${topIdALbums[i]}`, audioDbOptions);
+        const data = await response.json();
+        albums.push(data.album[0])
+      }
+      return albums;
+    },
   },
 
   Mutation: {
@@ -139,7 +160,6 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-
     createReview: async (parent, { title, content, idAlbum, rating }, context) => {
       console.log(title, content, idAlbum, context.req.user);
       if (context.req.user) {

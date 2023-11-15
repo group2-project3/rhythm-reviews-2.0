@@ -11,6 +11,7 @@ import Results from './pages/Results';
 import Album from './pages/Album';
 import AuthGuard from './components/AuthGuard';
 import Auth from './utils/auth';
+import TopAlbums from './pages/TopAlbums';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Homepage />,
+      },
+      {
+        path: '/topalbums',
+        element: <TopAlbums />,
       },
       {
         path: '/createacct',

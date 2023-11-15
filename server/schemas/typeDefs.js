@@ -25,6 +25,7 @@ type Query {
   me: User
   getAlbumsByArtist(artistName: String!): [Album]
   getAlbumById(idAlbum: ID!): Album
+  getTopAlbums: [Album]
 }
 
 type Album {

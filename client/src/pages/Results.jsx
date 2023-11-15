@@ -3,7 +3,6 @@ import { QUERY_ALBUMS_BY_ARTIST } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import SearchBar from "../components/SearchBar";
 import { useLocation } from 'react-router-dom';
-import GoBack from "../components/GoBack";
 // import '../assets/css/style.css';
 import defaultPic from '../assets/defaultPic.png';
 import './Results.css';

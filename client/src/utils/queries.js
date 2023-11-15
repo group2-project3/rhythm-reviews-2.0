@@ -87,3 +87,18 @@ export const QUERY_REVIEWS = gql`
     }
   }
 `;
+
+export const QUERY_GET_TOP_ALBUMS = gql`
+  query GetTopAlbums {
+    getTopAlbums {
+      idAlbum
+      strArtist
+      strAlbum
+      intYearReleased
+      strAlbumThumb
+      strStyle
+      strLabel
+      strDescriptionEN
+    }
+  }
+`;
