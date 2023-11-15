@@ -26,10 +26,10 @@ const TopAlbums = () => {
       <SearchBar />
       </div>
             <div className="container">
-                <div className="">
-                    <div className="">
+                <div >
+                    <div >
                         <h1 className="title">Top Reviewed Albums</h1>
-                        <div className="">
+                        <div >
                             {loading ? (
                                 <div>Loading...</div>
                             ) : (
