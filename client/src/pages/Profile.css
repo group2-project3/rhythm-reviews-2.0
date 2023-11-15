@@ -13,6 +13,10 @@
   color: #ffffff;
 }
 
+.email-div {
+  color: #ffffff;
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
