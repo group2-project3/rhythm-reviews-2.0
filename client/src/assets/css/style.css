@@ -264,6 +264,7 @@ button {
 .edit-review-links {
   padding-left: 0.625rem;
   padding-right: 0.625rem;
+  margin-top: 10px;
   border-radius: 0.25rem;
   border-width: 2px;
   font-size: 0.875rem;
@@ -273,7 +274,7 @@ button {
 }
 
 .edit-review-links:hover {
-  color: #1842b8;
+  color: #12318a;
   text-decoration: underline;
 }
 
@@ -304,9 +305,11 @@ button {
 
 .edit-review-gray-bg {
   border-radius: 9999px;
-  width: 0.75rem;
-  height: 0.75rem;
+  width: 0.5rem;
+  height: 0.5rem;
   background-color: #D1D5DB;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .edit-review-input-block {
@@ -330,6 +333,7 @@ button {
   line-height: 1.25rem;
   color: #111827;
   background-color: #F9FAFB;
+  margin-bottom: 5px;
 }
 
 .search-flex-container {
