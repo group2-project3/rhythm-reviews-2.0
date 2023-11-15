@@ -129,6 +129,44 @@
   background-color: #B91C1C; 
 }
 
+.album-div {
+  display: grid;
+  justify-content: center;
+  margin-top: 0.5rem;
+  width: 67%;
+  flex: 1;
+}
+
+.album-box {
+  display: inline-block; 
+  width: 100%; 
+  height: auto; 
+  max-width: 28rem; 
+  padding: 1rem; 
+  margin: 0.25rem; 
+  color: #ffffff; 
+  border-radius: 0.25rem; 
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.album-head {
+  margin-bottom: 0.5rem; 
+  font-size: 1.5rem;
+  line-height: 2rem; 
+  text-align: center; 
+  color: #ffffff; 
+}
+
+.album-right-div {
+  display: grid; 
+  justify-content: center; 
+  margin-top: 0.5rem; 
+  margin-left: 0.5rem;
+  margin-bottom: auto; 
+  width: 380px;
+  flex: 1;
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
