@@ -72,7 +72,6 @@ const Profile = () => {
   // Check if user is logged in
   useEffect(() => {
     Auth.loggedIn();
-    console.log('data', data);
   }, [data]);
 
   useEffect(() => {

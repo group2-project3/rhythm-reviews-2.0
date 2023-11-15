@@ -90,7 +90,6 @@ const resolvers = {
     getTopAlbums: async (parent, args, context) => {
       const reviews = await Review.find()
       const albumIds = reviews.map(review => review.idAlbum)
-      console.log(albumIds)
       const idCounts = albumIds.reduce((acc, id) => {
         acc[id] = (acc[id] || 0) + 1;
         return acc;
@@ -99,7 +98,7 @@ const resolvers = {
       const sortedIds = Object.keys(idCounts).sort((a, b) => idCounts[b] - idCounts[a]);
     
       const topIdALbums = sortedIds.slice(0, 4);
-      console.log(topIdALbums)
+      
       const albums = []
       for (let i = 0; i < topIdALbums.length; i++) {
         const response = await fetch(`${audioDbRootUrl}/album.php?m=${topIdALbums[i]}`, audioDbOptions);
@@ -143,7 +142,7 @@ const resolvers = {
       }
     },
     updatePassword: async (parent, { currentPassword, newPassword, confirmPassword }, context) => {
-      // console.log(context)
+      
       const user = await User.findOne({ email: context.req.user.email });
       if (!user) {
         throw AuthenticationError('User not found');
@@ -161,9 +160,8 @@ const resolvers = {
       return { token, user };
     },
     createReview: async (parent, { title, content, idAlbum, rating }, context) => {
-      console.log(title, content, idAlbum, context.req.user);
+      
       if (context.req.user) {
-        console.log('REV', context.req.user._id);
         const review = await Review.create({
           title: title,
           content: content,
@@ -212,7 +210,6 @@ const resolvers = {
           if (!review) {
             throw new Error('Review not found');
           }
-    console.log(review)
           // Make sure the user has permission to delete the review
           if (review.user._id.toString() !== context.req.user._id.toString()) {
             throw new Error('You do not have permission to delete this review');
