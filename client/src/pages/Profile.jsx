@@ -157,29 +157,29 @@ const Profile = () => {
 
   return (
     <>
-      <div className="pt-3 results-container">
+      <div className="results-container">
         <SearchBar />
       </div>
 
-      <div className="flex flex-col items-center lg:flex-row mt-64">
-        <div className="grid mb-auto change-account">
-          <h1 className="mb-1 text-2xl text-center text-white">Welcome, {user?.username}!</h1>
-          <div className="text-white">
-            <p className="pt-2 text-center">{user?.email}</p>
+      <div className="content-div">
+        <div className="change-account">
+          <h1 className="user-info-div">Welcome, {user?.username}!</h1>
+          <div className="email-div">
+            <p className="email-p-tag">{user?.email}</p>
           </div>
 
-          <div className="inline-block max-w-lg p-5 mt-2 ml-4 mr-4 text-center rounded w-5/5 bg-white/30 shadow-white-30">
+          <div className="button-div">
             <button
               onClick={toggleChangePasswordForm}
-              className=" text-white py-2.5 px-2.5 mr-3 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+              className="password-button"
             >
               {isChangePasswordOpen ? 'Close Password Editor' : 'Change Password'}
             </button>
             {isChangePasswordOpen && (
               <form onSubmit={handlePasswordChange}>
-                <h2 className="mb-3 text-white"></h2>
-                <div className="mb-3 text-left form-group">
-                  <label htmlFor="currentPassword" className="mb-1 text-white">
+                <h2 className="form-text"></h2>
+                <div className="form-div form-group">
+                  <label htmlFor="currentPassword" className="form-div-text">
                     Current Password:
                   </label>
                   <input
@@ -188,12 +188,12 @@ const Profile = () => {
                     name="currentPassword"
                     value={currentPassword}
                     onChange={(e) => setCurrentPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
-                <div className="mb-3 text-left">
-                  <label htmlFor="newPassword" className="mb-1 text-white">
+                <div className="form-div">
+                  <label htmlFor="newPassword" className="form-div-text">
                     New Password:
                   </label>
                   <input
@@ -202,12 +202,12 @@ const Profile = () => {
                     name="newPassword"
                     value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
-                <div className="mb-3 text-left">
-                  <label htmlFor="confirmPassword" className="mb-1 text-white">
+                <div className="form-div">
+                  <label htmlFor="confirmPassword" className="form-div-text">
                     Confirm New Password:
                   </label>
                   <input
@@ -216,13 +216,13 @@ const Profile = () => {
                     name="confirmPassword"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
                 <button
                   type="submit"
-                  className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-blue-600 hover:bg-blue-700"
+                  className="save-button"
                 >
                   Save New Password
                 </button>
@@ -231,15 +231,15 @@ const Profile = () => {
 
             <button
               onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
-              className="text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+              className="delete-button"
             >
               {isDeleteAccountVisible ? 'Close Delete Account' : 'Delete Account'}
             </button>
             {isDeleteAccountVisible && (
               <form onSubmit={handleDeleteAccount}>
-                <h2 className="mb-3 text-white"></h2>
-                <div className="mb-3 text-left form-group">
-                  <label htmlFor="deleteConfirmation" className="mb-1 text-white">
+                <h2 className="form-text"></h2>
+                <div className="form-div form-group">
+                  <label htmlFor="deleteConfirmation" className="form-div-text">
                     Type "DELETE" to confirm deletion:
                   </label>
                   <input
@@ -248,12 +248,12 @@ const Profile = () => {
                     name="deleteConfirmation"
                     value={deleteAccountConfirmation}
                     onChange={(e) => setDeleteAccountConfirmation(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
-                <div className="mb-3 text-left form-group">
-                  <label htmlFor="password" className="mb-1 text-white">
+                <div className="form-div form-group">
+                  <label htmlFor="password" className="form-div-text">
                     Enter your password to confirm account deletion:
                   </label>
                   <input
@@ -261,13 +261,13 @@ const Profile = () => {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="text-left w-full p-2.5 border-solid border-stone-300 border rounded mb-5 form-control"
+                    className="form-input form-control"
                     required
                   />
                 </div>
                 <button
                   type="submit"
-                  className="mb-5 text-white py-2.5 px-2.5 rounded border-2 border-white bg-red-600 hover:bg-red-700"
+                  className="delete-account-button"
                 >
                   Delete Account
                 </button>
@@ -276,10 +276,10 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="grid justify-center mt-2" style={{ width: '67%', flex: '1' }}>
-          <div className="inline-block w-full h-auto max-w-md p-4 m-1 text-white rounded bg-white/30">
+        <div className="album-div">
+          <div className="album-box">
             <div>
-              <h2 className="mb-2 text-2xl text-center text-white">Your Reviews</h2>
+              <h2 className="album-head">Your Reviews</h2>
               <ul>
                 {data?.getUserProfile.savedReviews.map((review) => (
                   <EditReview
@@ -293,7 +293,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="grid justify-center mt-2 mb-auto ml-2" style={{ width: '380px', flex: '1' }}>
+        <div className="album-right-div">
         </div>
       </div>
       <Modal
@@ -303,16 +303,16 @@ const Profile = () => {
         className="modal-overlay"
       >
         <div className="modal-container">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Success</h3>
-          <div className="p-4 md:p-5 space-y-4">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          <h3 className="model-h-tag">Success</h3>
+          <div className="model-div">
+            <p className="model-text">
               Password updated successfully!
             </p>
           </div>
-          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <div className="model-update-div">
             <button
               onClick={closePasswordUpdatedModal}
-              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="close-button model-button"
               type="button"
             >
               Close
@@ -327,16 +327,16 @@ const Profile = () => {
         className="modal-overlay"
       >
         <div className="modal-container">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Oops</h3>
-          <div className="p-4 md:p-5 space-y-4">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          <h3 className="model-h-tag">Oops</h3>
+          <div className="model-div">
+            <p className="model-text">
               {modalErrorMessage}
             </p>
           </div>
-          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <div className="model-update-div">
             <button
               onClick={closeModal}
-              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="close-button model-button"
               type="button"
             >
               Close
@@ -351,16 +351,16 @@ const Profile = () => {
         className="modal-overlay"
       >
         <div className="modal-container">
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Success</h3>
-          <div className="p-4 md:p-5 space-y-4">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+          <h3 className="model-h-tag">Success</h3>
+          <div className="model-div">
+            <p className="model-text">
               {modalSuccessMessage}
             </p>
           </div>
-          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+          <div className="model-update-div">
             <button
               onClick={closeModal}
-              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="close-button model-button"
               type="button"
             >
               Close
