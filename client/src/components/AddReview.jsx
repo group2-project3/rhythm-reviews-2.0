@@ -69,10 +69,9 @@ const AddReview = ({ idAlbum, onAdd, selectedRating }) => {
               ></textarea>
               <div className="center-container-between">
                 <div>
-                  {/* <p className="white-font-color">Rating: {hoveredRating !== null ? hoveredRating : rating}</p> */}
                   <StarRating rating={rating} onRatingChange={setRating} onHoverRatingChange={setHoveredRating} initialRating={selectedRating} />
                 </div>
-                <div className="add-flex-center left-space">
+                <div className="add-margin-submit-button">
                   <button
                     id="submit-review"
                     className="add-review add-review-button"
