@@ -167,6 +167,17 @@
   flex: 1;
 }
 
+.model-h-tag {
+  font-size: 1.25rem;
+  line-height: 1.75rem; 
+  font-weight: 600; 
+  color: #333; 
+}
+
+body.dark-mode .model-h-tag {
+  color: white;
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
