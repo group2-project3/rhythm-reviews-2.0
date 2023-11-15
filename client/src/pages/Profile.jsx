@@ -321,7 +321,7 @@ const Profile = () => {
         </div>
       </Modal>
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={modalIsOpen && !!modalErrorMessage}
         onRequestClose={closeModal}
         contentLabel="Error Modal"
         className="modal-overlay"
@@ -345,9 +345,9 @@ const Profile = () => {
         </div>
       </Modal>
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={modalIsOpen && !!modalSuccessMessage}
         onRequestClose={closeModal}
-        contentLabel="Error Modal"
+        contentLabel="Success Modal"
         className="modal-overlay"
       >
         <div className="modal-container">
