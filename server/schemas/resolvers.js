@@ -146,11 +146,11 @@ const resolvers = {
       // console.log(context)
       const user = await User.findOne({ email: context.req.user.email });
       if (!user) {
-        throw AuthenticationError;
+        throw AuthenticationError('User not found');
       }
       const correctPw = await user.isCorrectPassword(currentPassword);
       if (!correctPw) {
-        throw AuthenticationError;
+        throw AuthenticationError('Incorrect password');
       }
       if (newPassword !== confirmPassword) {
         throw AuthenticationError;
