@@ -21,6 +21,7 @@ const Profile = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalErrorMessage, setModalErrorMessage] = useState('');
+  const [modalSuccessMessage, setModalSuccessMessage] = useState('');
 
   const { loading, error, data, refetch } = useQuery(userProfileQuery);
   const user = data?.getUserProfile;
@@ -59,6 +60,12 @@ const Profile = () => {
     setModalIsOpen(false);
     setErrorMessage('');
   };
+
+  useEffect(() => {
+    if (modalSuccessMessage) {
+      openSuccessModal(modalSuccessMessage);
+    }
+  }, [modalSuccessMessage]);
 
 
   // Check if user is logged in
@@ -112,12 +119,14 @@ const Profile = () => {
     }
 
     if (deleteAccountConfirmation !== "DELETE") {
-      alert('Please type "DELETE" to confirm account deletion.');
+      setModalErrorMessage('Please type "DELETE" to confirm account deletion.');
+      openModal(errorMessage);
       return;
     }
 
     if (!password) {
-      alert('Password is required to delete your account.');
+      setModalErrorMessage('Password is required to delete your account.');
+      openModal(errorMessage);
       return;
     }
 
@@ -129,15 +138,17 @@ const Profile = () => {
       });
 
       if (data.deleteAccount.success) {
-        alert(data.deleteAccount.message);
+        setModalSuccessMessage(data.deleteAccount.message);
         Auth.removeToken();
         navigate("/login");
       } else {
-        alert('Account deletion failed. ' + data.deleteAccount.message);
+        setModalErrorMessage('Account deletion failed. ' + data.deleteAccount.message);
+        openModal(errorMessage);
       }
     } catch (err) {
       console.error(err);
-      alert("Something went wrong. Please try again!");
+      setModalErrorMessage("Something went wrong. Did you type in the correct password? Please try again!");
+      openModal(errorMessage);
     }
   };
 
@@ -315,10 +326,34 @@ const Profile = () => {
   className="modal-overlay"
 >
   <div className="modal-container">
-    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Error</h3>
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Oops</h3>
     <div className="p-4 md:p-5 space-y-4">
       <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
         {modalErrorMessage}
+      </p>
+    </div>
+    <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+      <button
+        onClick={closeModal}
+        className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</Modal>
+<Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  contentLabel="Error Modal"
+  className="modal-overlay"
+>
+  <div className="modal-container">
+    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Success</h3>
+    <div className="p-4 md:p-5 space-y-4">
+      <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+        {modalSuccessMessage}
       </p>
     </div>
     <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
