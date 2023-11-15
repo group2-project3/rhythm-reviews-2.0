@@ -7,6 +7,7 @@ import Helpers from '../utils/helpers';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALBUM_BY_ID } from '../utils/queries';
 import defaultPic from '../assets/defaultPic.png';
+import '../assets/css/style.css';
 
 const EditReview = (props) => {
   const { data: album } = useQuery(QUERY_ALBUM_BY_ID, {
@@ -103,33 +104,33 @@ const EditReview = (props) => {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="submit-container">
         {props.review.user?.username === (Auth.loggedIn() ? Auth.getProfile()?.data.username : null) ? (
           <>
             {editing ? (
-              <div className="review-form w-[450px]">
+              <div className="review-form adjust-width">
                 <div
                   key={props.review._id}
-                  className="mt-4 text-lg text-white"
+                  className="edit-review-text"
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
-                  <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
-                        <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
-                        <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-                        <p className="ml-2 text-sm text-gray-300">{Helpers.formatDate(props.review.date)}</p>
+                  <div className="edit-review-input">
+                    <div className="center-container-between align-center">
+                      <div className="center-container">
+                        <p className="edit-review-adjust-m-left small-gray-font">{props.review.user?.username}</p>
+                        <div className="edit-review-gray-bg"></div>
+                        <p className="edit-review-adjust-m-right small-gray-font">{Helpers.formatDate(props.review.date)}</p>
                       </div>
                     </div>
                     <form>
-                      <label htmlFor="edit-review-title" className="block mb-2 text-sm font-medium text-white text-gray-900">
+                      <label htmlFor="edit-review-title" className="edit-review-input-block">
                       </label>
                       <input
                         id="edit-review-title"
                         type="text"
                         value={updatedReviewTitle}
                         onChange={(e) => setUpdatedReviewTitle(e.target.value)}
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="edit-review-update-style"
                         placeholder={props.review.title}
                       />
                       <textarea
@@ -138,28 +139,28 @@ const EditReview = (props) => {
                         rows="4"
                         value={updatedReviewContent}
                         onChange={(e) => setUpdatedReviewContent(e.target.value)}
-                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mt-3"
+                        className="edit-review-update-style"
                         placeholder={props.review.content}
                       ></textarea>
                       <div>
                         <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
                       </div>
                     </form>
-                    <div className="flex items-center justify-end">
+                    <div className="center-container justify-end">
                       <button
-                        className="delete-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2 "
+                        className="delete-review edit-review-links"
                         onClick={() => handleCancelEditReview(props.review._id)}
                       >
                         Cancel
                       </button>
                       <button
-                        className="delete-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2 "
+                        className="delete-review edit-review-links"
                         onClick={() => handleDeleteReview(props.review._id)}
                       >
                         Delete
                       </button>
                       <button
-                        className="update-review text-sm text-blue-500 hover:underline px-2.5 rounded border-2"
+                        className="update-review edit-review-links"
                         onClick={() => handleUpdateReview(props.review._id)}
                       >
                         Update
@@ -169,52 +170,52 @@ const EditReview = (props) => {
                 </div>
               </div>
             ) : (
-              <div className="review-form w-[450px]">
+              <div className="review-form adjust-width">
                 <div
                   key={props.review._id}
-                  className="mt-4 text-lg text-white"
+                  className="edit-review-text"
                   style={{ minWidth: '400px', maxWidth: '750px' }}
                 >
-                  <div className="px-3 py-3 mt-1 text-black border-2 rounded-md bg-white/30">
+                  <div className="edit-review-input">
                     {props.profileView && (
                       <div>
                         <a href={`/album/${album?.getAlbumById.idAlbum}`}>
                           <img
                             style={{ marginLeft: 'auto', marginRight: 'auto', display: 'block' }}
-                            className="w-[125px]"
+                            className="edit-review-adjust-width"
                             src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
                             alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                           />
                         </a>
-                        <div className="text-white grow justify-self-stretch">
+                        <div className="edit-review-stretch-text">
                           <p style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>{album?.getAlbumById.strArtist}</p>
                           <p style={{ fontWeight: '1.15rem' }}>{album?.getAlbumById.strAlbum}</p>
                         </div>
                       </div>
                     )}
 
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
+                    <div className="center-container-between">
+                      <div className="center-container">
                         {!props.profileView && (
-                          <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
+                          <p className="edit-review-adjust-m-left small-gray-font">{props.review.user?.username}</p>
                         )}
-                        <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-                        <p className="ml-2 text-sm text-gray-300">{Helpers.formatDate(props.review.date)}</p>
+                        <div className="edit-review-gray-bg"></div>
+                        <p className="edit-review-adjust-m-left small-gray-font">{Helpers.formatDate(props.review.date)}</p>
                       </div>
-                      <div className="ml-auto">
+                      <div className="edit-review-adjust-ml-auto">
                         <StarRating rating={updatedRating} onRatingChange={setUpdatedRating} />
                       </div>
                     </div>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
+                    <div className="center-container-between">
+                      <div className="center-container">
                         <p className="text-white text-md">
                           <span className="font-bold">{props.review.title}:</span> {props.review.content}
                         </p>
                       </div>
                     </div>
-                    <div className="flex items-center justify-end">
+                    <div className="center-container justify-end">
                       <button
-                        className="text-sm text-blue-500 update-review hover:underline"
+                        className="update-review edit-review-links"
                         onClick={() => handleEditReview(props.review._id)}
                       >
                         Edit
@@ -226,38 +227,38 @@ const EditReview = (props) => {
             )}
           </>
         ) : (
-          <div className="review-form w-[450px]">
+          <div className="review-form adjust-width">
             <div
               key={props.review._id}
-              className="mt-4 text-lg text-white"
+              className="edit-review-text"
               style={{ minWidth: '400px', maxWidth: '750px' }}
             >
-              <div className="px-3 py-3 mt-1 text-white border-2 rounded-md bg-white/30">
+              <div className="edit-review-input">
                 {props.profileView && (
                   <img
-                    className="w-[400px]"
+                    className="edit-review-adjust-width-400"
                     src={album?.getAlbumById.strAlbumThumb !== null ? album?.getAlbumById.strAlbumThumb : defaultPic}
                     alt={`${album?.getAlbumById.strArtist} - ${album?.getAlbumById.strAlbum}`}
                   />
                 )}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
-                    <p className="mr-2 text-sm text-gray-300">{props.review.user?.username}</p>
-                    <div className="w-3 h-3 bg-gray-300 rounded-full"></div>
-                    <p className="ml-2 text-sm text-gray-300">{Helpers.formatDate(props.review.date)}</p>
+                <div className="center-container-between">
+                  <div className="center-container">
+                    <p className="edit-review-adjust-m-left small-gray-font">{props.review.user?.username}</p>
+                    <div className="edit-review-gray-bg"></div>
+                    <p className="ml-2 small-gray-font">{Helpers.formatDate(props.review.date)}</p>
                   </div>
-                  <div className="ml-auto">
+                  <div className="edit-review-adjust-ml-auto">
                     <StarRating rating={props.review.rating} readOnly />
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center">
+                <div className="center-container-between">
+                  <div className="center-container">
                     <p className="text-white text-md">
                       <span className="font-bold">{props.review.title}:</span> {props.review.content}
                     </p>
                   </div>
                 </div>
-                <div className="flex items-center justify-between"></div>
+                <div className="center-container-between"></div>
               </div>
             </div>
           </div>
