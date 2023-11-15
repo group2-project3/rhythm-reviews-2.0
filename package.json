@@ -28,6 +28,7 @@
     "prop-types": "^15.8.1",
     "react-animate-on-change": "^2.2.0",
     "react-icons": "^4.12.0",
+    "react-modal": "^3.16.1",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^6.18.0"
   }

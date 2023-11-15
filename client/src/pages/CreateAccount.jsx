@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import '../assets/css/modal.css';
 import { useMutation } from '@apollo/client';
 import { REGISTER_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
 import GoBack from '../components/GoBack';
 import './CreateAccount.css';
 
+
+Modal.setAppElement('#root');
+
 const CreateAccount = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [registerUser, { loading, error }] = useMutation(REGISTER_USER);
 
@@ -16,6 +23,16 @@ const CreateAccount = () => {
   useEffect(() => {
     Auth.loggedIn();
   }, []);
+
+  const openModal = (message) => {
+    setModalIsOpen(true);
+    setErrorMessage(message);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setErrorMessage('');
+  };
 
   const signupFormHandler = async (event) => {
     event.preventDefault();
@@ -30,14 +47,14 @@ const CreateAccount = () => {
           Auth.login(data.registerUser.token);
           document.location.replace('/');
         } else {
-          alert('Failed to signup');
+          openModal('Failed to signup');
         }
       } catch (error) {
         console.error('Error during signup:', error);
-        alert('Failed to signup. Please try again.');
+        openModal('Failed to signup. Please try again.');
       }
     } else {
-      alert('Please fill in all fields');
+      openModal('Please fill in all fields');
     }
   };
 
@@ -108,6 +125,33 @@ const CreateAccount = () => {
             <GoBack />
           </div>
         </form>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          contentLabel="Error Modal"
+          className="modal-overlay"
+        >
+          <div className="modal-container">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+              Oops
+            </h3>
+            <div className="p-4 md:p-5 space-y-4">
+              <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                {errorMessage}
+              </p>
+            </div>
+            <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+              <button
+                onClick={closeModal}
+                className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                type="button"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </Modal>
+
       </div>
     </div>
   );
