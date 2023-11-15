@@ -16,6 +16,13 @@ h1.title {
 }
 
 #top-albums-container {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+@media screen and (min-width: 600px) {
+    #top-albums-container {
+        flex-direction: row;
+    }
 }
