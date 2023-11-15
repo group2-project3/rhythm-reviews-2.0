@@ -165,7 +165,7 @@ const Profile = () => {
         <div className="change-account">
           <h1 className="user-info-div">Welcome, {user?.username}!</h1>
           <div className="email-div">
-            <p className="pt-2 text-center">{user?.email}</p>
+            <p className="email-p-tag">{user?.email}</p>
           </div>
 
           <div className="inline-block max-w-lg p-5 mt-2 ml-4 mr-4 text-center rounded w-5/5 bg-white/30 shadow-white-30">
