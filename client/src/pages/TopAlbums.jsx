@@ -34,8 +34,7 @@ const TopAlbums = () => {
                             {loading ? (
                                 <div>Loading...</div>
                             ) : (
-                                <div className="margin-space search-container">
-                                <div className="add-flex-container" id="top-albums-container">
+                                <div id="top-albums-container">
                                 {data.getTopAlbums.map((album, index) => (
                                     <div key={album.idAlbum} className="style-albums" onClick={() => handleAlbumClick(album)}>
                                         <div className="number">#{index+1}</div>
@@ -45,7 +44,6 @@ const TopAlbums = () => {
                                         <img src={album.strAlbumThumb !== null ? album.strAlbumThumb : defaultPic} alt={`${album.strArtist} - ${album.strAlbum}`} />
                                     </div>
                                 ))}
-                                </div>
                                 </div>
                             )}
                         </div>
