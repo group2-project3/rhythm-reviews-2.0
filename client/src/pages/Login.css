@@ -1,0 +1,102 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20rem;
+}
+
+.login-title {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    margin-left: 2px;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.red-warning-text {
+    color: rgb(220 38 38);
+}
+
+.hidden {
+    display: none;
+}
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.align-font {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    max-width: 32rem;
+    padding: 1.5rem;
+    margin-bottom: 0.625rem;
+}
+
+.adjust-bottom-margin {
+    margin-bottom: 0.5rem;
+}
+
+.white-font-color {
+    color: white;
+}
+
+.form-input-box {
+    width: 100%;
+    padding: 0.625rem;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(214 211 209);
+    margin-bottom: 0.75rem;
+}
+
+.add-flex-center {
+    display: flex;
+    margin-left: 10px;
+}
+
+.larger-margin-bottom {
+    margin-bottom: 3rem;
+}
+
+.login-button {
+    padding: 8px 16px 8px 16px;
+    margin-top: 10px;
+    margin-bottom: 45px;
+    color: white;
+    background-color: #1e67e5;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
+
+}
+
+.login-button:hover {
+    background-color: #1842b8;
+}
+
+.small-white-text {
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    text-align: center;
+}
+
+.create-account-link {
+    margin-left: 0.5rem;
+    text-align: center;
+    text-decoration: underline;
+    text-underline-offset: 1px;
+}
+
+.create-account-link:hover {
+    color: #1e67e5;
+}

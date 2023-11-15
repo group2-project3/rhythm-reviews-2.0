@@ -1,19 +1,3 @@
-# Rhythm Reviews 2.0
-
-## Table of Contents
-+ [Description](#description)
-+ [User Story](#userstory)
-+ [Acceptance Criteria](#acceptance)
-+ [Installation](#installation)
-+ [Usage](#usage)
-+ [License](#license)
-+ [Video & Screenshots](#screenshots)
-+ [Contact Me](#contact)
-+ [Notes](#notes)
-##
-
-<a id='description'></a>
-## Description
 
 As a current student, I wanted to create a music review app that would help a user to add/remove/update reviews of music albums.  The Rhythm Reviews app would store necessary information and allow the user to save it and adjust their reviews accordingly.
 ##
@@ -97,3 +81,6 @@ GitHub URL: https://github.com/group7-project2/rhythm-reviews
 Background image courtesy of [cottonbro studio](https://www.pexels.com/photo/close-up-of-a-man-wearing-eyeglasses-listening-to-music-6700117/)
 
 By: Ashley Zemina, Gil Rosario, Jen Stemkowski, Jason Torrealba, Florian Kreuk
+=======
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

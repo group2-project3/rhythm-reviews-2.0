@@ -1,0 +1,39 @@
+.modal-overlay {
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000; /* Ensure the modal overlay is on top of other elements */
+  }
+  
+  .modal-container {
+    background-color: #fff; /* Background color for the modal */
+    border-radius: 8px; /* Adjust as needed */
+    max-width:40%; /* Adjust as needed */
+    max-height: 40%; /* Adjust as needed */
+    overflow: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .close-button {
+    background-color: #1e67e5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #1758c9;
+  }
