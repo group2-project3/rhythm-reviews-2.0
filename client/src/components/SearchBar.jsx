@@ -23,14 +23,14 @@ const SearchBar = () => {
   };
 
   const handleTopSearch = (event) => {
-   
+
     window.location.assign(`/topalbums`)
   };
 
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center">
+      <div className="search-flex-container">
         <form id="search-form" onSubmit={handleSearch} action="/api/reviews/artist-search" method="GET">
           <input
             id="search-input"
