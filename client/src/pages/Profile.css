@@ -52,6 +52,11 @@
   background-color: #1D4ED8; 
 }
 
+.password-text {
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
 @media only screen and (min-width: 1397px) {
   .change-account {
     width: 33%;
@@ -67,7 +72,6 @@
     flex-direction: row;
   }
 }
-
 
 @media only screen and (min-width: 768px) {
   .change-account {
