@@ -8,6 +8,9 @@ import { useQuery } from '@apollo/client';
 import { QUERY_ALBUM_BY_ID } from '../utils/queries';
 import defaultPic from '../assets/defaultPic.png';
 import '../assets/css/style.css';
+import Modal from 'react-modal';
+import '../assets/css/modal.css';
+
 
 const EditReview = (props) => {
   const { data: album } = useQuery(QUERY_ALBUM_BY_ID, {
@@ -20,6 +23,32 @@ const EditReview = (props) => {
 
   const [deleteReview] = useMutation(DELETE_REVIEW);
   const [updateReview] = useMutation(UPDATE_REVIEW);
+
+  const [modalErrorMessage, setModalErrorMessage] = useState('');
+  const [modalSuccessMessage, setModalSuccessMessage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = (message) => {
+    setModalIsOpen(true);
+    setModalErrorMessage(message);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setModalErrorMessage('');
+    setModalSuccessMessage('');
+  };
+
+  const openSuccessModal = (message) => {
+    setModalIsOpen(true);
+    setModalSuccessMessage(message);
+  };
+
+  useEffect(() => {
+    if (modalErrorMessage || modalSuccessMessage) {
+      openModal(modalErrorMessage || modalSuccessMessage);
+    }
+  }, [modalErrorMessage, modalSuccessMessage]);
 
   useEffect(() => {
     // Update the rating when the review's rating changes
@@ -62,6 +91,7 @@ const EditReview = (props) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
+      console.error('Authentication token not available.');
       return false;
     }
 
@@ -69,9 +99,28 @@ const EditReview = (props) => {
       const { data } = await deleteReview({
         variables: { reviewId },
       });
-      props.onDelete();
+
+      if (data && data.deleteReview) {
+        console.log("Review deleted successfully");
+        setModalSuccessMessage('Review deleted successfully');
+        openSuccessModal();
+        props.onDelete();
+
+      } else {
+        console.error('Error deleting the review. Please try again.');
+        setModalErrorMessage('Error deleting the review. Please try again.');
+        openModal();
+      }
     } catch (e) {
-      console.error(e);
+      if (error.message.includes('Not authorized')) {
+        console.error('You are not authorized to delete this review.');
+        setModalErrorMessage('You are not authorized to delete this review.');
+        openModal();
+      } else {
+        console.error('An error occurred while deleting the review.', error);
+        setModalErrorMessage('An error occurred while deleting the review.');
+        openModal();
+      }
     }
   };
 
@@ -80,6 +129,13 @@ const EditReview = (props) => {
 
     if (!token) {
       return false;
+    }
+    
+    if (!updatedReviewTitle || !updatedReviewContent || !updatedRating) {
+      console.error('Please fill in all required fields.');
+      setModalErrorMessage('Please fill in all required fields.');
+      openModal();
+      return;
     }
 
     try {
@@ -95,10 +151,21 @@ const EditReview = (props) => {
           rating: updatedRating,
         },
       });
+      if (data) {
+        console.log('Review updated successfully');
+        setModalSuccessMessage('Review updated successfully');
+        openSuccessModal();
+      } else {
+        console.error('No data returned after updating the review.');
+        setModalErrorMessage('No data returned after updating the review.');
+        openModal();
+      }
       setEditing(false);
       props.onDelete();
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      console.error('An error occurred while updating the review.', error);
+      setModalErrorMessage('An error occurred while updating the review.', error);
+        openModal();
     }
   };
 
@@ -264,6 +331,54 @@ const EditReview = (props) => {
           </div>
         )}
       </div>
+      <Modal
+        isOpen={modalIsOpen && !!modalErrorMessage}
+        onRequestClose={closeModal}
+        contentLabel="Error Modal"
+        className="modal-overlay"
+      >
+        <div className="modal-container">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Oops</h3>
+          <div className="p-4 md:p-5 space-y-4">
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              {modalErrorMessage}
+            </p>
+          </div>
+          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button
+              onClick={closeModal}
+              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={modalIsOpen && !!modalSuccessMessage}
+        onRequestClose={closeModal}
+        contentLabel="Success Modal"
+        className="modal-overlay"
+      >
+        <div className="modal-container">
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Success</h3>
+          <div className="p-4 md:p-5 space-y-4">
+            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              {modalSuccessMessage}
+            </p>
+          </div>
+          <div className="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <button
+              onClick={closeModal}
+              className="close-button block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
