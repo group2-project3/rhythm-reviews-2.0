@@ -40,7 +40,7 @@ const Album = () => {
 
   return (
     <>
-      <div className="add-margin-top">
+      <div className="results-container">
         <SearchBar />
       </div>
 

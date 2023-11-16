@@ -99,6 +99,7 @@ const Profile = () => {
         },
       });
       openPasswordUpdatedModal("Password updated successfully!");
+      setChangePasswordOpen(!isChangePasswordOpen);
     } catch (err) {
       console.error(err);
       setModalErrorMessage("Something went wrong. Confirm you are entering your current password and the updated passwords match.");

@@ -92,6 +92,10 @@ button {
   background-color: #1842b8;
 }
 
+.add-margin-submit-button {
+  margin-left: auto;
+}
+
 .add-review-button {
   padding: 8px 16px 8px 16px;
   margin-top: 10px;

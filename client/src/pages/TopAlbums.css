@@ -1,13 +1,23 @@
-.add-margin-top {
-    margin-top: 50px;
-}
+.results-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 1rem;
+    width: 100%;
+    background: rgba(255, 255, 255, .3);
+  }
+
+  .margin-space {
+    margin-top: 8rem;
+  }
 
 h1.title {
     font-size: 3rem;
     font-weight: 700;
     color: white;
     text-align: center;
-    margin-bottom: 20px;
+    padding: 50px 0 50px 0;
 }
 
 .number {
