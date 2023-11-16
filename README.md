@@ -62,11 +62,11 @@ This app is meant to help the user quickly and easily add/update reviews on the 
 <a id='screenshots'></a>
 ## Screenshots:
 
-![](./assets/login.png) <br>
+![](./client/src/assets/login.png) <br>
 *This is a screenshot of the login page*
 ##
 
-![](./assets/search-results.png) <br>
+![](./client/src/assets/search-results.png) <br>
 *This is a screenshot of search results populated*
 ##
 
