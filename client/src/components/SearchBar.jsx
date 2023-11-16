@@ -3,6 +3,8 @@ import Auth from '../utils/auth';
 import Logout from "../components/Logout";
 import { useLocation } from 'react-router-dom';
 import '../assets/css/style.css';
+import Modal from "react-modal";
+import '../assets/css/modal.css';
 
 
 const SearchBar = () => {
@@ -11,6 +13,22 @@ const SearchBar = () => {
   const location = useLocation();
   const currentPage = location.pathname;
 
+  const [modalErrorMessage, setModalErrorMessage] = useState('');
+  const [modalSuccessMessage, setModalSuccessMessage] = useState('');
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const openModal = (errorMessage, successMessage) => {
+    setModalIsOpen(true);
+    setModalErrorMessage(errorMessage);
+    setModalSuccessMessage(successMessage);
+  };
+
+  const closeModal = () => {
+    setModalIsOpen(false);
+    setModalErrorMessage('');
+    setModalSuccessMessage('');
+  };
+
   // Check if user is logged in
   useEffect(() => {
     Auth.loggedIn();
@@ -18,6 +36,11 @@ const SearchBar = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
+
+    if (!artistName) {
+      openModal("Artist name is empty. Please enter an artist name.");
+      return;
+    }
 
     window.location.assign(`/results?artistName=${artistName}`);
   };
@@ -78,6 +101,30 @@ const SearchBar = () => {
             </>
           )}
         </div>
+        <Modal
+        isOpen={modalIsOpen && !!modalErrorMessage}
+        onRequestClose={closeModal}
+        contentLabel="Error Modal"
+        className="modal-overlay"
+      >
+        <div className="modal-container">
+          <h3 className="model-h-tag">Oops</h3>
+          <div className="model-div">
+            <p className="model-text">
+              {modalErrorMessage}
+            </p>
+          </div>
+          <div className="model-update-div">
+            <button
+              onClick={closeModal}
+              className="close-button model-button"
+              type="button"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </Modal>
       </div>
     </>
   )
