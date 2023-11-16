@@ -167,10 +167,10 @@ const Profile = () => {
             <p className="email-p-tag">{user?.email}</p>
           </div>
 
-          <div className="button-div">
+          <div className="button-div m">
             <button
               onClick={toggleChangePasswordForm}
-              className="password-button"
+              className="delete-button"
             >
               {isChangePasswordOpen ? 'Close Password Editor' : 'Change Password'}
             </button>
@@ -230,9 +230,9 @@ const Profile = () => {
 
             <button
               onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
-              className="delete-button"
+              className="delete-button mb-2 mt-3 ml-1"
             >
-              {isDeleteAccountVisible ? 'Close Delete Account' : 'Delete Account'}
+              {isDeleteAccountVisible ? 'Close Delete Account Editor' : 'Delete Account'}
             </button>
             {isDeleteAccountVisible && (
               <form onSubmit={handleDeleteAccount}>
@@ -251,16 +251,16 @@ const Profile = () => {
                     required
                   />
                 </div>
-                <div className="form-div form-group">
+                <div className="form-div form-group mt-0">
                   <label htmlFor="password" className="form-div-text">
-                    Enter your password to confirm account deletion:
+                    Enter password to confirm deletion:
                   </label>
                   <input
                     type="password"
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="form-input form-control"
+                    className="form-input form-control mb-2 mt-0"
                     required
                   />
                 </div>

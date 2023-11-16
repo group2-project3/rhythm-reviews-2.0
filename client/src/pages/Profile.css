@@ -54,12 +54,12 @@
 }
 
 .form-text {
-  margin-bottom: 0.75rem;
+  
   color: #ffffff;
 }
 
 .form-div {
-  margin-bottom: 0.75rem; 
+  
   text-align: left; 
 }
 
@@ -103,13 +103,13 @@
   padding-left: 0.625rem;
   padding-right: 0.625rem; 
   border-radius: 0.25rem; 
-  border-width: 2px; 
-  border-color: #ffffff; 
-  background-color: #DC2626; 
+  border-width: 4px; 
+  border-color:rgba(255, 255, 255, 0.3);; 
+  background-color: orange; 
 }
 
 .delete-button:hover {
-  background-color: #B91C1C; 
+  background-color: rgb(171, 115, 9); 
 }
 
 .delete-account-button {
