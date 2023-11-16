@@ -1,5 +1,21 @@
+# Rhythm Reviews 2.0
 
-As a current student, I wanted to create a music review app that would help a user to add/remove/update reviews of music albums.  The Rhythm Reviews app would store necessary information and allow the user to save it and adjust their reviews accordingly.
+## Table of Contents
++ [Description](#description)
++ [User Story](#userstory)
++ [Acceptance Criteria](#acceptance)
++ [Installation](#installation)
++ [Usage](#usage)
++ [License](#license)
++ [Video & Screenshots](#screenshots)
++ [Contact Me](#contact)
++ [Notes](#notes)
+##
+
+<a id='description'></a>
+## Description
+
+As a current student, I wanted to create a music review app that would help a user to add/remove/update reviews of music albums.  The Rhythm Reviews 2.0 app would store necessary information and allow the user to save it and adjust their reviews accordingly.
 ##
 
 <a id='userstory'></a>
@@ -48,7 +64,7 @@ THEN I am signed out of the site\
 <a id='installation'></a>
 ## Installation
 There is no need to install anything, please use the link to the deployed app.\
-[Rhythm Reviews](https://rhythm-reviews-v2-a30efa7f58da.herokuapp.com/)
+[Rhythm Reviews 2.0](https://rhythm-reviews-v2-a30efa7f58da.herokuapp.com/)
 ##
 
 <a id='usage'></a>
@@ -62,18 +78,18 @@ This app is meant to help the user quickly and easily add/update reviews on the 
 <a id='screenshots'></a>
 ## Screenshots:
 
-![](./client/src/assets/login.png) <br>
-*This is a screenshot of the login page*
+![](https://github.com/group2-project3/rhythm-reviews-2.0/blob/main/client/public/top-albums.png) <br>
+*This is a screenshot of the top reviewed albums page*
 ##
 
-![](./client/src/assets/search-results.png) <br>
-*This is a screenshot of search results populated*
+![](https://github.com/group2-project3/rhythm-reviews-2.0/blob/main/client/public/star-rating.png) <br>
+*This is a screenshot of star rating and adding a review*
 ##
 
 <a id='contact'></a>
 ## Contact Me
 To contact us connect through our github repo <br>
-GitHub URL: https://github.com/group7-project2/rhythm-reviews
+GitHub URL: https://github.com/group2-project3/rhythm-reviews-2.0
 
 ##
 <a id='notes'></a>
@@ -81,6 +97,3 @@ GitHub URL: https://github.com/group7-project2/rhythm-reviews
 Background image courtesy of [cottonbro studio](https://www.pexels.com/photo/close-up-of-a-man-wearing-eyeglasses-listening-to-music-6700117/)
 
 By: Ashley Zemina, Gil Rosario, Jen Stemkowski, Jason Torrealba, Florian Kreuk
-=======
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
