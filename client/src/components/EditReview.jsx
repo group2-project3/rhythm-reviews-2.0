@@ -7,7 +7,7 @@ import StarRating from './StarRating';
 import Helpers from '../utils/helpers';
 import { useQuery } from '@apollo/client';
 import { QUERY_ALBUM_BY_ID } from '../utils/queries';
-import defaultPic from '../assets/defaultPic.png';
+import defaultPic from '../assets/DefaultPic.png';
 import '../assets/css/style.css';
 import Modal from 'react-modal';
 import '../assets/css/modal.css';

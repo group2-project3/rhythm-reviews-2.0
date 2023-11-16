@@ -7,7 +7,7 @@ import { QUERY_ALBUMS_BY_ARTIST, QUERY_REVIEWS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import SearchBar from "../components/SearchBar";
 import { useLocation } from 'react-router-dom';
-import defaultPic from '../assets/defaultPic.png';
+import defaultPic from '../assets/DefaultPic.png';
 import StarRating from '../components/StarRating'; // Import the StarRating component
 import './Results.css';
 
