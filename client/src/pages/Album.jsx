@@ -7,7 +7,7 @@ import { QUERY_ALBUM_BY_ID } from '../utils/queries';
 import SearchBar from '../components/SearchBar';
 import AddReview from '../components/AddReview';
 import EditReview from '../components/EditReview';
-import defaultPic from '../assets/defaultPic.png';
+import defaultPic from '../assets/DefaultPic.png';
 import './Album.css';
 
 const Album = () => {
