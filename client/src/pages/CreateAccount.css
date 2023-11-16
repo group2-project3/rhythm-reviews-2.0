@@ -1,3 +1,5 @@
+/* Buttons */
+
 .search-button {
     color: white;
     padding: 10px;
@@ -28,9 +30,7 @@
     background-color: #1842b8;
 }
 
-.adjust-height {
-    height: 100vh;
-}
+/* Containers */
 
 .center-container {
     display: flex;
@@ -38,13 +38,36 @@
     align-items: center;
 }
 
-.adjust-width {
-    max-width: 28rem;
+.submit-container {
+    display: flex;
+    justify-content: center;
 }
+
+/* Height */
+
+.adjust-height {
+    height: 100vh;
+}
+
+/* Forms & Input fields */
+
+.form-input-box {
+    width: 100%;
+    padding: 0.625rem;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(214 211 209);
+    margin-bottom: 0.75rem;
+}
+
+/* Margins */
 
 .adjust-bottom-margin {
     margin-bottom: 0.5rem;
 }
+
+/* Text */
 
 .create-account-title {
     margin-top: 5px;
@@ -60,17 +83,8 @@
     color: white;
 }
 
-.form-input-box {
-    width: 100%;
-    padding: 0.625rem;
-    border-radius: 5px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(214 211 209);
-    margin-bottom: 0.75rem;
-}
+/* Width */
 
-.submit-container {
-    display: flex;
-    justify-content: center;
+.adjust-width {
+    max-width: 28rem;
 }

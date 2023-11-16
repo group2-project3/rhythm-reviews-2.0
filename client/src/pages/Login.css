@@ -1,70 +1,4 @@
-.login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20rem;
-}
-
-.login-title {
-    margin-top: 5px;
-    margin-bottom: 25px;
-    margin-left: 2px;
-    color: white;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    text-align: center;
-}
-
-.red-warning-text {
-    color: rgb(220 38 38);
-}
-
-.hidden {
-    display: none;
-}
-
-.center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.align-font {
-    display: block;
-    font-weight: bold;
-    text-align: left;
-    max-width: 32rem;
-    padding: 1.5rem;
-    margin-bottom: 0.625rem;
-}
-
-.adjust-bottom-margin {
-    margin-bottom: 0.5rem;
-}
-
-.white-font-color {
-    color: white;
-}
-
-.form-input-box {
-    width: 100%;
-    padding: 0.625rem;
-    border-radius: 5px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: rgb(214 211 209);
-    margin-bottom: 0.75rem;
-}
-
-.add-flex-center {
-    display: flex;
-    margin-left: 10px;
-}
-
-.larger-margin-bottom {
-    margin-bottom: 3rem;
-}
+/* Buttons */
 
 .login-button {
     padding: 8px 16px 8px 16px;
@@ -83,12 +17,35 @@
     background-color: #1842b8;
 }
 
-.small-white-text {
-    color: white;
-    font-size: 1rem;
-    line-height: 1rem;
-    text-align: center;
+/* Containers */
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20rem;
+}
+
+/* Forms & Input fields */
+
+.form-input-box {
+    width: 100%;
+    padding: 0.625rem;
+    border-radius: 5px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(214 211 209);
+    margin-bottom: 0.75rem;
+}
+
+/* Links */
 
 .create-account-link {
     margin-left: 0.5rem;
@@ -99,4 +56,61 @@
 
 .create-account-link:hover {
     color: #1e67e5;
+}
+
+/* Margins & Alignment */
+
+.adjust-bottom-margin {
+    margin-bottom: 0.5rem;
+}
+
+.add-flex-center {
+    display: flex;
+    margin-left: 10px;
+}
+
+.larger-margin-bottom {
+    margin-bottom: 3rem;
+}
+
+/* Other */
+
+.hidden {
+    display: none;
+}
+
+/* Text */
+
+.align-font {
+    display: block;
+    font-weight: bold;
+    text-align: left;
+    max-width: 32rem;
+    padding: 1.5rem;
+    margin-bottom: 0.625rem;
+}
+
+.login-title {
+    margin-top: 5px;
+    margin-bottom: 25px;
+    margin-left: 2px;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-align: center;
+}
+
+.red-warning-text {
+    color: rgb(220 38 38);
+}
+
+.small-white-text {
+    color: white;
+    font-size: 1rem;
+    line-height: 1rem;
+    text-align: center;
+}
+
+.white-font-color {
+    color: white;
 }

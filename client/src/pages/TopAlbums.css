@@ -1,3 +1,5 @@
+/* Containers */
+
 .results-container {
     position: fixed;
     top: 0;
@@ -6,11 +8,22 @@
     padding: 1rem;
     width: 100%;
     background: rgba(255, 255, 255, .3);
-  }
+}
 
-  .margin-space {
+#top-albums-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin: 0 5vw;
+    gap: 20px;
+}
+
+/* Margins & Alignment */
+
+.margin-space {
     margin-top: 8rem;
-  }
+}
+
+/* Text */
 
 h1.title {
     font-size: 3rem;
@@ -26,13 +39,7 @@ h1.title {
     text-align: center;
 }
 
-#top-albums-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    margin: 0 5vw; 
-    gap: 20px;
-}
-
+/* @media  */
 
 @media screen and (min-width: 600px) {
     #top-albums-container {
