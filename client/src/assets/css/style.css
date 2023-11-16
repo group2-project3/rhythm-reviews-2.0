@@ -247,6 +247,7 @@ button {
   color: white;
   text-decoration: underline;
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .links:hover {
