@@ -158,8 +158,19 @@ const Profile = () => {
 
   return (
     <>
-      <div className="results-container">
-        <SearchBar />
+     <div>
+        <div className="results-container">
+          <SearchBar />
+          <div className="style-rhythm-reviews-text blurry-text" style={{ position: 'absolute', top: 10, left: 10, fontSize: '34px' }}>RHYTHM</div>
+          <div className="relative" style={{ position: 'absolute', top: 40, left: 10 }}>
+            <div className="style-rhythm-reviews-text remove-margin-bottom" style={{ fontSize: '34px' }}>REVIEWS</div>
+            <div className="alignment">
+              <div className="blue-review-text reflected-text">
+                <span className="clipped-text" style={{ fontSize: '34px' }}>REVIEWS</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="content-div">
@@ -232,7 +243,7 @@ const Profile = () => {
 
             <button
               onClick={() => setDeleteAccountVisible(!isDeleteAccountVisible)}
-              className="delete-button mb-2 mt-3 ml-1"
+              className="mt-3 mb-2 ml-1 delete-button"
             >
               {isDeleteAccountVisible ? 'Close Delete Account Editor' : 'Delete Account'}
             </button>
@@ -253,7 +264,7 @@ const Profile = () => {
                     required
                   />
                 </div>
-                <div className="form-div form-group mt-0">
+                <div className="mt-0 form-div form-group">
                   <label htmlFor="password" className="form-div-text">
                     Enter password to confirm deletion:
                   </label>
@@ -262,7 +273,7 @@ const Profile = () => {
                     id="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="form-input form-control mb-2 mt-0"
+                    className="mt-0 mb-2 form-input form-control"
                     required
                   />
                 </div>
