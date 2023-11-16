@@ -1,3 +1,4 @@
+// Auth service for login and logout methods
 import * as jwt from 'jwt-decode';
 
 class AuthService {

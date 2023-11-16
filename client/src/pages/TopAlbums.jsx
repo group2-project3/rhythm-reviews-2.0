@@ -1,3 +1,4 @@
+// Shows the top 4 rated/popular albums
 import Footer from '../components/Footer';
 import SearchBar from '../components/SearchBar';
 import { useQuery } from '@apollo/client';

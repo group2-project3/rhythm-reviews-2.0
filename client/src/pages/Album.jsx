@@ -1,10 +1,10 @@
+//Single album page
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { QUERY_REVIEWS } from '../utils/queries';
 import { QUERY_ALBUM_BY_ID } from '../utils/queries';
 import SearchBar from '../components/SearchBar';
-import GoBack from '../components/GoBack';
 import AddReview from '../components/AddReview';
 import EditReview from '../components/EditReview';
 import defaultPic from '../assets/defaultPic.png';

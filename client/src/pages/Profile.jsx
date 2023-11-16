@@ -1,3 +1,5 @@
+// This page is the user profile page. It displays the user's username, email, and reviews. 
+//It also allows the user to change their password and delete their account.
 import React, { useState, useEffect } from "react";
 import Modal from 'react-modal';
 import '../assets/css/modal.css';
@@ -6,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
 import { UPDATE_PASSWORD, DELETE_ACCOUNT } from "../utils/mutations";
 import { userProfileQuery } from "../utils/queries";
-import Logout from "../components/Logout";
-import GoBack from "../components/GoBack";
 import EditReview from "../components/EditReview";
 import SearchBar from '../components/SearchBar';
 import './Profile.css';
@@ -18,7 +18,7 @@ const Profile = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [deleteAccountConfirmation, setDeleteAccountConfirmation] = useState("");
-  const [password, setPassword] = useState(""); // New state for password
+  const [password, setPassword] = useState(""); 
   const [errorMessage, setErrorMessage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalErrorMessage, setModalErrorMessage] = useState('');
@@ -99,6 +99,7 @@ const Profile = () => {
         },
       });
       openPasswordUpdatedModal("Password updated successfully!");
+      //closes the change password form after change
       setChangePasswordOpen(!isChangePasswordOpen);
     } catch (err) {
       console.error(err);

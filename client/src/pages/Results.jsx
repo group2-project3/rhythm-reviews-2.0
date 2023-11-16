@@ -1,5 +1,8 @@
+// This page displays the results of the search query. 
+//It displays the artist name, album name, year released, and album cover. 
+//It also displays the average rating for each album. The user can click on an album to view the album page.
 import React, { useState, useEffect } from "react";
-import { useApolloClient } from '@apollo/client'; // Import useApolloClient
+import { useApolloClient } from '@apollo/client'; 
 import { QUERY_ALBUMS_BY_ARTIST, QUERY_REVIEWS } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import SearchBar from "../components/SearchBar";
@@ -9,7 +12,7 @@ import StarRating from '../components/StarRating'; // Import the StarRating comp
 import './Results.css';
 
 const Results = (props) => {
-  const client = useApolloClient(); // Get the Apollo Client object
+  const client = useApolloClient(); 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const artistName = queryParams.get('artistName');

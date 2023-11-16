@@ -28,7 +28,7 @@ mutation loginUser($email: String!, $password: String!) {
     }
 }
 `;
-
+//user logout mutation
 export const LOGOUT_USER = gql`
 mutation {
   logoutUser

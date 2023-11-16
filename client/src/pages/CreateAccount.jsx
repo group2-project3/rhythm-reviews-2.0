@@ -1,3 +1,4 @@
+//Create Account page
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import '../assets/css/modal.css';

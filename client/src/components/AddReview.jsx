@@ -1,3 +1,5 @@
+//AddReview component allows users to add a review to an album. 
+//It is used in Album.jsx and Results.jsx.
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';

@@ -1,4 +1,4 @@
-//Based on the auth from utils in activity 26 of MERN module
+//Json web token and authentication
 
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');

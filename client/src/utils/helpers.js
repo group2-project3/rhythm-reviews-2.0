@@ -1,3 +1,4 @@
+//format date and time
 class HelpersService {
     formatTime(date) {
       return new Date(date).toLocaleTimeString();

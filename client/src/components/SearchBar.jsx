@@ -1,3 +1,5 @@
+// This file contains the search bar component that is displayed on multiple pages 
+//It also contains the links to the login/logout/create account pages. and profile page.
 import React, { useState, useEffect } from "react";
 import Auth from '../utils/auth';
 import Logout from "../components/Logout";

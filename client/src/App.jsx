@@ -1,3 +1,4 @@
+// This is the main App component that is rendered by the index.js file in the client/src directory.
 import React from 'react';
 import './App.css';
 import { Outlet } from 'react-router-dom';

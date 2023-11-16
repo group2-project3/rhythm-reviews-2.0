@@ -1,3 +1,4 @@
+// login page for users to login to their account.
 import React, { useState, useEffect } from "react";
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';

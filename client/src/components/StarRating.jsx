@@ -1,3 +1,4 @@
+// Star rating component
 import React, { useState } from 'react';
 import '../assets/css/style.css';
 

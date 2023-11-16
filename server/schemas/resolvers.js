@@ -1,10 +1,11 @@
+// Import the models
 const { User } = require('../models');
 const { Review } = require('../models/Review');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const fetch = require('node-fetch');
 require('dotenv').config()
 const audioDbRootUrl = 'https://theaudiodb.p.rapidapi.com';
-
+//AUDIO DB API KEY
 const audioDbOptions = {
   method: 'GET',
   headers: {
@@ -94,7 +95,7 @@ const resolvers = {
         acc[id] = (acc[id] || 0) + 1;
         return acc;
       }, {});
-    
+    //Logic to get the top 4 albums
       const sortedIds = Object.keys(idCounts).sort((a, b) => idCounts[b] - idCounts[a]);
     
       const topIdALbums = sortedIds.slice(0, 4);
@@ -166,7 +167,7 @@ const resolvers = {
           title: title,
           content: content,
           idAlbum: idAlbum,
-          rating: rating, // Include the rating here
+          rating: rating, 
           user: context.req.user._id,
         });
     
@@ -210,15 +211,12 @@ const resolvers = {
           if (!review) {
             throw new Error('Review not found');
           }
-          // Make sure the user has permission to delete the review
           if (review.user._id.toString() !== context.req.user._id.toString()) {
             throw new Error('You do not have permission to delete this review');
           }
     
-          // Delete the review
           await Review.deleteOne({ _id: reviewId });
     
-          // Optionally, update any related user data (e.g., remove from savedReviews array)
           await User.findOneAndUpdate(
             { _id: context.req.user._id },
             { $pull: { savedReviews: review._id } }
@@ -246,10 +244,8 @@ const resolvers = {
         }
   
         try {
-          // Optionally, you can perform any additional cleanup or data removal here
           await Review.deleteMany({ user: context.req.user._id });
   
-          // Delete the account
           await User.deleteOne({ _id: context.req.user._id });
   
           context.res.clearCookie('token'); // Clear the user's token

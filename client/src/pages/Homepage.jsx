@@ -1,3 +1,4 @@
+//Hompage component for the site
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import '../assets/css/style.css';

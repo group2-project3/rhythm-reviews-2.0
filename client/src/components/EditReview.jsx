@@ -1,3 +1,4 @@
+// This component is used to edit a review. It is used in the Profile component and the Album component.
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
@@ -81,7 +82,6 @@ const EditReview = (props) => {
 
     try {
       setEditing(false);
-      // Handle any logic after canceling the edit if needed
     } catch (e) {
       console.error(e);
     }
