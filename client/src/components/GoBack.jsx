@@ -1,3 +1,4 @@
+//Go back home link
 import '../assets/css/style.css';
 
 const GoBack = () => {

@@ -1,3 +1,4 @@
+//Review model and schema
 const { Schema, model } = require('mongoose');
 
 const reviewSchema = new Schema({

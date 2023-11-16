@@ -1,3 +1,4 @@
+//Logout component
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { LOGOUT_USER } from '../utils/mutations';

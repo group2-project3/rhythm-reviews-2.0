@@ -1,3 +1,4 @@
+// Define the query and mutation functionality to work with the Mongoose models.
 const typeDefs = `
 type User {
     _id: ID

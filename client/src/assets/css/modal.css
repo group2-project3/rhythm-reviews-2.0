@@ -13,9 +13,9 @@
   
   .modal-container {
     background-color: #fff; /* Background color for the modal */
-    border-radius: 8px; /* Adjust as needed */
-    max-width:40%; /* Adjust as needed */
-    max-height: 40%; /* Adjust as needed */
+    border-radius: 8px; 
+    max-width:40%; 
+    max-height: 40%; 
     overflow: auto;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);

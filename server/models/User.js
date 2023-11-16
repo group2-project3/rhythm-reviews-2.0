@@ -1,7 +1,6 @@
+//User model and schema
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
-
-// import schema from Review.js
 const {reviewSchema} = require('./Review');
 
 const userSchema = new Schema(
@@ -21,10 +20,8 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedBooks to be an array of data that adheres to the bookSchema
     savedReviews: [{ type: Schema.Types.ObjectId, ref: 'Review'}],
   },
-  // set this to use virtual below
   {
     toJSON: {
       virtuals: true,

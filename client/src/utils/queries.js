@@ -87,7 +87,7 @@ export const QUERY_REVIEWS = gql`
     }
   }
 `;
-
+// query to get top albums
 export const QUERY_GET_TOP_ALBUMS = gql`
   query GetTopAlbums {
     getTopAlbums {
