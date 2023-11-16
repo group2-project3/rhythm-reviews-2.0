@@ -40,8 +40,19 @@ const Album = () => {
 
   return (
     <>
-      <div className="results-container">
-        <SearchBar />
+       <div>
+        <div className="results-container">
+          <SearchBar />
+          <div className="style-rhythm-reviews-text blurry-text" style={{ position: 'absolute', top: 10, left: 10, fontSize: '34px' }}>RHYTHM</div>
+          <div className="relative" style={{ position: 'absolute', top: 40, left: 10 }}>
+            <div className="style-rhythm-reviews-text remove-margin-bottom" style={{ fontSize: '34px' }}>REVIEWS</div>
+            <div className="alignment">
+              <div className="blue-review-text reflected-text">
+                <span className="clipped-text" style={{ fontSize: '34px' }}>REVIEWS</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="flex-container">
