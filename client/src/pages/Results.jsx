@@ -60,7 +60,10 @@ const Results = (props) => {
       <div className="results-container">
         <SearchBar />
       </div>
-      <div className="margin-space search-container">
+                        
+      <div className="margin">
+      <h1 className="title">Album Results</h1>
+      <div className="search-container">
         <div className="add-flex-container">
           {albumsData && albumsData.getAlbumsByArtist && (
             albumsData.getAlbumsByArtist.map((album) => (
@@ -80,6 +83,7 @@ const Results = (props) => {
           )}
         </div>
         {props.message && <p className="red-warning-text">{props.message}</p>}
+      </div>
       </div>
     </>
   );
