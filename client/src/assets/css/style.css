@@ -255,6 +255,8 @@ button {
 }
 
 
+
+
 /* Logo */
 
 .blurry-text {
@@ -400,6 +402,11 @@ button {
   width: 400px;
 }
 
+.style-rhythm-reviews-text,
+.clipped-text {
+  visibility: visible;
+}
+
 /* @keyframes */
 
 @keyframes fadeInAnimation {
@@ -441,5 +448,17 @@ button {
 @media only screen and (min-width: 969px) and (max-width: 1307px) {
   .col {
     width: 30%;
+  }
+}
+
+@media (max-width: 850px) {
+  .style-rhythm-reviews-text,
+  .clipped-text {
+    visibility: hidden;
+  }
+
+  .style-rhythm-reviews-text::first-letter,
+  .clipped-text::first-letter {
+    visibility: visible;
   }
 }
