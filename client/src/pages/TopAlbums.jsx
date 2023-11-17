@@ -29,12 +29,12 @@ const TopAlbums = () => {
           </div>
           <div className="relative" style={{ position: 'absolute', top: 40, left: 10 }}>
             <div className="style-rhythm-reviews-text remove-margin-bottom" style={{ fontSize: '34px' }}>
-              <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
+              <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
             </div>
             <div className="alignment">
               <div className="blue-review-text reflected-text">
                 <span className="clipped-text" style={{ fontSize: '34px' }}>
-                  <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
+                  <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
                 </span>
               </div>
             </div>

@@ -63,6 +63,13 @@
     color: #ffffff;
 }
 
+.style-rhythm-reviews-text1 {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #ffffff;
+}
+
 /* @media */
 
 @media (min-width: 1024px) {
