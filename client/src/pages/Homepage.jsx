@@ -18,12 +18,12 @@ const Homepage = () => {
       <div className="home-container">
 
         <div className={`center-text ${fadeInClass}`} >
-          <div className="style-rhythm-reviews-text blurry-text">RHYTHM</div>
+          <div className="style-rhythm-reviews-text1 blurry-text">RHYTHM</div>
           <div className="relative">
-            <div className="style-rhythm-reviews-text remove-margin-bottom">REVIEWS</div>
+            <div className="style-rhythm-reviews-text1 remove-margin-bottom">REVIEWS</div>
             <div className="alignment">
               <div className="blue-review-text reflected-text">
-                <span className="clipped-text">REVIEWS</span>
+                <span className="clipped-text1">REVIEWS</span>
               </div>
             </div>
           </div>

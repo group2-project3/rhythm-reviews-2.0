@@ -270,6 +270,12 @@ button {
   clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
 }
 
+.clipped-text1 {
+  display: block;
+  position: relative;
+  clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+}
+
 .fade-in {
   opacity: 0;
   animation: fadeInAnimation 2s ease-in-out forwards;
@@ -404,6 +410,11 @@ button {
 
 .style-rhythm-reviews-text,
 .clipped-text {
+  visibility: visible;
+}
+
+.style-rhythm-reviews-text1,
+.clipped-text1 {
   visibility: visible;
 }
 
