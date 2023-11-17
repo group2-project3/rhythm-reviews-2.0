@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 // This page is the user profile page. It displays the user's username, email, and reviews. 
 //It also allows the user to change their password and delete their account.
 import React, { useState, useEffect } from "react";
@@ -161,12 +162,18 @@ const Profile = () => {
      <div>
         <div className="results-container">
           <SearchBar />
-          <div className="style-rhythm-reviews-text blurry-text" style={{ position: 'absolute', top: 10, left: 10, fontSize: '34px' }}>RHYTHM</div>
+          <div className="style-rhythm-reviews-text blurry-text" style={{ position: 'absolute', top: 10, left: 10, fontSize: '34px' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>RHYTHM</Link>
+          </div>
           <div className="relative" style={{ position: 'absolute', top: 40, left: 10 }}>
-            <div className="style-rhythm-reviews-text remove-margin-bottom" style={{ fontSize: '34px' }}>REVIEWS</div>
+            <div className="style-rhythm-reviews-text remove-margin-bottom" style={{ fontSize: '34px' }}>
+              <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
+            </div>
             <div className="alignment">
               <div className="blue-review-text reflected-text">
-                <span className="clipped-text" style={{ fontSize: '34px' }}>REVIEWS</span>
+                <span className="clipped-text" style={{ fontSize: '34px' }}>
+                  <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
+                </span>
               </div>
             </div>
           </div>

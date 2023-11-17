@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar';
 import AddReview from '../components/AddReview';
 import EditReview from '../components/EditReview';
 import defaultPic from '../assets/DefaultPic.png';
+import { Link } from 'react-router-dom';
 import './Album.css';
 
 const Album = () => {
@@ -40,19 +41,25 @@ const Album = () => {
 
   return (
     <>
-       <div>
+      <div>
         <div className="results-container">
           <SearchBar />
-          <div className="style-rhythm-reviews-text blurry-text" data-first-letter="R" style={{ position: 'absolute', top: 10, left: 10, fontSize: '34px' }}>RHYTHM</div>
+          <div className="style-rhythm-reviews-text blurry-text" style={{ position: 'absolute', top: 10, left: 10, fontSize: '34px' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>RHYTHM</Link>
+          </div>
           <div className="relative" style={{ position: 'absolute', top: 40, left: 10 }}>
-            <div className="style-rhythm-reviews-text remove-margin-bottom" data-first-letter="R" style={{ fontSize: '34px' }}>REVIEWS</div>
+            <div className="style-rhythm-reviews-text remove-margin-bottom" style={{ fontSize: '34px' }}>
+              <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
+            </div>
             <div className="alignment">
               <div className="blue-review-text reflected-text">
-                <span className="clipped-text" data-first-letter="R" style={{ fontSize: '34px' }}>REVIEWS</span>
+                <span className="clipped-text" style={{ fontSize: '34px' }}>
+                  <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>REVIEWS</Link>
+                </span>
               </div>
             </div>
           </div>
-        
+
         </div>
       </div>
 
